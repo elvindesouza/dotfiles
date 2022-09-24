@@ -73,10 +73,6 @@ export XDG_CONFIG_HOME=$HOME/.config
 export XDG_STATE_HOME=$HOME/.local/state
 export XDG_CACHE_HOME=$HOME/.cache
 
-
-export EDITOR=vim
-export VISUAL=vim
-
 export LD_PRELOAD=""
 
 export PATH="$HOME/bin:/usr/lib/ccache/bin/:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:/opt/bin:/usr/bin/core_perl:/usr/games/bin:$PATH"
@@ -98,6 +94,11 @@ export LESS='-R --use-color -Dd+r$Du+b'
 #xrdb -load "$XDG_CONFIG_HOME/X11/xresources"
 
 export GTK_USE_PORTAL=1
+
+# To have colors for ls and all grep commands such 
+  export CLICOLOR=1      
+ alias grep="/usr/bin/grep $GREP_OPTIONS"
+  unset GREP_OPTIONS     
 
 export LESS='-R --use-color -Dd+r$Du+b'
 export MANPAGER="less -R --use-color -Dd+r -Du+b"

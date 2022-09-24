@@ -340,7 +340,6 @@ tmux_conf_copy_to_os_clipboard=false
 #set -g history-limit 10000
 
 # start with mouse mode enabled
-#set -g mouse on
 
 # force Vi mode
 #   really you should export VISUAL or EDITOR environment variable, see manual
@@ -404,6 +403,10 @@ bind -r L resize-pane -R 10
 set -sg escape-time 1
 
 set -g default-shell /bin/zsh
+
+tmux_conf_copy_to_os_clipboard=true
+
+# set 
 
 # -- tpm -----------------------------------------------------------------------
 
