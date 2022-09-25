@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 alias vim='nvim'
-alias vi="vim"
+alias vi="nvim"
 alias flatpak='flatpak --installation=extra'
 alias kexec='sudo kexec -l /boot/vmlinuz-linux --initrd=/boot/initramfs-linux.img --reuse-cmdline && sudo systemctl kexec'
 alias pacman='sudo pacman'
@@ -26,8 +26,8 @@ alias eal='vim ~/.bash_aliases'
 alias sal='source ~/.bash_aliases'
 
 # some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
+# alias ll='ls -alF'
+# alias la='ls -A'
 #alias l='ls -CF'
 
 # enable color support of ls and also add handy aliases
@@ -91,7 +91,6 @@ alias mountedinfo='df -hT'
 # Show all logs in /var/log
 alias logs="sudo find /var/log -type f -exec file   {} \; | grep 'text' | cut -d' ' -f1 | sed -e's/:$/  /g' | grep -v '[0-9]$' | xargs tail -f"
 
-alias la='ls -Alh' # show hidden files
 
 # Alias's for multiple directory listing commands
 alias la='ls -Alh'                # show hidden files

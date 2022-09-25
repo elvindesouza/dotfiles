@@ -18,9 +18,9 @@ run() {
  cd ()
  {
     if [ -n "$1" ]; then
-        builtin cd "$@" && ls
+        builtin cd "$@" && ls --color=auto -A
     else
-        builtin cd ~ && ls
+        builtin cd ~ && ls --color=auto -A
     fi
  }
 
