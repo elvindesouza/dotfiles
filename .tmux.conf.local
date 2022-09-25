@@ -403,6 +403,7 @@ bind -r L resize-pane -R 10
 set -sg escape-time 1
 
 set -g default-shell /bin/zsh
+set -g default-command /bin/zsh
 
 tmux_conf_copy_to_os_clipboard=true
 

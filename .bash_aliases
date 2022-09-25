@@ -34,16 +34,14 @@ alias la='ls -A'
 if [ -x /usr/bin/dircolors ]; then
 	test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 	alias ls='ls --color=auto'
-	#alias dir='dir --color=auto'
-	#alias vdir='vdir --color=auto'
-
+	alias dir='dir --color=auto'
+	alias vdir='vdir --color=auto'
 	alias grep='grep --color=auto'
 	alias fgrep='fgrep --color=auto'
 	alias egrep='egrep --color=auto'
 fi
 
 alias reload="source \$HOME/.zshrc"
-# alias
 alias c="clear"
 alias cd..="cd .."
 alias curl="curl --user-agent 'noleak'"
@@ -80,9 +78,9 @@ alias topcpu="/bin/ps -eo pcpu,pid,user,args | so  rt -k 1 -r | head -10"
 alias f="find . | grep "
 
 # Count all files (recursively) in the current fold  er
-alias countfiles="for t in files links directorie  s; do echo \`find . -type \${t:0:1} | wc -l\` \$t;   done 2> /dev/null"
+alias countfiles="for t in files links directories; do echo \`find . -type \${t:0:1} | wc -l\` \$t;   done 2> /dev/null"
 
-# Alias's to show disk space and space used in a fo  lder
+# Alias's to show disk space and space used in a folder
 alias diskspace="du -S | sort -n -r |more"
 alias folders='du -h --max-depth=1'
 alias folderssort='find . -maxdepth 1 -type d -pr  int0 | xargs -0 du -sk | sort -rn'
@@ -111,7 +109,8 @@ alias labc='ls -lap'              #alphabetical sort
 alias lf="ls -l | egrep -v '^d'"  # files only
 alias ldir="ls -l | egrep '^d'"   # directories only
 
-run() {
-	"$@" &
-	disown %2 && exit
-}
+# Filesystem aliases
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
