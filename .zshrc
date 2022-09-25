@@ -1,8 +1,18 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
 ## OLD configuration
 #
 autoload -U colors && colors
 
+run() {
+	"$@" &
+	disown %2 && exit
+}
 
 #Automatically do an ls after each cd
  cd ()
@@ -13,6 +23,20 @@ autoload -U colors && colors
         builtin cd ~ && ls
     fi
  }
+
+lfcd () {
+    tmp="$(mktemp)"
+    lf -last-dir-path="$tmp" "$@"
+    if [ -f "$tmp" ]; then
+        dir="$(cat "$tmp")"
+        rm -f "$tmp"
+        if [ -d "$dir" ]; then
+            if [ "$dir" != "$(pwd)" ]; then
+                cd "$dir"
+            fi
+        fi
+    fi
+}
 
 setopt hist_ignore_all_dups # remove older duplicate entries from history
 setopt hist_reduce_blanks # remove superfluous blanks from history items
@@ -28,7 +52,7 @@ zstyle ':completion:*' menu select # select completions with arrow keys
 zstyle ':completion:*' group-name '' # group results by category
 zstyle ':completion:::::' completer _expand _complete _ignored _approximate #enable approximate matches for completion
 zstyle ':completion::complete:*' gain-privileges 1
-
+zstyle ':completion:*' insert-tab pending # pasting with tabs doesn't perform completion
 # unset SINGLE_LINE_ZLE
 # PS1="%{$fg[cyan]%}%B>%b%{$reset_color%} "
 # RPROMPT="%~"
@@ -37,9 +61,11 @@ zstyle ':completion::complete:*' gain-privileges 1
 export HISTSIZE=1000000000
 export SAVEHIST=1000000000
 setopt EXTENDED_HISTORY
+setopt HIST_REDUCE_BLANKS        # remove superfluous blanks before recording entry.
+setopt SHARE_HISTORY             # share history between all sessions.
+setopt HIST_IGNORE_ALL_DUPS      # delete old recorded entry if new entry is a duplicate.
 HISTFILE="$XDG_STATE_HOME"/zsh/history
-# Don't put duplicate lines in the history and do not add lines that start with a space
-export HISTCONTROL=erasedups:ignoredups:ignorespace
+export HISTCONTROL=erasedups:ignoredups:ignorespace # Don't put duplicate lines in the history and do not add lines that start with a space
 
 # Fancy auto-complete
 autoload -Uz compinit
@@ -51,7 +77,8 @@ compinit -d "$XDG_CACHE_HOME"/zsh/zcompdump-"$ZSH_VERSION"
 _comp_options+=(globdots) # hidden files are included
 
 # Keybindings section
-bindkey -e
+bindkey -v
+bindkey '' forward-char  
 bindkey '^[[7~' beginning-of-line                               # Home key
 bindkey '^[[H' beginning-of-line                                # Home key
 if [[ "${terminfo[khome]}" != "" ]]; then
@@ -78,24 +105,10 @@ bindkey '^H' backward-kill-word                                 # delete previou
 bindkey '^[[3;5~' kill-word
 bindkey '^[[Z' undo                                             # Shift+tab undo last action
 
-lfcd () {
-    tmp="$(mktemp)"
-    lf -last-dir-path="$tmp" "$@"
-    if [ -f "$tmp" ]; then
-        dir="$(cat "$tmp")"
-        rm -f "$tmp"
-        if [ -d "$dir" ]; then
-            if [ "$dir" != "$(pwd)" ]; then
-                cd "$dir"
-            fi
-        fi
-    fi
-}
-
 ## Use the up and down arrow keys for finding a command in history
 ## (you can write some initial letters of the command first).
-bindkey "\e[A" history-search-backward
-bindkey "\e[B" history-search-forward
+bindkey "\e[A" history-substring-search-backward
+bindkey "\e[B" history-substring-search-forward
 
 
 if [ -f ~/.bash_aliases ]; then
@@ -115,7 +128,8 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="agnoster"
+# ZSH_THEME="agnoster"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -154,7 +168,7 @@ ENABLE_CORRECTION="true"
 # You can also set it to another string to have that shown instead of the default red dots.
 # e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
 # Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -178,13 +192,20 @@ ENABLE_CORRECTION="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git
-    colored-man-pages command-not-found archlinux vi-mode ufw thefuck systemd ssh-agent
-systemadmin
-mosh
-gpg-agent
-fzf
-zsh-syntax-highlighting
-zsh-autosuggestions
+    colored-man-pages
+    command-not-found
+    # archlinux
+    vi-mode
+    # ufw
+    # thefuck
+    # systemd 
+    # ssh-agent
+    # systemadmin
+    # mosh
+    # gpg-agent
+    # fzf
+    zsh-autosuggestions
+    zsh-syntax-highlighting
 history-substring-search)
 
 source $ZSH/oh-my-zsh.sh
@@ -197,12 +218,7 @@ source $ZSH/oh-my-zsh.sh
 export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
- if [[ -n $SSH_CONNECTION ]]; then
-   export EDITOR='nvim'
- else
-   export EDITOR='nvim'
- fi
-
+ export EDITOR='nvim'
  export VISUAL='nvim'
 
 # Compilation flags
@@ -224,4 +240,9 @@ export LANG=en_US.UTF-8
 
 eval "$(direnv hook zsh)"
 
-if [ "$TMUX" = "" ]; then tmux new-session -A -s 1 'zsh'; fi
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+if [ "$TMUX" = "" ]; then tmux new-session -A -s user -c 'zsh' -d; fi
+
