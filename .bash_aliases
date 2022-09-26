@@ -1,4 +1,6 @@
 #! /usr/bin/env bash
+alias tmux n='tmux new-session -A -s 1 -c 'zsh' -d'
+alias tmux a='alias -2 -u attach -d' 
 alias vim='nvim'
 alias vi="nvim"
 alias flatpak='flatpak --installation=extra'
