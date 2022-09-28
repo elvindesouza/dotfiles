@@ -1,9 +1,9 @@
 #! /usr/bin/env bash
-alias tmux n='tmux new-session -A -s 1 -c 'zsh' -d'
-alias tmux a='alias -2 -u attach -d' 
+alias tmuxn="tmux new-session -A -s 1 -c 'zsh' -d"
+alias tmuxa='alias -2 -u attach -d' 
 alias vim='nvim'
 alias vi="nvim"
-alias flatpak='flatpak --installation=extra '
+alias flatpak='flatpak --installation=extra'
 alias kexec='sudo kexec -l /boot/vmlinuz-linux --initrd=/boot/initramfs-linux.img --reuse-cmdline && sudo systemctl kexec'
 alias pacman='sudo pacman'
 alias aur='yay'
