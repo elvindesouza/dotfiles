@@ -1,5 +1,5 @@
 #! /usr/bin/env bash
-if [ -x "$(pacman --help)" ]; then
+if [ -f "/usr/bin/pacman" ]; then
 	alias flatpak='flatpak --installation=extra'
 	alias kexec='sudo kexec -l /boot/vmlinuz-linux --initrd=/boot/initramfs-linux.img --reuse-cmdline && sudo systemctl kexec'
 	alias aur='yay'
@@ -9,7 +9,7 @@ if [ -x "$(pacman --help)" ]; then
 	alias list='pacman -Qet | less'
 	alias listall='pacman -Q | less'
 	alias upgrade='aur -Syyu ; flatpak update'
-elif [ -x "$(apt)" ]; then
+elif [ -f "/usr/bin/apt" ]; then
 	alias search='apt search'
 	alias inst='sudo apt install -y'
 	alias uninst='sudo apt --purge autoremove && sudo apt-get --purge remove'

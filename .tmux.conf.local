@@ -52,7 +52,7 @@ tmux_conf_new_session_prompt=false
 # automatic detection relies on the COLORTERM environment variable being defined
 # to 'truecolor' or '24bit' or '$ tput colors' answering '16777216'
 # see https://github.com/termstandard/colors
-tmux_conf_24b_colour=auto
+tmux_conf_24b_colour=true
 
 # default theme
 tmux_conf_theme_colour_1="#080808"    # dark gray
@@ -330,7 +330,7 @@ tmux_conf_theme_clock_style="24"
 #   - disabled
 # on macOS, this requires installing reattach-to-user-namespace, see README.md
 # on Linux, this requires xsel or xclip
-tmux_conf_copy_to_os_clipboard=false
+tmux_conf_copy_to_os_clipboard=true
 
 
 # -- user customizations -------------------------------------------------------
@@ -343,8 +343,8 @@ tmux_conf_copy_to_os_clipboard=false
 
 # force Vi mode
 #   really you should export VISUAL or EDITOR environment variable, see manual
-#set -g status-keys vi
-#set -g mode-keys vi
+set -g status-keys vi
+set -g mode-keys vi
 
 # replace C-b by C-a instead of using both prefixes
 set -gu prefix2
@@ -363,8 +363,6 @@ bind u set-option status
 
 #Mouse works as expected
 set -g mouse on
-
-set -g mode-keys vi
 
 set -g visual-activity on
 
@@ -404,8 +402,6 @@ set -sg escape-time 1
 
 set -g default-shell /bin/zsh
 set -g default-command /bin/zsh
-
-tmux_conf_copy_to_os_clipboard=true
 
 # set 
 
