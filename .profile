@@ -1,7 +1,10 @@
 #
 # ~/.profile
 #
+
 export GPG_TTY=$(tty)
+export GNUPGHOME="$XDG_DATA_HOME"/gnupg
+
 export XDG_DATA_HOME=$HOME/.local/share
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_STATE_HOME=$HOME/.local/state
@@ -13,7 +16,6 @@ export PATH="$HOME/bin:/usr/lib/ccache/bin/:/sbin:/usr/bin:/usr/sbin:/usr/local/
 export PATH="$HOME/.local/bin:$PATH"
 
 export CUDA_CACHE_PATH="$XDG_CACHE_HOME"/nv
-export GNUPGHOME="$XDG_DATA_HOME"/gnupg
 
 export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
 export KDEHOME="$XDG_CONFIG_HOME"/kde
@@ -22,7 +24,7 @@ export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
 export INPUTRC="$XDG_CONFIG_HOME"/readline/inputrc
 #export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
 
-export LESS='-R --use-color -Dd+r$Du+b'
+export LESS="-R --use-color -Dd+r$Du+b"
 
 #xrdb -load "$XDG_CONFIG_HOME/X11/xresources"
 

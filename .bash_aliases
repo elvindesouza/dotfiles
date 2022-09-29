@@ -1,28 +1,39 @@
 #! /usr/bin/env bash
+if [ -x "$(pacman --help)" ]; then
+	alias flatpak='flatpak --installation=extra'
+	alias kexec='sudo kexec -l /boot/vmlinuz-linux --initrd=/boot/initramfs-linux.img --reuse-cmdline && sudo systemctl kexec'
+	alias aur='yay'
+	alias inst='sudo pacman -S'
+	alias uninst='sudo pacman -Rns'
+	alias search='aur -Ss'
+	alias list='pacman -Qet | less'
+	alias listall='pacman -Q | less'
+	alias upgrade='aur -Syyu ; flatpak update'
+elif [ -x "$(apt)" ]; then
+	alias search='apt search'
+	alias inst='sudo apt install -y'
+	alias uninst='sudo apt --purge autoremove && sudo apt-get --purge remove'
+	alias upgrade='sudo apt update && sudo apt dist-upgrade'
+	alias auto='sudo apt-mark auto'
+	alias manu='sudo apt-mark manual'
+	alias backup='bash "/media/elvin/eHDD/repos/RecoverUbuntu/backup/BACKUP_UBUNTU.sh"'
+	alias list='apt-mark showmanual | less'
+	alias listall='dpkg --list'
+fi
+
 alias tmuxn="tmux new-session -A -s 1 -c 'zsh' -d"
-alias tmuxa='alias -2 -u attach -d' 
+alias tmuxa='alias -2 -u attach -d'
 alias vim='nvim'
 alias vi="nvim"
-alias flatpak='flatpak --installation=extra'
-alias kexec='sudo kexec -l /boot/vmlinuz-linux --initrd=/boot/initramfs-linux.img --reuse-cmdline && sudo systemctl kexec'
-alias pacman='sudo pacman'
-alias aur='yay'
 alias sc='sudo systemctl'
 alias s='sudo'
 alias python='python3'
 alias gpu='watch -n.1 "nvidia-smi"'
-alias lx='less'
+alias lx='less +G'
 alias note='vim ~/Documents/temp.txt'
 alias q='exit'
 alias c='clear'
 alias pip='pip3'
-
-alias inst='sudo pacman -S'
-alias uninst='sudo pacman -Rns'
-alias search='aur -Ss'
-alias list='pacman -Qet | less'
-alias listall='pacman -Q | less'
-alias upgrade='aur -Syyu ; flatpak update'
 
 alias eal='vim ~/.bash_aliases'
 alias sal='source ~/.bash_aliases'
@@ -93,22 +104,21 @@ alias mountedinfo='df -hT'
 # Show all logs in /var/log
 alias logs="sudo find /var/log -type f -exec file   {} \; | grep 'text' | cut -d' ' -f1 | sed -e's/:$/  /g' | grep -v '[0-9]$' | xargs tail -f"
 
-
 # Alias's for multiple directory listing commands
 alias la='ls -Alh'                # show hidden files
 alias ls='ls -aFh --color=always' # add colors and file type extensions
 # alias lx='ls -lXBh'               # sort by extension
-alias lk='ls -lSrh'               # sort by size
-alias lc='ls -lcrh'               # sort by change time
-alias lu='ls -lurh'               # sort by access time
-alias lr='ls -lRh'                # recursive ls
-alias lt='ls -ltrh'               # sort by date
-alias lm='ls -alh |more'          # pipe through 'more'
-alias lw='ls -xAh'                # wide listing format
-alias ll='ls -Fls'                # long listing format
-alias labc='ls -lap'              #alphabetical sort
-alias lf="ls -l | egrep -v '^d'"  # files only
-alias ldir="ls -l | egrep '^d'"   # directories only
+alias lk='ls -lSrh'              # sort by size
+alias lc='ls -lcrh'              # sort by change time
+alias lu='ls -lurh'              # sort by access time
+alias lr='ls -lRh'               # recursive ls
+alias lt='ls -ltrh'              # sort by date
+alias lm='ls -alh |more'         # pipe through 'more'
+alias lw='ls -xAh'               # wide listing format
+alias ll='ls -Fls'               # long listing format
+alias labc='ls -lap'             #alphabetical sort
+alias lf="ls -l | egrep -v '^d'" # files only
+alias ldir="ls -l | egrep '^d'"  # directories only
 
 # Filesystem aliases
 alias ..='cd ..'
