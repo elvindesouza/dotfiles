@@ -1,6 +1,6 @@
-# if [ -z "$TMUX" ]; then
-#   exec tmux new-session -A -s 1 -c 'zsh' -d
-# fi
+if [ -z "$TMUX" ]; then
+  exec tmux new-session -A -s 1 -c 'zsh' -d
+fi
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -116,14 +116,6 @@ bindkey "\e[A" history-substring-search-backward
 bindkey "\e[B" history-substring-search-forward
 
 
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
-
-if [ -f ~/.profile ]; then
-    . ~/.profile
-fi
-
 ################################ NEW CONFIGURATION
 
 # If you come from bash you might have to change your $PATH.
@@ -228,6 +220,14 @@ export LANG=en_US.UTF-8
 # Preferred editor for local and remote sessions
  export EDITOR='nvim'
  export VISUAL='nvim'
+
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
+if [ -f ~/.profile ]; then
+    . ~/.profile
+fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
