@@ -70,7 +70,3 @@ fi
 PS1='\[\033[01;34m\]\w\[\033[00m\]\$ '
 
 #setfont -d
-
-if [ -f ~/.bash_profile ]; then
-	. ~/.bash_profile
-fi
