@@ -9,6 +9,14 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
+if [ -f ~/.profile ]; then
+    . ~/.profile
+fi
+
 
 ## OLD configuration
 #
@@ -220,14 +228,6 @@ export LANG=en_US.UTF-8
 # Preferred editor for local and remote sessions
  export EDITOR='nvim'
  export VISUAL='nvim'
-
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
-
-if [ -f ~/.profile ]; then
-    . ~/.profile
-fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"

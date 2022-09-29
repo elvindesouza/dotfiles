@@ -10,6 +10,7 @@ Xft.antialias: true
 Xft.autohint: true
 Xft.hintstyle: hintfull
 Xft.lcdfilter: lcdfilter
+Xft.dpi: 120
 
 ! FONTS
 *font: Iosevka Nerd Font Mono:pixelsize=30:antialias=true:autohint=true
