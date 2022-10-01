@@ -21,7 +21,7 @@ elif [ -f "/usr/bin/apt" ]; then
 	alias listall='dpkg --list'
 fi
 
-alias tmuxn="tmux new-session -A -s 1 -c 'zsh' -d"
+alias tmux="tmux new-session -A -s 1 -c 'zsh' -d"
 alias tmuxa='alias -2 -u attach -d'
 alias vim='nvim'
 alias vi="nvim"
