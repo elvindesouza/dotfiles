@@ -18,6 +18,8 @@ bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 1 # decrease 
 # is used in the bar {} block below.
 #font pango:monospace 8
 for_window [class="^.*"] border pixel 2
+#                          border  backgr. text
+client.focused_workspace  #555555 #16a085 #292F34
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
