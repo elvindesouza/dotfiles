@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 if [ -f "/usr/bin/pacman" ]; then
-	alias flatpak='flatpak --installation=extra'
+	#alias flatpakinstall='flatpak --installation=extra'
 	alias kexec='sudo kexec -l /boot/vmlinuz-linux --initrd=/boot/initramfs-linux.img --reuse-cmdline && sudo systemctl kexec'
 	alias aur='yay'
 	alias inst='sudo pacman -S'
