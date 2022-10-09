@@ -115,6 +115,7 @@ bindkey '^[Od' backward-word                                    #
 bindkey '^[[1;5D' backward-word                                 #
 bindkey '^[[1;5C' forward-word                                  #
 bindkey '^H' backward-kill-word                                 # delete previous word with ctrl+backspace
+bindkey '^[[127;5u' backward-kill-word                                 # delete previous word with ctrl+backspace
 bindkey '^[[3;5~' kill-word
 bindkey '^[[Z' undo                                             # Shift+tab undo last action
 
@@ -200,8 +201,8 @@ COMPLETION_WAITING_DOTS="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git
-    colored-man-pages
-    command-not-found
+    # colored-man-pages
+    # command-not-found
     # archlinux
     vi-mode
     # ufw
