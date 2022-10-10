@@ -9,6 +9,18 @@
 
 [[ -z "$FUNCNEST" ]] && export FUNCNEST=100 # limits recursive functions, see 'man bash'
 
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
+if [ -f ~/.profile ]; then
+	. ~/.profile
+fi
+
+if [ -f ~/.bash_aliases ]; then
+	. ~/.bash_aliases
+fi
+
 # Expand the history size
 export HISTFILESIZE=100000
 export HISTSIZE=100000
@@ -55,17 +67,6 @@ fi
 [ -r /usr/share/bash-completion/completions ] &&
 	. /usr/share/bash-completion/completions/*
 
-if [ -f /etc/bashrc ]; then
-	. /etc/bashrc
-fi
-
-if [ -f ~/.profile ]; then
-	. ~/.profile
-fi
-
-if [ -f ~/.bash_aliases ]; then
-	. ~/.bash_aliases
-fi
 
 PS1='\[\033[01;34m\]\w\[\033[00m\]\$ '
 

@@ -403,6 +403,8 @@ set -sg escape-time 1
 set -g default-shell /bin/zsh
 set -g default-command /bin/zsh
 
+set -s extended-keys on
+
 # set 
 
 # -- tpm -----------------------------------------------------------------------
