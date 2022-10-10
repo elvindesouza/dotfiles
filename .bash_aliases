@@ -21,8 +21,8 @@ elif [ -f "/usr/bin/apt" ]; then
 	alias listall='dpkg --list'
 fi
 
+alias tt="run zathura /media/elvin/dHDD/Sem\ 5/timetable.pdf"
 alias tmux="tmux -u -2 new-session -A -s 1 -c 'zsh'"
-# alias tmuxa='alias -2 -u attach -d'
 alias vim='nvim'
 alias vi="nvim"
 alias sc='sudo systemctl'
