@@ -23,8 +23,7 @@ fi
 autoload -U colors && colors
 
 run() {
-	"$@" &
-	disown %2 && exit
+    nohup "$@" >/dev/null 2>/dev/null & disown; exit
 }
 
 #Automatically do an ls after each cd
