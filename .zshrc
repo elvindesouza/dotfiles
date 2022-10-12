@@ -113,8 +113,8 @@ bindkey '^[Oc' forward-word                                     #
 bindkey '^[Od' backward-word                                    #
 bindkey '^[[1;5D' backward-word                                 #
 bindkey '^[[1;5C' forward-word                                  #
-bindkey '^H' backward-kill-word                                 # delete previous word with ctrl+backspace
 bindkey '^[[127;5u' backward-kill-word                                 # delete previous word with ctrl+backspace
+bindkey '^H' backward-kill-word                                 # delete previous word with ctrl+backspace
 bindkey '^[[3;5~' kill-word
 bindkey '^[[Z' undo                                             # Shift+tab undo last action
 
@@ -199,11 +199,11 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git
+plugins=(vi-mode
+    # git
     # colored-man-pages
     # command-not-found
     # archlinux
-    vi-mode
     # ufw
     # thefuck
     # systemd 
@@ -211,7 +211,8 @@ plugins=(git
     # systemadmin
     # mosh
     # gpg-agent
-    # fzf
+    # battery
+    fzf
     zsh-autosuggestions
     zsh-syntax-highlighting
 history-substring-search)
@@ -248,7 +249,6 @@ export LANG=en_US.UTF-8
 
 # export $TERM='xterm'
 eval "$(direnv hook zsh)"
-
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
