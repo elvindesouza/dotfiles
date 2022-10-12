@@ -20,21 +20,21 @@ fi
 
 ## OLD configuration
 #
-autoload -U colors && colors
+# autoload -U colors && colors
 
 run() {
     nohup "$@" >/dev/null 2>/dev/null & disown; exit
 }
 
 #Automatically do an ls after each cd
- cd ()
- {
+cd ()
+{
     if [ -n "$1" ]; then
         builtin cd "$@" && ls --color=auto -A
     else
         builtin cd ~ && ls --color=auto -A
     fi
- }
+}
 
 lfcd () {
     tmp="$(mktemp)"
@@ -80,12 +80,11 @@ HISTFILE="$XDG_STATE_HOME"/zsh/history
 export HISTCONTROL=erasedups:ignoredups:ignorespace # Don't put duplicate lines in the history and do not add lines that start with a space
 
 # Fancy auto-complete
-autoload -Uz compinit
+# autoload -Uz compinit
 zstyle ':completion:*' menu select=0
 zmodload zsh/complist
 zstyle ':completion:*' format '>>> %d'
-#compinit
-compinit -d "$XDG_CACHE_HOME"/zsh/zcompdump-"$ZSH_VERSION"
+# compinit -d "$XDG_CACHE_HOME"/zsh/zcompdump-"$ZSH_VERSION"
 _comp_options+=(globdots) # hidden files are included
 
 # Keybindings section
@@ -114,7 +113,7 @@ bindkey '^[Od' backward-word                                    #
 bindkey '^[[1;5D' backward-word                                 #
 bindkey '^[[1;5C' forward-word                                  #
 bindkey '^[[127;5u' backward-kill-word                                 # delete previous word with ctrl+backspace
-bindkey '^H' backward-kill-word                                 # delete previous word with ctrl+backspace
+bindkey '' backward-kill-word                                 # delete previous word with ctrl+backspace
 bindkey '^[[3;5~' kill-word
 bindkey '^[[Z' undo                                             # Shift+tab undo last action
 
@@ -199,7 +198,8 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(vi-mode
+plugins=(
+    vi-mode
     # git
     # colored-man-pages
     # command-not-found
@@ -212,10 +212,11 @@ plugins=(vi-mode
     # mosh
     # gpg-agent
     # battery
-    fzf
+    #fzf
     zsh-autosuggestions
     zsh-syntax-highlighting
-history-substring-search)
+    history-substring-search
+)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -227,8 +228,8 @@ source $ZSH/oh-my-zsh.sh
 export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
- export EDITOR='nvim'
- export VISUAL='nvim'
+export EDITOR='nvim'
+export VISUAL='nvim'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -252,4 +253,3 @@ eval "$(direnv hook zsh)"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
