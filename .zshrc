@@ -9,120 +9,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
-
-if [ -f ~/.profile ]; then
-    . ~/.profile
-fi
-
-
-## OLD configuration
-#
-# autoload -U colors && colors
-
-run() {
-    nohup "$@" >/dev/null 2>/dev/null & disown; exit
-}
-
-#Automatically do an ls after each cd
-cd ()
-{
-    if [ -n "$1" ]; then
-        builtin cd "$@" && ls --color=auto -A
-    else
-        builtin cd ~ && ls --color=auto -A
-    fi
-}
-
-lfcd () {
-    tmp="$(mktemp)"
-    lf -last-dir-path="$tmp" "$@"
-    if [ -f "$tmp" ]; then
-        dir="$(cat "$tmp")"
-        rm -f "$tmp"
-        if [ -d "$dir" ]; then
-            if [ "$dir" != "$(pwd)" ]; then
-                cd "$dir"
-            fi
-        fi
-    fi
-}
-
-setopt hist_ignore_all_dups # remove older duplicate entries from history
-setopt hist_reduce_blanks # remove superfluous blanks from history items
-setopt inc_append_history # save history entries as soon as they are entered
-setopt share_history # share history between different instances of the shell
-setopt auto_cd # cd by typing directory name if it's not a command
-setopt correct_all # autocorrect commands
-setopt auto_list # automatically list choices on ambiguous completion
-setopt auto_menu # automatically use menu completion
-setopt always_to_end # move cursor to end if word had one match
-
-zstyle ':completion:*' menu select # select completions with arrow keys
-zstyle ':completion:*' group-name '' # group results by category
-zstyle ':completion:::::' completer _expand _complete _ignored _approximate #enable approximate matches for completion
-zstyle ':completion::complete:*' gain-privileges 1
-zstyle ':completion:*' insert-tab pending # pasting with tabs doesn't perform completion
-# unset SINGLE_LINE_ZLE
-# PS1="%{$fg[cyan]%}%B>%b%{$reset_color%} "
-# RPROMPT="%~"
-
-# ZSH history file
-export HISTSIZE=1000000000
-export SAVEHIST=1000000000
-setopt EXTENDED_HISTORY
-setopt HIST_REDUCE_BLANKS        # remove superfluous blanks before recording entry.
-setopt SHARE_HISTORY             # share history between all sessions.
-setopt HIST_IGNORE_ALL_DUPS      # delete old recorded entry if new entry is a duplicate.
-HISTFILE="$XDG_STATE_HOME"/zsh/history
-export HISTCONTROL=erasedups:ignoredups:ignorespace # Don't put duplicate lines in the history and do not add lines that start with a space
-
-# Fancy auto-complete
-# autoload -Uz compinit
-zstyle ':completion:*' menu select=0
-zmodload zsh/complist
-zstyle ':completion:*' format '>>> %d'
-# compinit -d "$XDG_CACHE_HOME"/zsh/zcompdump-"$ZSH_VERSION"
-_comp_options+=(globdots) # hidden files are included
-
-# Keybindings section
-bindkey -v
-bindkey '' forward-char  
-bindkey '^[[7~' beginning-of-line                               # Home key
-bindkey '^[[H' beginning-of-line                                # Home key
-if [[ "${terminfo[khome]}" != "" ]]; then
-  bindkey "${terminfo[khome]}" beginning-of-line                # [Home] - Go to beginning of line
-fi
-bindkey '^[[8~' end-of-line                                     # End key
-bindkey '^[[F' end-of-line                                     # End key
-if [[ "${terminfo[kend]}" != "" ]]; then
-  bindkey "${terminfo[kend]}" end-of-line                       # [End] - Go to end of line
-fi
-bindkey '^[[2~' overwrite-mode                                  # Insert key
-bindkey '^[[3~' delete-char                                     # Delete key
-bindkey '^[[C'  forward-char                                    # Right key
-bindkey '^[[D'  backward-char                                   # Left key
-bindkey '^[[5~' history-beginning-search-backward               # Page up key
-bindkey '^[[6~' history-beginning-search-forward                # Page down key
-
-# Navigate words with ctrl+arrow keys
-bindkey '^[Oc' forward-word                                     #
-bindkey '^[Od' backward-word                                    #
-bindkey '^[[1;5D' backward-word                                 #
-bindkey '^[[1;5C' forward-word                                  #
-bindkey '^[[127;5u' backward-kill-word                                 # delete previous word with ctrl+backspace
-bindkey '' backward-kill-word                                 # delete previous word with ctrl+backspace
-bindkey '^[[3;5~' kill-word
-bindkey '^[[Z' undo                                             # Shift+tab undo last action
-
-## Use the up and down arrow keys for finding a command in history
-## (you can write some initial letters of the command first).
-bindkey "\e[A" history-substring-search-backward
-bindkey "\e[B" history-substring-search-forward
-
-
 ################################ NEW CONFIGURATION
 
 # If you come from bash you might have to change your $PATH.
@@ -245,8 +131,94 @@ export VISUAL='nvim'
 #
 #
 # ##############################
-# Run tmux automatically on zsh lunch
-# bindkey -v
+
+# Keybindings section
+bindkey -v
+bindkey '' forward-char  
+bindkey '^[[7~' beginning-of-line                               # Home key
+bindkey '^[[H' beginning-of-line                                # Home key
+if [[ "${terminfo[khome]}" != "" ]]; then
+  bindkey "${terminfo[khome]}" beginning-of-line                # [Home] - Go to beginning of line
+fi
+bindkey '^[[8~' end-of-line                                     # End key
+bindkey '^[[F' end-of-line                                     # End key
+if [[ "${terminfo[kend]}" != "" ]]; then
+  bindkey "${terminfo[kend]}" end-of-line                       # [End] - Go to end of line
+fi
+bindkey '^[[2~' overwrite-mode                                  # Insert key
+bindkey '^[[3~' delete-char                                     # Delete key
+bindkey '^[[C'  forward-char                                    # Right key
+bindkey '^[[D'  backward-char                                   # Left key
+bindkey '^[[5~' history-beginning-search-backward               # Page up key
+bindkey '^[[6~' history-beginning-search-forward                # Page down key
+
+# Navigate words with ctrl+arrow keys
+bindkey '^[Oc' forward-word                                     #
+bindkey '^[Od' backward-word                                    #
+bindkey '^[[1;5D' backward-word                                 #
+bindkey '^[[1;5C' forward-word                                  #
+bindkey '^[[127;5u' backward-kill-word                                 # delete previous word with ctrl+backspace
+bindkey '' backward-kill-word                                 # delete previous word with ctrl+backspace
+bindkey '^[[3;5~' kill-word
+bindkey '^[[3;5~' kill-word
+bindkey '^[[Z' undo                                             # Shift+tab undo last action
+
+## Use the up and down arrow keys for finding a command in history
+## (you can write some initial letters of the command first).
+bindkey "\e[A" history-substring-search-backward
+bindkey "\e[B" history-substring-search-forward
+
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
+if [ -f ~/.profile ]; then
+    . ~/.profile
+fi
+
+## OLD configuration
+#
+# autoload -U colors && colors
+
+
+setopt hist_ignore_all_dups # remove older duplicate entries from history
+setopt hist_reduce_blanks # remove superfluous blanks from history items
+setopt inc_append_history # save history entries as soon as they are entered
+setopt share_history # share history between different instances of the shell
+setopt auto_cd # cd by typing directory name if it's not a command
+#setopt correct_all # autocorrect commands
+setopt auto_list # automatically list choices on ambiguous completion
+setopt auto_menu # automatically use menu completion
+setopt always_to_end # move cursor to end if word had one match
+
+zstyle ':completion:*' menu select # select completions with arrow keys
+zstyle ':completion:*' group-name '' # group results by category
+zstyle ':completion:::::' completer _expand _complete _ignored _approximate #enable approximate matches for completion
+zstyle ':completion::complete:*' gain-privileges 1
+zstyle ':completion:*' insert-tab pending # pasting with tabs doesn't perform completion
+# unset SINGLE_LINE_ZLE
+# PS1="%{$fg[cyan]%}%B>%b%{$reset_color%} "
+# RPROMPT="%~"
+
+# ZSH history file
+export HISTSIZE=1000000000
+export SAVEHIST=1000000000
+setopt EXTENDED_HISTORY
+setopt HIST_REDUCE_BLANKS        # remove superfluous blanks before recording entry.
+setopt SHARE_HISTORY             # share history between all sessions.
+setopt HIST_IGNORE_ALL_DUPS      # delete old recorded entry if new entry is a duplicate.
+HISTFILE="$XDG_STATE_HOME"/zsh/history
+export HISTCONTROL=erasedups:ignoredups:ignorespace # Don't put duplicate lines in the history and do not add lines that start with a space
+
+# Fancy auto-complete
+# autoload -Uz compinit
+zstyle ':completion:*' menu select=0
+zmodload zsh/complist
+zstyle ':completion:*' format '>>> %d'
+# compinit -d "$XDG_CACHE_HOME"/zsh/zcompdump-"$ZSH_VERSION"
+_comp_options+=(globdots) # hidden files are included
+
+
 
 # export $TERM='xterm'
 eval "$(direnv hook zsh)"
