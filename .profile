@@ -13,6 +13,7 @@ export XDG_CACHE_HOME=$HOME/.cache
 export LD_PRELOAD=""
 
 export PATH="$HOME/bin:/usr/lib/ccache/bin/:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:/opt/bin:/usr/bin/core_perl:/usr/games/bin:$PATH"
+export PATH="/media/elvin/extra/Flatpak/flatpak/exports/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 
 export CUDA_CACHE_PATH="$XDG_CACHE_HOME"/nv
