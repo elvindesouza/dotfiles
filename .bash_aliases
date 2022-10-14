@@ -108,20 +108,49 @@ alias logs="sudo find /var/log -type f -exec file   {} \; | grep 'text' | cut -d
 alias la='ls -Alh'                # show hidden files
 alias ls='ls -aFh --color=always' # add colors and file type extensions
 # alias lx='ls -lXBh'               # sort by extension
-alias lk='ls -lSrh'              # sort by size
-alias lc='ls -lcrh'              # sort by change time
-alias lu='ls -lurh'              # sort by access time
-alias lr='ls -lRh'               # recursive ls
-alias lt='ls -ltrh'              # sort by date
-alias lm='ls -alh |more'         # pipe through 'more'
-alias lw='ls -xAh'               # wide listing format
-alias ll='ls -Fls'               # long listing format
-alias labc='ls -lap'             #alphabetical sort
+alias lk='ls -lSrh'      # sort by size
+alias lc='ls -lcrh'      # sort by change time
+alias lu='ls -lurh'      # sort by access time
+alias lr='ls -lRh'       # recursive ls
+alias lt='ls -ltrh'      # sort by date
+alias lm='ls -alh |more' # pipe through 'more'
+alias lw='ls -xAh'       # wide listing format
+alias ll='ls -Fls'       # long listing format
+alias labc='ls -lap'     #alphabetical sort
 #alias lf="ls -l | egrep -v '^d'" # files only
-alias ldir="ls -l | egrep '^d'"  # directories only
+alias ldir="ls -l | egrep '^d'" # directories only
 
 # Filesystem aliases
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
+
+run() {
+	nohup "$@" >/dev/null 2>/dev/null &
+	disown
+	exit
+}
+
+#Automatically do an ls after each cd
+cd() {
+	if [ "$1" != "" ]; then
+		builtin cd "$@" && ls --color=auto -A
+	else
+		builtin cd ~ && ls --color=auto -A
+	fi
+}
+
+lfcd() {
+	tmp="$(mktemp)"
+	lf -last-dir-path="$tmp" "$@"
+	if [ -f "$tmp" ]; then
+		dir="$(cat "$tmp")"
+		rm -f "$tmp"
+		if [ -d "$dir" ]; then
+			if [ "$dir" != "$PWD" ]; then
+				cd "$dir"
+			fi
+		fi
+	fi
+}
