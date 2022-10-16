@@ -9,6 +9,7 @@ export XDG_DATA_HOME=$HOME/.local/share
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_STATE_HOME=$HOME/.local/state
 export XDG_CACHE_HOME=$HOME/.cache
+export XDG_DATA_DIRS="$HOME/.local/share:$XDG_DATA_DIRS"
 
 export LD_PRELOAD=""
 
@@ -41,13 +42,12 @@ export MANPAGER="less -R --use-color -Dd+r -Du+b"
 
 # add Flatpak apps to PATH
 
-if [ -d "/var/lib/flatpak/exports/bin"  ]; then
-    PATH="/var/lib/flatpak/exports/bin:$PATH"
+if [ -d "/var/lib/flatpak/exports/bin" ]; then
+	PATH="/var/lib/flatpak/exports/bin:$PATH"
 fi
 
-if [ -d "$HOME/.local/share/flatpak/exports/bin"  ]; then
-     PATH="$HOME/.local/share/flatpak/exports/bin:$PATH"
+if [ -d "$HOME/.local/share/flatpak/exports/bin" ]; then
+	PATH="$HOME/.local/share/flatpak/exports/bin:$PATH"
 fi
 
 export SHELL=/bin/zsh
-
