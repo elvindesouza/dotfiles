@@ -20,6 +20,7 @@ bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 1 # decrease 
 for_window [class="^.*"] border pixel 3
 #                          border  backgr. text
 #client.focused_workspace  #555555 #16a085 #292F34
+client.focused  #1100ff #285577 #ffffff #ffbf00   #cf3dff
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
