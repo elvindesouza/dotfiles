@@ -27,13 +27,11 @@ XTerm*fontSize: 32
 XTerm*renderFont: true
 
 ! DISPLAY
-xterm*foreground: #FFFFFF
+xterm*foreground: #ffd260
 xterm*background: #000000
 XTerm.vt100.scaleHeight: 1.01
 XTerm*pointerColor: white
 XTerm*pointerColorBackground: black
-! XTerm*cursorColor: yellow
-! XTerm*cursorBlink: true
 *.color0:   #000000
 *.color1:   #cd0000
 *.color2:   #00cd00
@@ -51,13 +49,12 @@ XTerm*pointerColorBackground: black
 *.color14:  #00ffff
 *.color15:  #aabac8
 
-! XTerm.vt100.backarrowKey: false
-! Xterm.ttyModes: erase ^?
+XTerm.vt100.backarrowKey: false
+Xterm.ttyModes: erase ^?
 
 xterm.vt100.geometry: 80x32
 *scrollWithBuffer:true
 XTerm*selectToClipboard: true
-
 
 Xterm.vt100.locale: true
 XTerm*utf8: 2
@@ -74,13 +71,20 @@ XTerm.vt100.translations: #override \n\
   Ctrl Shift <Key>C: copy-selection(CLIPBOARD) \n\
   Ctrl Shift <Key>V: insert-selection(CLIPBOARD)
 
-! Xterm*vt100*altIsNotMeta: false
-! *metaSendsEscape: true
-!XTerm*vt100*altSendsEscape: true
+Xterm*vt100*altIsNotMeta: false
+*metaSendsEscape: true
+XTerm*vt100*altSendsEscape: true
 ! *scrollTtyKeypress: true
 XTerm*eightBitInput: true
-!XTerm*eightBitOutput: true
+XTerm*eightBitOutput: true
 
+! sendo extra non-emulated keys
+XTerm*vt100.formatOtherKeys: 1
+! UXTerm*vt100.formatOtherKeys: 1
+XTerm*vt100.modifyOtherKeys: 1
+! UXTerm*vt100.modifyOtherKeys: 2
+
+XTerm*dynamicColors:     true
 
 !XTerm.vt100.selectToClipboard: true
 !Xterm*vt100*altIsNotMeta: true
@@ -158,12 +162,11 @@ XTerm*eightBitInput: true
 !! put backspace before del, Ctrl-xx before xx -- order does matter !?
 !! <Key>BackSpace:  string(0x7F)
 !
-XTerm*dynamicColors:     true
 UXTerm*dynamicColors:     true
 
 UXTerm*eightBitInput: true
 UXTerm*loginShell:        true
-UXTerm*faceName: monospace
+!UXTerm*faceName: Iosevka Nerd Font Mono
 ! UXTerm*faceNameDoublesize: -misc-fixed-medium-r-semicondensed--13-120-75-75-c-60-iso8859-?
 UXTerm*faceSize: 32
 ! UXTerm*font:     -misc-fixed-medium-r-normal--18-120-100-100-c-90-iso10646-1
@@ -173,22 +176,13 @@ UXTerm*faceSize: 32
 ! XTerm*ptyInitialErase: true
 UXTerm*ptyInitialErase: true
 
-! sendo extra non-emulated keys
- XTerm*vt100.formatOtherKeys: 1
-! UXTerm*vt100.formatOtherKeys: 1
-XTerm*vt100.modifyOtherKeys: 2
-! UXTerm*vt100.modifyOtherKeys: 2
-
-! blink cursor, yes i like it.
-UXTerm*cursorBlink: true
-
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!! URXVT 
 urxvt.jumpScroll:false
 !urxvt.skipScroll:True
 urxvt.scrollstyle:plain
 !urxvt.thickness:8
-!urxvt.scrollBar:True
+urxvt.scrollBar:False
 !urxvt.scrollBar_right:True
 !urxvt.scrollTtyOutput:false
 urxvt.scrollWithBuffer:true
@@ -197,15 +191,15 @@ urxvt.scrollTtyKeypress:true
 !urxvt.mouseWheelScrollPage:true
 
 !color
-urxvt.background:#020202
-urxvt.foreground:#00cc00
+urxvt.background:#000000
+urxvt.foreground:#ffd260
 urxvt.colorBD:#888800
 urxvt.colorIT:#008800
 urxvt.colorUL:#ffaa00
 urxvt.underlineColor:#cccc00
 urxvt.highlightColor:#555555
 urxvt.highlightTextColor:#000000
-urxvt.cursorColor:#aaaa00
+urxvt.cursorColor:#ffffff
 urxvt.fading:16
 urxvt.fadeColor:black
 urxvt.scrollColor:#666666
@@ -215,11 +209,19 @@ urxvt.scrollColor:#666666
 !font
 urxvt.font: xft:Iosevka\ Nerd\ Font\ Mono:pixelsize=30:antialias=true:autohint=true
 ! URxvt.font: 9x15
-! urxvt.fontSize: 32
+urxvt.fontSize: 38
 !urxvt.italicFont:xft:NotoSansMonoCJKSC:pixelsize=18
 !urxvt.boldItalicFont:xft:NotoSansMonoCJKSC:pixelsize=18
 urxvt.letterSpace:-1
 urxvt.lineSpace:-1
 
-!cursor&pointer
-urxvt.cursorBlink:true
+
+! Rofi
+rofi.kb-row-up:                      Up,k,Shift+Tab,Shift+ISO_Left_Tab
+rofi.kb-row-down:                    Down,Control+j
+rofi.kb-accept-entry:                Control+m,Return,KP_Enter
+rofi.terminal:                       kitty
+rofi.kb-remove-to-eol:               Control+Shift+e
+rofi.kb-mode-next:                   Shift+Right,Control+Tab,Control+l
+rofi.kb-mode-previous:               Shift+Left,Control+Shift+Tab,Control+h
+rofi.kb-remove-char-back:            BackSpace
