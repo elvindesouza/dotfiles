@@ -83,7 +83,7 @@ configuration {
 
 	/*---------- Misc setting ----------*/
 	terminal: "kitty";
-	font: "Mono 38";
+	font: "Iosevka Nerd Font Mono 20";
 	sort: false;
 	threads: 0;
 	click-to-exit: true;
@@ -181,3 +181,4 @@ configuration {
     kb-mode-next: "Control+l";
     kb-mode-previous: "Control+h";
 }
+@theme "/usr/share/rofi/themes/DarkBlue.rasi"
