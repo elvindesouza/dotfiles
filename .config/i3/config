@@ -51,7 +51,7 @@ bindsym $mod+q kill
 #bindsym $mod+d exec --no-startup-id dmenu_run
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 # bindsym $mod+d exec --no-startup-id ~/.config/rofi/launchers/type-3/launcher.sh
-bindsym $mod+d exec --no-startup-id ~/.config/rofi/launchers/type-1/launcher.sh
+bindsym $mod+d exec --no-startup-id ~/.config/rofi/launchers/type-7/launcher.sh
 
 bindsym $mod+ctrl+h resize shrink width 2 px or 2 ppt
 bindsym $mod+ctrl+k resize grow height 2 px or 2 ppt
@@ -148,7 +148,7 @@ bar {
     status_command i3status
     mode hide
     # font pango: Terminus (TTF) medium 13
-    font pango: Iosevka medium 8
+    font pango: Iosevka Nerd Font Mono 13
 }
 
 # Toggle bar
