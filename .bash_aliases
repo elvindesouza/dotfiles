@@ -47,7 +47,7 @@ alias sal='source ~/.bash_aliases'
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
 	test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-	alias ls='ls --color=auto'
+	# alias ls='ls --color=auto'
 	alias dir='dir --color=auto'
 	alias vdir='vdir --color=auto'
 	alias grep='grep --color=auto'
@@ -63,11 +63,11 @@ alias l="ls -ahls --color=auto"
 alias r="lfcd"
 alias shred="shred -zf"
 alias sl="ls --color=auto"
-alias ls="ls --color=auto"
+# alias ls="ls --color=auto"
 alias dir="dir --color=auto"
 alias diff='diff --color=auto'
 alias vdir="vdir --color=auto"
-alias grep="grep --color=auto"
+# alias grep="grep --color=auto"
 alias fgrep="fgrep --color=auto"
 alias egrep="egrep --color=auto"
 alias wget="wget -c --user-agent 'noleak'"
@@ -80,6 +80,10 @@ alias free="free -h"
 alias du="du -h"
 alias ip='ip -color=auto'
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias mkd="mkdir -pv" 
+alias yt="yt-dlp --embed-metadata -i" 
+alias yta="yt -x -f bestaudio/best" 
+alias ffmpeg="ffmpeg -hide_banner"
 
 # Search command line history
 alias h="history | grep "
