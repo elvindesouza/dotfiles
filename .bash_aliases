@@ -9,6 +9,7 @@ if [ -f "/usr/bin/pacman" ]; then
 	alias list='pacman -Qet | less'
 	alias listall='pacman -Q | less'
 	alias upgrade='aur -Syyu ; flatpak update'
+    alias neofetch='neofetch --source ~/Documents/logo.svg'
 elif [ -f "/usr/bin/apt" ]; then
 	alias search='apt search'
 	alias inst='sudo apt install -y'
