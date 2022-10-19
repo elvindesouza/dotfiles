@@ -39,7 +39,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Uncomment one of the following lines to change the auto-update behavior
 # zstyle ':omz:update' mode disabled  # disable automatic updates
-zstyle ':omz:update' mode auto      # update automatically without asking
+#zstyle ':omz:update' mode auto      # update automatically without asking
 # zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
 # Uncomment the following line to change how often to auto-update (in days).
@@ -98,7 +98,7 @@ plugins=(
     # mosh
     # gpg-agent
     # battery
-    #fzf
+    fzf
     zsh-autosuggestions
     zsh-syntax-highlighting
     history-substring-search
@@ -110,12 +110,6 @@ source $ZSH/oh-my-zsh.sh
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
-# You may need to manually set your language environment
-export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-export EDITOR='nvim'
-export VISUAL='nvim'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -134,6 +128,14 @@ export VISUAL='nvim'
 
 # Keybindings section
 bindkey -v
+
+# Use vim keys in tab complete menu:
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
+bindkey -v '^?' backward-delete-char
+
 bindkey '' forward-char  
 bindkey '^[[7~' beginning-of-line                               # Home key
 bindkey '^[[H' beginning-of-line                                # Home key
@@ -196,6 +198,7 @@ zstyle ':completion:*' group-name '' # group results by category
 zstyle ':completion:::::' completer _expand _complete _ignored _approximate #enable approximate matches for completion
 zstyle ':completion::complete:*' gain-privileges 1
 zstyle ':completion:*' insert-tab pending # pasting with tabs doesn't perform completion
+
 # unset SINGLE_LINE_ZLE
 # PS1="%{$fg[cyan]%}%B>%b%{$reset_color%} "
 # RPROMPT="%~"
@@ -213,12 +216,10 @@ export HISTCONTROL=erasedups:ignoredups:ignorespace # Don't put duplicate lines 
 # Fancy auto-complete
 # autoload -Uz compinit
 zstyle ':completion:*' menu select=0
-zmodload zsh/complist
+# zmodload zsh/complist
 zstyle ':completion:*' format '>>> %d'
 # compinit -d "$XDG_CACHE_HOME"/zsh/zcompdump-"$ZSH_VERSION"
 _comp_options+=(globdots) # hidden files are included
-
-
 
 # export $TERM='xterm'
 eval "$(direnv hook zsh)"
