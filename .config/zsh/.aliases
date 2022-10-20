@@ -9,7 +9,7 @@ if [ -f "/usr/bin/pacman" ]; then
 	alias list='pacman -Qet | less'
 	alias listall='pacman -Q | less'
 	alias upgrade='aur -Syyu ; flatpak update'
-    alias neofetch='neofetch --source ~/Documents/logo.svg'
+	alias neofetch='neofetch --source ~/Documents/logo.svg'
 elif [ -f "/usr/bin/apt" ]; then
 	alias search='apt search'
 	alias inst='sudo apt install -y'
@@ -37,8 +37,8 @@ alias q='exit'
 alias c='clear'
 alias pip='pip3'
 
-alias eal='vim ~/.bash_aliases'
-alias sal='source ~/.bash_aliases'
+alias eal='vim ~/.config/zsh/.aliases'
+alias sal='source ~/.config/zsh/.aliases'
 
 # some more ls aliases
 # alias ll='ls -alF'
@@ -56,7 +56,7 @@ if [ -x /usr/bin/dircolors ]; then
 	alias egrep='egrep --color=auto'
 fi
 
-alias reload="source \$HOME/.zshrc"
+alias reload="source \$HOME/.config/zsh/.zshrc"
 alias c="clear"
 alias cd..="cd .."
 alias curl="curl --user-agent 'noleak'"
@@ -71,7 +71,7 @@ alias vdir="vdir --color=auto"
 # alias grep="grep --color=auto"
 alias fgrep="fgrep --color=auto"
 alias egrep="egrep --color=auto"
-alias wget="wget -c --user-agent 'noleak'"
+alias wget="wget --hsts-file=\$XDG_CACHE_HOME/wget-hsts -c --user-agent 'noleak'"
 alias dd="dd status=progress"
 alias cp="cp -i" # confirm before overwriting something
 alias rm="rm -i"
@@ -81,9 +81,9 @@ alias free="free -h"
 alias du="du -h"
 alias ip='ip -color=auto'
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-alias mkd="mkdir -pv" 
-alias yt="yt-dlp --embed-metadata -i" 
-alias yta="yt -x -f bestaudio/best" 
+alias mkd="mkdir -pv"
+alias yt="yt-dlp --embed-metadata -i"
+alias yta="yt -x -f bestaudio/best"
 alias ffmpeg="ffmpeg -hide_banner"
 
 # Search command line history
@@ -111,7 +111,8 @@ alias mountedinfo='df -hT'
 alias logs="sudo find /var/log -type f -exec file   {} \; | grep 'text' | cut -d' ' -f1 | sed -e's/:$/  /g' | grep -v '[0-9]$' | xargs tail -f"
 
 # Alias's for multiple directory listing commands
-alias la='ls -Alh'                # show hidden files
+alias la='ls -Ah'                 # show hidden files
+alias lla='ls -Alh'               # show hidden files
 alias ls='ls -aFh --color=always' # add colors and file type extensions
 # alias lx='ls -lXBh'               # sort by extension
 alias lk='ls -lSrh'      # sort by size
