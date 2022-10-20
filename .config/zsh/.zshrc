@@ -1,3 +1,4 @@
+#!/bin/zsh
 # if [ -z "$TMUX" ]; then
 #   exec tmux new-session -A -s 1 -c 'zsh'
 # fi
@@ -15,7 +16,7 @@ fi
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
+export ZSH="$HOME/.config/zsh/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -77,7 +78,7 @@ COMPLETION_WAITING_DOTS="true"
 # HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
+ZSH_CUSTOM=$HOME/.config/zsh/custom
 
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
@@ -170,12 +171,12 @@ bindkey '^[[Z' undo                                             # Shift+tab undo
 bindkey "\e[A" history-substring-search-backward
 bindkey "\e[B" history-substring-search-forward
 
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+if [ -f $HOME/.config/zsh/.aliases ]; then
+    . $HOME/.config/zsh/.aliases
 fi
 
-if [ -f ~/.profile ]; then
-    . ~/.profile
+if [ -f $HOME/.config/zsh/.profile ]; then
+    . $HOME/.config/zsh/.profile
 fi
 
 ## OLD configuration

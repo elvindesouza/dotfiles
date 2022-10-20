@@ -1,3 +1,4 @@
+#!/bin/bash
 #
 # ~/.bashrc
 #
@@ -13,12 +14,12 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
-if [ -f ~/.profile ]; then
-	. ~/.profile
+if [ -f ~/.config/zsh/.profile ]; then
+	. "$HOME"/.config/zsh/.profile
 fi
 
 if [ -f ~/.bash_aliases ]; then
-	. ~/.bash_aliases
+	. "$HOME"/.config/zsh/.aliases
 fi
 
 # Expand the history size
@@ -38,23 +39,14 @@ bind '"\e[B":history-search-forward'
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
-shopt -s checkwinsize
+[[ $DISPLAY ]] && shopt -s checkwinsize
 
-iatest=$(expr index "$-" i)
+# iatest=$(expr index "$-" i)
 # Ignore case on auto-completion
 # Note: bind used instead of sticking these in .inputrc
-if [[ $iatest > 0 ]]; then bind "set completion-ignore-case on"; fi
+# if [[ $iatest > 0 ]]; then bind "set completion-ignore-case on"; fi
 # Show auto-completion list automatically, without double tab
-if [[ $iatest > 0 ]]; then bind "set show-all-if-ambiguous On"; fi
-
-#Automatically do an ls after each cd
-cd() {
-	if [ "$1" != "" ]; then
-		builtin cd "$@" && ls
-	else
-		builtin cd ~ && ls
-	fi
-}
+# if [[ $iatest > 0 ]]; then bind "set show-all-if-ambiguous On"; fi
 
 # Enable bash programmable completion features in interactive shells
 if [ -f /usr/share/bash-completion/bash_completion ]; then
@@ -66,7 +58,6 @@ fi
 # source files
 [ -r /usr/share/bash-completion/completions ] &&
 	. /usr/share/bash-completion/completions/*
-
 
 PS1='\[\033[01;34m\]\w\[\033[00m\]\$ '
 
