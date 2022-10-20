@@ -14,11 +14,11 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
-if [ -f ~/.config/zsh/.profile ]; then
+if [ -f "$HOME"/.config/zsh/.profile ]; then
 	. "$HOME"/.config/zsh/.profile
 fi
 
-if [ -f ~/.bash_aliases ]; then
+if [ -f "$HOME"/.config/zsh/.aliases ]; then
 	. "$HOME"/.config/zsh/.aliases
 fi
 
