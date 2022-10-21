@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/env zsh
 # if [ -z "$TMUX" ]; then
 #   exec tmux new-session -A -s 1 -c 'zsh'
 # fi
@@ -36,7 +36,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Uncomment the following line to use hyphen-insensitive completion.
 # Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
+HYPHEN_INSENSITIVE="true"
 
 # Uncomment one of the following lines to change the auto-update behavior
 # zstyle ':omz:update' mode disabled  # disable automatic updates
@@ -109,24 +109,6 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-# export MANPATH="/usr/local/man:$MANPATH"
-
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-#
-#
-# ##############################
-
 # Keybindings section
 bindkey -v
 
@@ -168,16 +150,16 @@ bindkey '^[[Z' undo                                             # Shift+tab undo
 
 ## Use the up and down arrow keys for finding a command in history
 ## (you can write some initial letters of the command first).
-bindkey "\e[A" history-substring-search-backward
-bindkey "\e[B" history-substring-search-forward
+bindkey "\e[A" history-substring-search-up
+bindkey "\e[B" history-substring-search-down
 
 if [ -f $HOME/.config/zsh/.aliases ]; then
     . $HOME/.config/zsh/.aliases
 fi
 
-if [ -f $HOME/.config/zsh/.profile ]; then
-    . $HOME/.config/zsh/.profile
-fi
+# if [ -f $HOME/.config/zsh/.profile ]; then
+#     . $HOME/.config/zsh/.profile
+# fi
 
 ## OLD configuration
 #
@@ -188,17 +170,17 @@ setopt hist_ignore_all_dups # remove older duplicate entries from history
 setopt hist_reduce_blanks # remove superfluous blanks from history items
 setopt inc_append_history # save history entries as soon as they are entered
 setopt share_history # share history between different instances of the shell
-setopt auto_cd # cd by typing directory name if it's not a command
+# setopt auto_cd # cd by typing directory name if it's not a command
 #setopt correct_all # autocorrect commands
 setopt auto_list # automatically list choices on ambiguous completion
 setopt auto_menu # automatically use menu completion
 setopt always_to_end # move cursor to end if word had one match
 
-zstyle ':completion:*' menu select # select completions with arrow keys
-zstyle ':completion:*' group-name '' # group results by category
+# zstyle ':completion:*' menu select # select completions with arrow keys
+# zstyle ':completion:*' group-name '' # group results by category
 zstyle ':completion:::::' completer _expand _complete _ignored _approximate #enable approximate matches for completion
-zstyle ':completion::complete:*' gain-privileges 1
-zstyle ':completion:*' insert-tab pending # pasting with tabs doesn't perform completion
+# zstyle ':completion::complete:*' gain-privileges 1
+# zstyle ':completion:*' insert-tab pending # pasting with tabs doesn't perform completion
 
 # unset SINGLE_LINE_ZLE
 # PS1="%{$fg[cyan]%}%B>%b%{$reset_color%} "
@@ -208,19 +190,22 @@ zstyle ':completion:*' insert-tab pending # pasting with tabs doesn't perform co
 export HISTSIZE=1000000000
 export SAVEHIST=1000000000
 setopt EXTENDED_HISTORY
-setopt HIST_REDUCE_BLANKS        # remove superfluous blanks before recording entry.
-setopt SHARE_HISTORY             # share history between all sessions.
-setopt HIST_IGNORE_ALL_DUPS      # delete old recorded entry if new entry is a duplicate.
+# setopt HIST_REDUCE_BLANKS        # remove superfluous blanks before recording entry.
+# setopt SHARE_HISTORY             # share history between all sessions.
+# setopt HIST_IGNORE_ALL_DUPS      # delete old recorded entry if new entry is a duplicate.
 HISTFILE="$XDG_STATE_HOME"/zsh/history
 export HISTCONTROL=erasedups:ignoredups:ignorespace # Don't put duplicate lines in the history and do not add lines that start with a space
 
 # Fancy auto-complete
 # autoload -Uz compinit
-zstyle ':completion:*' menu select=0
+# zstyle ':completion:*' menu select=0
 # zmodload zsh/complist
-zstyle ':completion:*' format '>>> %d'
+# zstyle ':completion:*' format '>>> %d'
 # compinit -d "$XDG_CACHE_HOME"/zsh/zcompdump-"$ZSH_VERSION"
-_comp_options+=(globdots) # hidden files are included
+# _comp_options+=(globdots) # hidden files are included
+
+export KEYTIMEOUT=1
+export VI_MODE_SET_CURSOR=true
 
 # export $TERM='xterm'
 eval "$(direnv hook zsh)"
