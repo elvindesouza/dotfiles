@@ -1,1 +1,216 @@
-/media/elvin/eHDD/Codium/data/user-data/User/settings.json
+{
+  "C_Cpp.intelliSenseUpdateDelay": 500,
+  "zenMode.hideStatusBar": true,
+  "tabnine.experimentalAutoImports": true,
+  "editor.acceptSuggestionOnEnter": "off",
+  "workbench.editorAssociations": {
+    "*.ipynb": "jupyter-notebook"
+  },
+  "code-runner.runInTerminal": true,
+  "python.languageServer": "Pylance",
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "python.analysis.completeFunctionParens": true,
+  "vsintellicode.features.python.deepLearning": "enabled",
+  "editor.suggestSelection": "first",
+  "jupyter.askForKernelRestart": false,
+  "window.title": "${activeEditorShort}",
+  "workbench.editor.pinnedTabSizing": "shrink",
+  "zenMode.fullScreen": false,
+  "zenMode.centerLayout": false,
+  "editor.fontSize": 34,
+  "python.pythonPath": "/usr/bin/python3",
+  "editor.minimap.enabled": false,
+  "editor.semanticHighlighting.enabled": true,
+  "notebook.cellToolbarLocation": {
+    "default": "right",
+    "jupyter-notebook": "left"
+  },
+  "code-runner.enableAppInsights": false,
+  "vim.handleKeys": {
+    "<C-h>": false,
+    "<C-BS>": false,
+    "<C-d>": false,
+    "Backspace": false,
+    "Delete": false,
+    "tab": false,
+    "shift+tab": false,
+    "<C-k>": false
+  },
+  "vim.vimrc.enable": true,
+  "vim.vimrc.path": "$HOME/.vimrc",
+  "vim.useCtrlKeys": false,
+  "vim.cursorStylePerMode.visual": "underline",
+  "vim.cursorStylePerMode.visualline": "underline",
+  "vim.cursorStylePerMode.visualblock": "underline",
+  "vim.timeout": 150,
+  "vim.incsearch": true,
+  "vim.normalModeKeyBindingsNonRecursive": [
+    // {
+    //   "before": [
+    //     ":"
+    //   ],
+    //   "commands": [
+    //     "workbench.action.showCommands"
+    //   ]
+    // },
+    {
+      "before": [
+        "-"
+      ],
+      "commands": [
+        "cursorEnd"
+      ]
+    }
+  ],
+  "vim.visualModeKeyBindingsNonRecursive": [
+    {
+      "before": [
+        ">"
+      ],
+      "commands": [
+        "editor.action.indentLines"
+      ]
+    },
+    {
+      "before": [
+        "<"
+      ],
+      "commands": [
+        "editor.action.outdentLines"
+      ]
+    }
+  ],
+  "vim.insertModeKeyBindingsNonRecursive": [
+    {
+      "before": [
+        "k",
+        "l"
+      ],
+      "commands": [
+        "cursorEnd"
+      ]
+    }
+  ],
+  "vim.useSystemClipboard": true,
+  "workbench.tree.indent": 4,
+  "editor.glyphMargin": false,
+  "editor.scrollbar.horizontal": "hidden",
+  "editor.lineNumbers": "off",
+  "customizeUI.stylesheet": {
+    ".title.show-file-icons": "display: none !important;"
+    //   ".tabs-and-actions-container .editor-actions": {
+    //     "height": "0px"
+    //   },
+  },
+  "security.workspace.trust.enabled": false,
+  "terminal.integrated.showExitAlert": false,
+  "editor.formatOnType": true,
+  "C_Cpp.formatting": "vcFormat",
+  "C_Cpp.vcFormat.newLine.beforeWhileInDoWhile": true,
+  "C_Cpp.autocompleteAddParentheses": true,
+  "C_Cpp.vcFormat.indent.caseLabels": true,
+  "git.autorefresh": false,
+  "editor.hover.delay": 100,
+  "vim.highlightedyank.enable": true,
+  "C_Cpp.vcFormat.newLine.beforeOpenBrace.function": "newLine",
+  "C_Cpp.vcFormat.newLine.beforeOpenBrace.namespace": "newLine",
+  "C_Cpp.vcFormat.newLine.beforeOpenBrace.lambda": "newLine",
+  "C_Cpp.vcFormat.newLine.beforeOpenBrace.type": "newLine",
+  "C_Cpp.vcFormat.newLine.beforeOpenBrace.block": "newLine",
+  "files.trimFinalNewlines": true,
+  "files.trimTrailingWhitespace": true,
+  "python.linting.pycodestyleEnabled": true,
+  "python.linting.pylintEnabled": true,
+  "workbench.enableExperiments": false,
+  "workbench.settings.enableNaturalLanguageSearch": false,
+  "editor.fontFamily": "'Iosevka Nerd Font Mono','Droid Sans Mono', 'monospace',  'Droid Sans Fallback','Quinze'",
+  "files.autoGuessEncoding": true,
+  "javascript.format.placeOpenBraceOnNewLineForFunctions": true,
+  "javascript.format.placeOpenBraceOnNewLineForControlBlocks": true,
+  "editor.suggest.preview": true,
+  "editor.suggestFontSize": 12,
+  "editor.suggestLineHeight": 16,
+  "code-runner.fileDirectoryAsCwd": true,
+  "typescript.surveys.enabled": false,
+  "telemetry.telemetryLevel": "off",
+  "workbench.startupEditor": "none",
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "editor.codeLensFontSize": 24,
+  "editor.inlayHints.fontSize": 20,
+  "editor.scrollbar.horizontalScrollbarSize": 1,
+  "editor.scrollbar.verticalScrollbarSize": 1,
+  "editor.scrollbar.vertical": "visible",
+  "workbench.sash.size": 5,
+  "terminal.integrated.fontSize": 20,
+  "terminal.integrated.commandsToSkipShell": [
+    "code-runner.run",
+    "code-runner.stop"
+  ],
+  "editor.guides.bracketPairs": true,
+  "editor.bracketPairColorization.enabled": true,
+  "javascript.suggest.completeFunctionCalls": true,
+  "javascript.format.semicolons": "insert",
+  "C_Cpp.vcFormat.space.insertAfterSemicolon": true,
+  "terminal.integrated.persistentSessionReviveProcess": "never",
+  "[c]": {
+    "editor.defaultFormatter": "ms-vscode.cpptools"
+  },
+  "terminal.integrated.gpuAcceleration": "on",
+  "[cpp]": {
+    "editor.defaultFormatter": "ms-vscode.cpptools"
+  },
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.python"
+  },
+  "editor.mouseWheelScrollSensitivity": 2,
+  "vim.debug.silent": true,
+  "vim.easymotion": true,
+  "editor.folding": false,
+  "C_Cpp.vcFormat.space.preserveInInitializerList": false,
+  "files.exclude": {
+    "**/.classpath": true,
+    "**/.project": true,
+    "**/.settings": true,
+    "**/.factorypath": true
+  },
+  "zenMode.restore": true,
+  "extensions.ignoreRecommendations": true,
+  "vim.overrideCopy": false,
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "sonarlint.ls.javaHome": "/home/user/.vscode/extensions/sonarsource.sonarlint_managed-jre/jre/jdk-11.0.15+10-jre",
+  "sonarlint.disableTelemetry": true,
+  "python.formatting.provider": "black",
+  "terminal.integrated.enableMultiLinePasteWarning": false,
+  "python.analysis.typeCheckingMode": "basic",
+  "python.linting.flake8Enabled": true,
+  "python.linting.banditEnabled": true,
+  "python.linting.mypyEnabled": true,
+  "python.linting.pydocstyleEnabled": true,
+  "python.linting.pylamaEnabled": true,
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "python.linting.prospectorEnabled": true,
+  "git.autofetch": "all",
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[shellscript]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "workbench.colorTheme": "Absolute Black",
+  "vscode-neovim.neovimExecutablePaths.linux": "/usr/bin/nvim",
+  "workbench.sideBar.location": "right",
+  "git.enabled": false,
+  "workbench.iconTheme": "material-icon-theme",
+  "files.autoSave": "afterDelay",
+  "editor.selectionClipboard": false,
+  "clangd.checkUpdates": true,
+  "window.menuBarVisibility": "hidden",
+  "window.zoomLevel": 3,
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+}
