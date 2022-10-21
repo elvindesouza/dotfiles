@@ -4,6 +4,7 @@
 # Should you change your keyboard layout some time, delete
 # this file and re-run i3-config-wizard(1).
 #
+set $term --no-startup-id $TERMINAL
 set $mod Mod4
 
 # exec_always --no-startup-id xautolock -time 5 -locker "systemctl suspend-then-hibernate" -detectsleep
@@ -39,13 +40,51 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 #bindsym $mod+Return exec i3-sensible-terminal
 # bindsym $mod+Return exec --no-startup-id xterm -e zsh
 bindsym $mod+Return exec --no-startup-id kitty --single-instance
-bindsym $mod+p exec --no-startup-id st
+bindsym $mod+p exec --no-startup-id $term
+bindsym $mod+slash		split vertical ;; exec $term
+bindsym $mod+apostrophe		split horizontal ;; exec $term
+bindsym $mod+b exec --no-startup-id io.gitlab.librewolf-community 
+bindsym $mod+semicolon exec --no-startup-id exec `st -e lf`
 
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym h       resize shrink width 10 px or 10 ppt
+        bindsym j       resize grow height 10 px or 10 ppt
+        bindsym k         resize shrink height 10 px or 10 ppt
+        bindsym l      resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left        resize shrink width 10 px or 10 ppt
+        bindsym Down        resize grow height 10 px or 10 ppt
+        bindsym Up          resize shrink height 10 px or 10 ppt
+        bindsym Right       resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape or Mod1+r
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+# move the currently focused window to the scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# Show the next scratchpad window or hide the focused scratchpad window.
+# If there are multiple scratchpad windows, this command cycles through them.
+bindsym $mod+minus scratchpad show
 
 # kill focused window
 #bindsym $mod+Shift+q kill
 bindsym ctrl+q kill
 #bindsym $mod+q kill
+bindsym $mod+Shift+q		[con_id="__focused__" instance="^(?!dropdown_).*$"] exec --no-startup-id kill -9 `xdotool getwindowfocus getwindowpid`
 
 # start dmenu (a program launcher)
 #bindsym $mod+d exec --no-startup-id dmenu_run
@@ -85,8 +124,13 @@ bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
+bindsym $mod+space		focus mode_toggle 
+
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
+
+# focus the parent container
+bindsym $mod+a focus parent
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -126,19 +170,24 @@ bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
 # switch between the current and the previously focused one
-bindsym $mod+b workspace back_and_forth
-bindsym $mod+Shift+b move container to workspace back_and_forth
+bindsym $mod+backslash workspace back_and_forth
+bindsym $mod+Shift+backslash move container to workspace back_and_forth
 
 # cycle through workspaces
 bindsym $mod+Right workspace next
 bindsym $mod+Left workspace prev
+bindsym $mod+bracketleft workspace prev
+bindsym $mod+bracketright workspace next
 
 # move to next/prev workspace
 bindsym $mod+Shift+Right move to workspace next
 bindsym $mod+Shift+Left move to workspace prev
+bindsym $mod+Shift+bracketleft move to workspace prev
+bindsym $mod+Shift+bracketright move to workspace next
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
+
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 
