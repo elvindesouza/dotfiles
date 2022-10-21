@@ -44,8 +44,8 @@ bindsym $mod+p exec --no-startup-id st
 
 # kill focused window
 #bindsym $mod+Shift+q kill
-#bindsym ctrl+q kill
-bindsym $mod+q kill
+bindsym ctrl+q kill
+#bindsym $mod+q kill
 
 # start dmenu (a program launcher)
 #bindsym $mod+d exec --no-startup-id dmenu_run
