@@ -21,4 +21,4 @@
 	url = https://github.com/elvindesouza/ncmpcpp.git
 [submodule ".config/st"]
 	path = .config/st
-	url = git@github.com:elvindesouza/st.git
+	url = https://github.com/elvindesouza/st.git
