@@ -440,7 +440,7 @@ mpd_music_dir = ~/Music
 ## media_library, playlist_editor, tag_editor, outputs, visualizer, clock,
 ## lyrics, last_fm.
 ##
-#screen_switcher_mode = playlist, browser
+screen_switcher_mode = playlist, browser,search_engine,media_library, playlist_editor, tag_editor, outputs, visualizer, clock,lyrics, last_fm
 #
 ##
 ## Note: You can define startup screen by choosing screen from the list above.
@@ -617,7 +617,7 @@ browser_display_mode = columns
 progressbar_look = ->
 media_library_primary_tag = album_artist
 media_library_albums_split_by_date = no
-startup_screen = "media_library"
+startup_screen = "playlist"
 display_volume_level = no
 ignore_leading_the = yes
 external_editor = nvim
