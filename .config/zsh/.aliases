@@ -21,7 +21,8 @@ elif [ -f "/usr/bin/apt" ]; then
 	alias list='apt-mark showmanual | less'
 	alias listall='dpkg --list'
 fi
-alias ncmpcpp='~/.config/ncmpcpp/ncmpcpp-ueberzug/ncmpcpp-ueberzug'
+
+alias ncmpcpp-ueberzug='~/.config/ncmpcpp/ncmpcpp-ueberzug/ncmpcpp-ueberzug'
 alias open='xdg-open'
 alias tt="run zathura /media/elvin/dHDD/Sem\ 5/timetable.pdf"
 alias tmux="tmux -u -2 new-session -A -s 1 -c 'zsh'"

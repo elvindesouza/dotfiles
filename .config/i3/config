@@ -39,12 +39,13 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 # start a terminal
 #bindsym $mod+Return exec i3-sensible-terminal
 # bindsym $mod+Return exec --no-startup-id xterm -e zsh
-bindsym $mod+Return exec --no-startup-id kitty --single-instance
-bindsym $mod+p exec --no-startup-id $term
+# bindsym $mod+Return exec --no-startup-id kitty --single-instance
+bindsym $mod+Return exec --no-startup-id $term
+# bindsym $mod+p exec --no-startup-id $term
 bindsym $mod+slash		split vertical ;; exec $term
 bindsym $mod+apostrophe		split horizontal ;; exec $term
 bindsym $mod+b exec --no-startup-id io.gitlab.librewolf-community 
-bindsym $mod+semicolon exec --no-startup-id exec `st -e lf`
+bindsym $mod+semicolon exec --no-startup-id $term -e lf
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -93,8 +94,8 @@ bindsym $mod+Shift+q		[con_id="__focused__" instance="^(?!dropdown_).*$"] exec -
 bindsym $mod+d exec --no-startup-id ~/.config/rofi/launchers/type-7/launcher.sh
 
 bindsym $mod+ctrl+h resize shrink width 2 px or 2 ppt
-bindsym $mod+ctrl+k resize grow height 2 px or 2 ppt
-bindsym $mod+ctrl+j resize shrink height 2 px or 2 ppt
+bindsym $mod+ctrl+j resize grow height 2 px or 2 ppt
+bindsym $mod+ctrl+k resize shrink height 2 px or 2 ppt
 bindsym $mod+ctrl+l resize grow width 2 px or 2 ppt
 
 # change focus
