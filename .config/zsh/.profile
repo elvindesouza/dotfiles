@@ -30,7 +30,8 @@ export INPUTRC=${XDG_CONFIG_HOME:-$HOME/.config}/readline/inputrc
 export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
 export LESS="-R --use-color -Dd+r$Du+b"
 
-#xrdb -load "$XDG_CONFIG_HOME/X11/xresources"
+[[ -f $XDG_CONFIG_HOME/X11/xresources ]] && xrdb -merge "$XDG_CONFIG_HOME/X11/xresources"
+
 export XINITRC="${XDG_CONFIG_HOME:-$HOME/.config}/X11/xinitrc"
 
 export GTK_USE_PORTAL=1

@@ -148,6 +148,9 @@ bindkey '^[[3;5~' kill-word
 bindkey '^[[3;5~' kill-word
 bindkey '^[[Z' undo                                             # Shift+tab undo last action
 
+bindkey -s '^[[32;2u' ' '
+bindkey -s '^[[13;5u' '\n'
+
 ## Use the up and down arrow keys for finding a command in history
 ## (you can write some initial letters of the command first).
 bindkey "\e[A" history-substring-search-up
@@ -177,10 +180,10 @@ setopt auto_menu # automatically use menu completion
 setopt always_to_end # move cursor to end if word had one match
 
 # zstyle ':completion:*' menu select # select completions with arrow keys
-# zstyle ':completion:*' group-name '' # group results by category
+zstyle ':completion:*' group-name '' # group results by category
 zstyle ':completion:::::' completer _expand _complete _ignored _approximate #enable approximate matches for completion
-# zstyle ':completion::complete:*' gain-privileges 1
-# zstyle ':completion:*' insert-tab pending # pasting with tabs doesn't perform completion
+zstyle ':completion::complete:*' gain-privileges 1
+zstyle ':completion:*' insert-tab pending # pasting with tabs doesn't perform completion
 
 # unset SINGLE_LINE_ZLE
 # PS1="%{$fg[cyan]%}%B>%b%{$reset_color%} "
@@ -190,19 +193,16 @@ zstyle ':completion:::::' completer _expand _complete _ignored _approximate #ena
 export HISTSIZE=1000000000
 export SAVEHIST=1000000000
 setopt EXTENDED_HISTORY
-# setopt HIST_REDUCE_BLANKS        # remove superfluous blanks before recording entry.
-# setopt SHARE_HISTORY             # share history between all sessions.
-# setopt HIST_IGNORE_ALL_DUPS      # delete old recorded entry if new entry is a duplicate.
 HISTFILE="$XDG_STATE_HOME"/zsh/history
 export HISTCONTROL=erasedups:ignoredups:ignorespace # Don't put duplicate lines in the history and do not add lines that start with a space
 
 # Fancy auto-complete
 # autoload -Uz compinit
-# zstyle ':completion:*' menu select=0
+zstyle ':completion:*' menu select=0
 # zmodload zsh/complist
-# zstyle ':completion:*' format '>>> %d'
+zstyle ':completion:*' format '>>> %d'
 # compinit -d "$XDG_CACHE_HOME"/zsh/zcompdump-"$ZSH_VERSION"
-# _comp_options+=(globdots) # hidden files are included
+_comp_options+=(globdots) # hidden files are included
 
 export KEYTIMEOUT=1
 export VI_MODE_SET_CURSOR=true

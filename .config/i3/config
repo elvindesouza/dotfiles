@@ -45,7 +45,7 @@ bindsym $mod+Return exec --no-startup-id $term
 bindsym $mod+slash		split vertical ;; exec $term
 bindsym $mod+apostrophe		split horizontal ;; exec $term
 bindsym $mod+b exec --no-startup-id io.gitlab.librewolf-community 
-bindsym $mod+semicolon exec --no-startup-id $term -e lf
+bindsym $mod+semicolon exec --no-startup-id $term
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
