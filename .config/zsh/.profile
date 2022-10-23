@@ -30,6 +30,10 @@ export INPUTRC=${XDG_CONFIG_HOME:-$HOME/.config}/readline/inputrc
 export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
 export LESS="-R --use-color -Dd+r$Du+b"
 
+# export QT_FONT_DPI=96
+# export GDK_SCALE=1
+# export GDK_DPI_SCALE=1
+
 [[ -f $XDG_CONFIG_HOME/X11/xresources ]] && xrdb -merge "$XDG_CONFIG_HOME/X11/xresources"
 
 export XINITRC="${XDG_CONFIG_HOME:-$HOME/.config}/X11/xinitrc"
