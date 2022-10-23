@@ -103,6 +103,8 @@ plugins=(
     zsh-autosuggestions
     zsh-syntax-highlighting
     history-substring-search
+    zsh-interactive-cd
+    z
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -150,6 +152,7 @@ bindkey '^[[Z' undo                                             # Shift+tab undo
 
 bindkey -s '^[[32;2u' ' '
 bindkey -s '^[[13;5u' '\n'
+bindkey -s '^[[127;2u' '^?'
 
 ## Use the up and down arrow keys for finding a command in history
 ## (you can write some initial letters of the command first).
@@ -208,7 +211,7 @@ export KEYTIMEOUT=1
 export VI_MODE_SET_CURSOR=true
 
 # export $TERM='xterm'
-eval "$(direnv hook zsh)"
+# eval "$(direnv hook zsh)"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
