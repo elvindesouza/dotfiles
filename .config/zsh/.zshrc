@@ -105,6 +105,7 @@ plugins=(
     history-substring-search
     zsh-interactive-cd
     z
+    # autojump
 )
 
 source $ZSH/oh-my-zsh.sh
