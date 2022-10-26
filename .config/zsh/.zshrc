@@ -86,7 +86,6 @@ ZSH_CUSTOM=$HOME/.config/zsh/custom
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-    vi-mode
     # git
     # colored-man-pages
     # command-not-found
@@ -99,13 +98,14 @@ plugins=(
     # mosh
     # gpg-agent
     # battery
+    # autojump
+    # zsh-interactive-cd
+    vi-mode
     fzf
     zsh-autosuggestions
     zsh-syntax-highlighting
     history-substring-search
-    zsh-interactive-cd
     z
-    # autojump
 )
 
 source $ZSH/oh-my-zsh.sh

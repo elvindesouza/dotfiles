@@ -165,3 +165,9 @@ lfcd() {
 		fi
 	fi
 }
+
+alias librewolf='io.gitlab.librewolf-community'
+alias whatsapp='io.github.mimbrero.WhatsAppDesktop'
+alias firefox="org.mozilla.firefox"
+alias thunderbird='org.mozilla.Thunderbird'
+alias torbrowser='com.github.micahflee.torbrowser-launcher'
