@@ -3,7 +3,7 @@ AntiAliasFonts=true
 BoldIntense=true
 ColorScheme=Breeze
 DimmValue=25
-Font=JetBrainsMono Nerd Font Mono,28,-1,5,50,0,0,0,0,0
+Font=JetBrainsMono Nerd Font Mono,32,-1,5,50,0,0,0,0,0
 LineSpacing=0
 UseFontLineChararacters=true
 
