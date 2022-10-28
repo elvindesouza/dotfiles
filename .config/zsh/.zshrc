@@ -1,6 +1,6 @@
 #!/bin/env zsh
 # if [ -z "$TMUX" ]; then
-#   exec tmux new-session -A -s 1 -c 'zsh'
+#   exec tmux -L default new-session
 # fi
 #
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
@@ -101,7 +101,7 @@ plugins=(
     # autojump
     # zsh-interactive-cd
     vi-mode
-    fzf
+    # fzf
     zsh-autosuggestions
     zsh-syntax-highlighting
     history-substring-search
