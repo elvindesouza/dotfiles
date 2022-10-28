@@ -209,7 +209,7 @@
   "editor.selectionClipboard": false,
   "clangd.checkUpdates": true,
   "window.menuBarVisibility": "hidden",
-  "window.zoomLevel": 3,
+  "window.zoomLevel": 1,
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
