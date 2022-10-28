@@ -337,14 +337,28 @@ tmux_conf_copy_to_os_clipboard=true
 # this is the place to override or undo settings
 
 # increase history size
-#set -g history-limit 10000
+set -g history-limit 10000
 
-# start with mouse mode enabled
+set -g visual-activity on
 
 # force Vi mode
 #   really you should export VISUAL or EDITOR environment variable, see manual
 set -g status-keys vi
 set -g mode-keys vi
+
+set -g default-shell /bin/zsh
+set -g default-command /bin/zsh
+
+set -g extended-keys always
+
+# move status line to top
+set -g status-position top
+
+# start with mouse mode enabled
+#Mouse works as expected
+set -g mouse on
+
+set -sg escape-time 1
 
 # replace C-b by C-a instead of using both prefixes
 set -gu prefix2
@@ -356,17 +370,9 @@ bind C-a send-prefix
 # if you don't want Oh my tmux! to alter a binding, use #!important
 # bind v new-window -c #{pane_current_path} #!important
 
-# move status line to top
-#set -g status-position top
-
 bind u set-option status
 
-#Mouse works as expected
-set -g mouse on
 
-set -g visual-activity on
-
-set -g history-limit 10000
 
 # y and p as in vim
 bind Escape copy-mode
@@ -382,7 +388,7 @@ bind C-c run "tmux save-buffer - | xclip -i -sel clipboard"
 bind C-v run "tmux set-buffer \"$(xclip -o -sel clipboard)\"; tmux paste-buffer"
 
 # easy-to-remember split pane commands
-bind | split-window -h 
+bind \\ split-window -h 
 bind - split-window -v 
 unbind '"'
 unbind %
@@ -397,15 +403,7 @@ bind -r J resize-pane -D 5
 bind -r K resize-pane -U 5
 bind -r L resize-pane -R 5
 
-
-set -sg escape-time 1
-
-set -g default-shell /bin/zsh
-set -g default-command /bin/zsh
-
-set -s extended-keys on
-
-# set 
+if-shell 'tmux has-session -t 1' 'new-window'           
 
 # -- tpm -----------------------------------------------------------------------
 
