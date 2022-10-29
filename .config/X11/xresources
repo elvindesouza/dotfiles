@@ -1,6 +1,6 @@
 !https://www.in-ulm.de/~mascheck/X11/XTerm
 !https://wiki.archlinux.org/title/Xterm
-! https://www.leonerd.org.uk/hacks/fixterms/
+!https://www.leonerd.org.uk/hacks/fixterms/
 
 !Note: Never set TERM variable manually, always let your terminal set it. Overriding this variable means there is something wrong with your xterm setup.
 !xterm.termName: xterm-256color
@@ -27,32 +27,16 @@ XTerm*fontSize: 32
 XTerm*renderFont: true
 
 ! DISPLAY
-xterm*foreground: #ffd260
+xterm*foreground: #93a1a1
 xterm*background: #000000
 XTerm.vt100.scaleHeight: 1.01
 XTerm*pointerColor: white
 XTerm*pointerColorBackground: black
-*.color0:   #000000
-*.color1:   #cd0000
-*.color2:   #00cd00
-*.color3:   #cdcd00
-*.color4:   #0000cd
-*.color5:   #cd00cd
-*.color6:   #00cdcd
-*.color7:   #e5e5e5
-*.color8:   #4d4d4d
-*.color9:   #ff0000
-*.color10:  #00ff00
-*.color11:  #ffff00
-*.color12:  #0000ff
-*.color13:  #ff00ff
-*.color14:  #00ffff
-*.color15:  #aabac8
 
 XTerm.vt100.backarrowKey: false
 Xterm.ttyModes: erase ^?
 
-xterm.vt100.geometry: 80x32
+xterm.vt100.geometry: 80x24
 *scrollWithBuffer:true
 XTerm*selectToClipboard: true
 
@@ -60,7 +44,7 @@ Xterm.vt100.locale: true
 XTerm*utf8: 2
 
 ! Every shell is a login shell by default (for inclusion of all necessary environment variables)
-XTerm*loginshell: true
+!XTerm*loginshell: true
 
 ! double-click to select whole URLs :D
 XTerm*charClass: 33:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48
@@ -192,7 +176,7 @@ urxvt.scrollTtyKeypress:true
 
 !color
 urxvt.background:#000000
-urxvt.foreground:#ffd260
+urxvt.foreground:#93a1a1
 urxvt.colorBD:#888800
 urxvt.colorIT:#008800
 urxvt.colorUL:#ffaa00
