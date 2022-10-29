@@ -3,8 +3,6 @@
 # ~/.profile
 #
 
-export GPG_TTY=$(tty)
-export GNUPGHOME="$XDG_DATA_HOME"/gnupg
 
 export XDG_DATA_HOME=$HOME/.local/share
 export XDG_CONFIG_HOME=$HOME/.config
@@ -12,6 +10,8 @@ export XDG_STATE_HOME=$HOME/.local/state
 export XDG_CACHE_HOME=$HOME/.cache
 export XDG_DATA_DIRS="$HOME/.local/share:$XDG_DATA_DIRS"
 
+export GPG_TTY=$(tty)
+export GNUPGHOME="$XDG_DATA_HOME"/gnupg
 export LD_PRELOAD=""
 
 export PATH="$HOME/bin:/usr/lib/ccache/bin/:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:/opt/bin:/usr/bin/core_perl:/usr/games/bin:$PATH"

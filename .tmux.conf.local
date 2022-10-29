@@ -333,13 +333,15 @@ tmux_conf_theme_clock_style="24"
 tmux_conf_copy_to_os_clipboard=true
 
 
-# -- user customizations -------------------------------------------------------
+# -- user customizations overrides -------------------------------------------------------
 # this is the place to override or undo settings
 
 # increase history size
 set -g history-limit 10000
 
 set -g visual-activity on
+
+set -g status off
 
 # force Vi mode
 #   really you should export VISUAL or EDITOR environment variable, see manual
