@@ -1,4 +1,5 @@
 #!/bin/env bash
 
-setxkbmap -option keypad:pointerkeys
-xkbset ma 1 10 30 25 2
+# setxkbmap -option keypad:pointerkeys
+# xkbset ma [delay] [interval] [time to max] [max speed] [curve]
+xkbset ma 60 10 50 25 2
