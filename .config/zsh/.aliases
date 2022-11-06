@@ -22,7 +22,9 @@ elif [ -f "/usr/bin/apt" ]; then
 	alias listall='dpkg --list'
 fi
 
+alias t='tmuxa'
 alias zshrc='vim ~/.config/zsh/.zshrc'
+alias profile='vim ~/.config/zsh/.profile'
 alias ncmp='~/.config/ncmpcpp/ncmpcpp-ueberzug/ncmpcpp-ueberzug'
 alias o='xdg-open'
 alias oer='mimeopen -d'

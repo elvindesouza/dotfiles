@@ -14,9 +14,18 @@ export GPG_TTY=$(tty)
 export GNUPGHOME="$XDG_DATA_HOME"/gnupg
 export LD_PRELOAD=""
 
-export PATH="$HOME/bin:/usr/lib/ccache/bin/:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:/opt/bin:/usr/bin/core_perl:/usr/games/bin:$PATH"
+export PATH="/usr/lib/ccache/bin/:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:/opt/bin:/usr/bin/core_perl:/usr/games/bin:$PATH"
 export PATH="/media/elvin/extra/Flatpak/flatpak/exports/bin:$PATH"
-export PATH="$HOME/.local/bin:$PATH"
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
 
 export CUDA_CACHE_PATH="$XDG_CACHE_HOME"/nv
 
@@ -68,5 +77,5 @@ export LANG=en_US.UTF-8
 export EDITOR='nvim'
 export VISUAL='nvim'
 export TERMINAL='st'
-
+export QT_QPA_PLATFORMTHEME=qt5ct
 export SHELL=/bin/zsh

@@ -1,12 +1,10 @@
 #!/bin/bash
 N=$(tmux ls | grep -v attached | head -1 | cut -d: -f1)
-echo "$N"
 
 if [[ -n $N ]]; then
 	ATTACH_OPTS="attach -t $N"
-	echo "$ATTACH_OPTS"
 else
-	ATTACH_OPTS="new-session -A -s 1"
+	ATTACH_OPTS="new-session"
 fi
 
 exec tmux $ATTACH_OPTS
