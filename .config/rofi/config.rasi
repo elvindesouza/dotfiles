@@ -181,4 +181,6 @@ configuration {
     kb-mode-next: "Control+l";
     kb-mode-previous: "Control+h";
 }
-@theme "/usr/share/rofi/themes/DarkBlue.rasi"
+//@theme "/usr/share/rofi/themes/DarkBlue.rasi"
+//@theme "/usr/share/rofi/themes/docu.rasi"
+@theme "/usr/share/rofi/themes/gruvbox-dark-hard.rasi"

@@ -2,9 +2,9 @@
 N=$(tmux ls | grep -v attached | head -1 | cut -d: -f1)
 
 if [[ -n $N ]]; then
-	ATTACH_OPTS="attach -t $N"
+    ARGS="attach -t $N"
+    exec tmux $ARGS
 else
-	ATTACH_OPTS="new-session"
+    exec tmux new-session
 fi
 
-exec tmux $ATTACH_OPTS
