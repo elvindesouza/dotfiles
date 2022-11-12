@@ -22,6 +22,7 @@ elif [ -f "/usr/bin/apt" ]; then
 	alias listall='dpkg --list'
 fi
 
+alias dmesg='dmesg --color --reltime'
 alias t='tmuxa'
 alias zshrc='vim ~/.config/zsh/.zshrc'
 alias profile='vim ~/.config/zsh/.profile'
@@ -87,7 +88,7 @@ alias free="free -h"
 alias du="du -h"
 alias ip='ip -color=auto'
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-alias mkd="mkdir -pv"
+alias mkdir="mkdir -pv"
 alias yt="yt-dlp --embed-metadata -i"
 alias yta="yt -x -f bestaudio/best"
 alias ffmpeg="ffmpeg -hide_banner"
@@ -98,7 +99,7 @@ alias h="history | grep "
 # Search running processes
 alias p="ps aux | grep "
 alias psmem='ps auxf | sort -nr -k 4 | head -5'
-alias pscpu="/bin/ps -eo pcpu,pid,user,args | so  rt -k 1 -r | head -10"
+alias pscpu="/bin/ps -eo pcpu,pid,user,args | sort -k 1 -r | head -10"
 
 # Search files in the current folder
 alias f="find . | grep "
@@ -168,6 +169,27 @@ lfcd() {
 		fi
 	fi
 }
+# EXTRACTING Stuff
+alias tgz='tar -cvvzf'
+alias tbz2='tar -cvvjf'
+alias utgz='tar -xvvzf'
+alias utbz2='tar -xvvjf'
+alias mktar='tar -cvvf'
+alias mktargz='tar -czvvf'
+alias untar='tar -xvvf'
+
+##### global aliases
+# zsh buch s.82 (z.B. find / ... NE)
+alias -g NE='2>|/dev/null'
+alias -g NO='&>|/dev/null'
+alias -g EO='>|/dev/null'
+# http://rayninfo.co.uk/tips/zshtips.html
+alias -g G='| grep '
+alias -g P='2>&1 | $PAGER'
+alias -g L='| less'
+alias -g LA='2>&1 | less'
+alias -g M='| most'
+alias -g C='| wc -l'
 
 alias librewolf='io.gitlab.librewolf-community'
 alias whatsapp='io.github.mimbrero.WhatsAppDesktop'
