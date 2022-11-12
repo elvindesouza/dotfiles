@@ -1,9 +1,9 @@
 #!/bin/env zsh
 
-# if [ -z "$TMUX" ]; then
-#     tmuxa
-#     exit
-# fi
+if [ -z "$TMUX" ]; then
+    tmuxa
+    exit
+fi
 #
 
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
