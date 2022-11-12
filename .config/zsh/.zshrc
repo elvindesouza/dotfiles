@@ -1,16 +1,19 @@
 #!/bin/env zsh
 
-# if [ -z "$TMUX" ]; then
-#     tmuxa
-#     exit
-# fi
+if [ -z "$TMUX" ]; then
+    tmuxa
+    exit
+fi
+#
 
+echo -ne '\e[5 q' # Use beam shape cursor on startup.
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
+
 
 source ~/.config/zsh/custom/plugins/vi-mode.plugin.zsh
 source ~/.config/zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -106,10 +109,11 @@ source ~/.config/zsh/custom/plugins/dirhistory.plugin.zsh
 # autoload -U colors && colors
 
 setopt autocd              # change directory just by typing its name
+setopt extendedglob
+setopt nonomatch           # hide error message if there is no match for the pattern
 setopt correct            # auto correct mistakes
 setopt interactivecomments # allow comments in interactive mode
 setopt magicequalsubst     # enable filename expansion for arguments of the form ‘anything=expression’
-setopt nonomatch           # hide error message if there is no match for the pattern
 setopt notify              # report the status of background jobs immediately
 setopt numericglobsort     # sort filenames numerically when it makes sense
 setopt promptsubst         # enable command substitution in prompt
@@ -129,15 +133,11 @@ setopt always_to_end # move cursor to end if word had one match
 # RPROMPT="%~"
 
 # ZSH history file
-export HISTSIZE=1000000000
-export SAVEHIST=1000000000
 setopt EXTENDED_HISTORY
 HISTFILE="$XDG_STATE_HOME"/zsh/history
-export HISTCONTROL=erasedups:ignoredups:ignorespace # Don't put duplicate lines in the history and do not add lines that start with a space
 
 # Fancy auto-complete
 autoload -Uz compinit
-compinit -d ~/.cache/zcompdump
 zstyle ':completion:*:*:*:*:*' menu yes select
 zstyle ':completion:*' group-name '' # group results by category
 zstyle ':completion:::::' completer _expand _complete _ignored _approximate #enable approximate matches for completion
@@ -160,12 +160,9 @@ zstyle ':completion:*' insert-tab pending # pasting with tabs doesn't perform co
 zmodload zsh/complist
 zstyle ':completion:*' format '>>> %d'
 _comp_options+=(globdots) # hidden files are included
-
-export KEYTIMEOUT=1
-export VI_MODE_SET_CURSOR=true
+compinit -d ~/.cache/zcompdump
 
 # export $TERM='xterm'
-# eval "$(direnv hook zsh)"
 #
 # Keybindings section
 bindkey -v
@@ -194,16 +191,22 @@ bindkey '^[[5~' history-beginning-search-backward               # Page up key
 bindkey '^[[6~' history-beginning-search-forward                # Page down key
 
 # Navigate words with ctrl+arrow keys
-# bindkey '^[Oc' forward-word                                     #
-# bindkey '^[Od' backward-word                                    #
+bindkey '^[Oc' forward-word                                     #
+bindkey '^[Od' backward-word                                    #
 bindkey '^[[1;5D' backward-word                                 #
 bindkey '^[[1;5C' forward-word                                  #
-bindkey '^[[127;5u' backward-kill-word                                 # delete previous word with ctrl+backspace
+bindkey '^[[127;5u' backward-kill-word                          # delete previous word with ctrl+backspace
 bindkey '' backward-kill-word                                 # delete previous word with ctrl+backspace
 bindkey '^[[3;5~' kill-word
 bindkey '^[[Z' undo                                             # Shift+tab undo last action
 bindkey '' backward-kill-word                                 # delete previous word with ctrl+backspace
 
+bindkey -s '^o' 'lfcd^M'
+bindkey -s '^n' 'nvim $(fzf)^M'
+bindkey "^p" history-substring-search-up # Up
+bindkey "^n" history-substring-search-down # Down
+bindkey "^k" history-substring-search-up # Up
+bindkey "^j" history-substring-search-down # Down
 bindkey -s '^[[32;2u' ' '
 bindkey -s '^[[13;5u' '\n'
 bindkey -s '^[[127;2u' '^?'
@@ -224,6 +227,8 @@ fi
 # if [ -f $HOME/.config/zsh/.profile ]; then
 #     . $HOME/.config/zsh/.profile
 # fi
+
+# eval "$(direnv hook zsh)"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
