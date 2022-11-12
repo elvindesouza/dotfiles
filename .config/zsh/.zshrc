@@ -1,9 +1,9 @@
 #!/bin/env zsh
 
-if [ -z "$TMUX" ]; then
-    tmuxa
-    exit
-fi
+# if [ -z "$TMUX" ]; then
+#     tmuxa
+#     exit
+# fi
 #
 
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
@@ -15,14 +15,15 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 source ~/.config/zsh/custom/plugins/zsh-defer/zsh-defer.plugin.zsh
-zsh-defer source ~/.config/zsh/custom/plugins/vi-mode.plugin.zsh
-zsh-defer source ~/.config/zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source ~/.config/zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-zsh-defer source ~/.config/zsh/custom/plugins/zsh-history-substring-search/zsh-history-substring-search.plugin.zsh
+zsh-defer source ~/.config/zsh/custom/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+source ~/.config/zsh/custom/plugins/vi-mode.plugin.zsh
+# zsh-defer source ~/.config/zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+zsh-defer source ~/.config/zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# zsh-defer source ~/.config/zsh/custom/plugins/zsh-history-substring-search/zsh-history-substring-search.plugin.zsh
 zsh-defer source ~/.config/zsh/custom/plugins/zsh-z/zsh-z.plugin.zsh
 source ~/.config/zsh/custom/themes/powerlevel10k/powerlevel10k.zsh-theme
-zsh-defer source ~/.config/zsh/custom/plugins/fzf.plugin.zsh
-# source ~/.config/zsh/custom/plugins/dirhistory.plugin.zsh
+# zsh-defer source ~/.config/zsh/custom/plugins/fzf.plugin.zsh
+# zsh-defer source ~/.config/zsh/custom/plugins/dirhistory.plugin.zsh
 
 # autoload -U colors && colors
 
@@ -35,64 +36,74 @@ setopt magicequalsubst     # enable filename expansion for arguments of the form
 setopt notify              # report the status of background jobs immediately
 setopt numericglobsort     # sort filenames numerically when it makes sense
 setopt promptsubst         # enable command substitution in prompt
-#
 setopt hist_ignore_all_dups # remove older duplicate entries from history
 setopt hist_reduce_blanks # remove superfluous blanks from history items
 setopt inc_append_history # save history entries as soon as they are entered
 setopt share_history # share history between different instances of the shell
 setopt auto_cd # cd by typing directory name if it's not a command
 setopt correct_all # autocorrect commands
-setopt auto_list # automatically list choices on ambiguous completion
+# setopt auto_list # automatically list choices on ambiguous completion
 setopt auto_menu # automatically use menu completion
 setopt always_to_end # move cursor to end if word had one match
-
-# unset SINGLE_LINE_ZLE
-# PS1="%{$fg[cyan]%}%B>%b%{$reset_color%} "
-# RPROMPT="%~"
 
 # ZSH history file
 setopt EXTENDED_HISTORY
 HISTFILE="$XDG_STATE_HOME"/zsh/history
 
 # Fancy auto-complete
-autoload -Uz compinit
-zstyle ':completion:*:*:*:*:*' menu yes select
-zstyle ':completion:*' group-name '' # group results by category
-zstyle ':completion:::::' completer _expand _complete _ignored _approximate #enable approximate matches for completion
-zstyle ':completion::complete:*' gain-privileges 1
-zstyle ':completion:*' auto-description 'specify: %d'
-zstyle ':completion:*' completer _expand _complete
-zstyle ':completion:*' format 'Completing %d'
-zstyle ':completion:*' group-name ''
-zstyle ':completion:*' list-colors ''
+# autoload -Uz compinit
+zstyle ':completion:*:*:man:*:*' menu select=long search
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
+# zstyle ':completion:*' group-name '' # group results by category
+# zstyle ':completion:::::' completer _expand _complete _ignored _approximate #enable approximate matches for completion
+# zstyle ':completion::complete:*' gain-privileges 1
+# zstyle ':completion:*' auto-description 'specify: %d'
+# zstyle ':completion:*' completer _expand _extensions _complete _approximate
+# zstyle ':completion:*' format 'Completing %d'
 # zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
-zstyle ':completion:*' rehash true
-zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
-zstyle ':completion:*' use-compctl false
-zstyle ':completion:*' verbose true
-zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
-zstyle ':completion:*' insert-tab pending # pasting with tabs doesn't perform completion
-zmodload zsh/complist
-zstyle ':completion:*' format '>>> %d'
-_comp_options+=(globdots) # hidden files are included
-compinit -d ~/.cache/zcompdump
+# zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
+# zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
+# zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' # case insensitive, Smart matching of dashed values, e.g. f-b matching foo-bar
+# zstyle ':completion::*:rm:*:*' file-patterns '*.o:object-files:object\ file *(~|.(old|bak|BAK)):backup-files:backup\ files *~*(~|.(o|old|bak|BAK)):all-files:all\ files' # rm: advanced completion (e.g. bak files first)
 
-# export $TERM='xterm'
-#
+# vi: advanced completion (e.g. tex and rc files first)
+# zstyle ':completion::*:vi:*:*' file-patterns 'Makefile|*(rc|log)|*.(php|tex|bib|sql|zsh|ini|sh|vim|rb|sh|js|tpl|csv|rdf|txt|phtml|tex|py|n3):vi-files:vim\ likes\ these\ files *~(Makefile|*(rc|log)|*.(log|rc|php|tex|bib|sql|zsh|ini|sh|vim|rb|sh|js|tpl|csv|rdf|txt|phtml|tex|py|n3)):all-files:other\ files'
+# zstyle ':completion:*' rehash true # Automatically update PATH entries
+# zstyle ':completion:*' use-compctl false
+# zstyle ':completion:*' verbose true # Verbose completion results
+# zstyle ':completion:*' insert-tab pending # pasting with tabs doesn't perform completion
+## Always use menu selection for `cd -`
+# zstyle ':completion:*:*:cd:*:directory-stack' force-list always
+# zstyle ':completion:*:*:cd:*:directory-stack' menu yes select
+## Nicer format for completion messages
+# zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
+# zstyle ':completion:*:corrections' format '%U%F{green}%d (errors: %e)%f%u'
+# zstyle ':completion:*:warnings' format '%F{202}%BSorry, no matches for: %F{214}%d%b'
+# Show message while waiting for completion
+# zstyle ':completion:*' show-completer true
+
+# Prettier completion for processes
+# zstyle ':completion:*:*:*:*:processes' force-list always
+# zstyle ':completion:*:*:*:*:processes' menu yes select
+# zstyle ':completion:*:*:*:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
+# zstyle ':completion:*:*:*:*:processes' command "ps -u $USER -o pid,user,args -w -w"
+zmodload zsh/complist
+# zstyle ':completion:*' format '>>> %d'
+# _comp_options+=(globdots) # hidden files are included
+# compinit -d ~/.cache/zcompdump
+
 # Keybindings section
 bindkey -v
 
 bindkey ' ' magic-space                           # do history expansion on space
 
-# Use vim keys in tab complete menu:
+# # Use vim keys in tab complete menu:
 bindkey -M menuselect 'h' vi-backward-char
 bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
-bindkey -v '^?' backward-delete-char
+bindkey -M menuselect '' send-break
 
 bindkey '' forward-char  
 if [[ "${terminfo[khome]}" != "" ]]; then
@@ -105,8 +116,8 @@ bindkey '^[[2~' overwrite-mode                                  # Insert key
 bindkey '^[[3~' delete-char                                     # Delete key
 bindkey '^[[C'  forward-char                                    # Right key
 bindkey '^[[D'  backward-char                                   # Left key
-bindkey '^[[5~' history-beginning-search-backward               # Page up key
-bindkey '^[[6~' history-beginning-search-forward                # Page down key
+# bindkey '^[[5~' history-beginning-search-backward               # Page up key
+# bindkey '^[[6~' history-beginning-search-forward                # Page down key
 
 # Navigate words with ctrl+arrow keys
 bindkey '^[Oc' forward-word                                     #
@@ -118,25 +129,27 @@ bindkey '' backward-kill-word                                 # delete previous
 bindkey '^[[3;5~' kill-word
 bindkey '^[[Z' undo                                             # Shift+tab undo last action
 bindkey '' backward-kill-word                                 # delete previous word with ctrl+backspace
+bindkey -v '^?' backward-delete-char
 
 bindkey -s '^o' 'lfcd^M'
-bindkey -s '^n' 'nvim $(fzf)^M'
-bindkey "^p" history-substring-search-up # Up
-bindkey "^n" history-substring-search-down # Down
-bindkey "^k" history-substring-search-up # Up
-bindkey "^j" history-substring-search-down # Down
+# bindkey -s '^n' 'nvim $(fzf)^M'
 bindkey -s '^[[32;2u' ' '
 bindkey -s '^[[13;5u' '\n'
 bindkey -s '^[[127;2u' '^?'
-
-## Use the up and down arrow keys for finding a command in history
-## (you can write some initial letters of the command first).
-bindkey "\e[A" history-substring-search-up
-bindkey "\e[B" history-substring-search-down
-bindkey "^[OA" history-substring-search-up
-bindkey "^[OB" history-substring-search-down
-bindkey "$terminfo[kcuu1]" history-substring-search-up
-bindkey "$terminfo[kcud1]" history-substring-search-down
+bindkey "^[[48;5u" beginning-of-line
+bindkey "^[[45;5u" end-of-line
+# Use the up and down arrow keys for finding a command in history
+# (you can write some initial letters of the command first).
+# bindkey "^p" history-substring-search-up # Up
+# bindkey "^n" history-substring-search-down # Down
+# bindkey "^k" history-substring-search-up # Up
+# bindkey "^j" history-substring-search-down # Down
+# bindkey "\e[A" history-substring-search-up
+# bindkey "\e[B" history-substring-search-down
+# bindkey "^[OA" history-substring-search-up
+# bindkey "^[OB" history-substring-search-down
+# bindkey "$terminfo[kcuu1]" history-substring-search-up
+# bindkey "$terminfo[kcud1]" history-substring-search-down
 
 if [ -f $HOME/.config/zsh/.aliases ]; then
     . $HOME/.config/zsh/.aliases
@@ -147,6 +160,53 @@ fi
 # fi
 
 # eval "$(direnv hook zsh)"
+
+################ Autocomplete
+zstyle ':autocomplete:*' fzf-completion yes
+# no:  Tab uses Zsh's completion system only.
+# yes: Tab first tries Fzf's completion, then falls back to Zsh's.
+# ⚠️ NOTE: This setting can NOT be changed at runtime and requires that you
+# have installed Fzf's shell extensions.
+
+##
+# Config in this section should come BEFORE sourcing Autocomplete and cannot be
+# changed at runtime.
+#
+# Autocomplete automatically selects a backend for its recent dirs completions.
+# So, normally you won't need to change this.
+# However, you can set it if you find that the wrong backend is being used.
+zstyle ':autocomplete:recent-dirs' backend no
+# cdr:  Use Zsh's `cdr` function to show recent directories as completions.
+# no:   Don't show recent directories.
+# zsh-z|zoxide|z.lua|z.sh|autojump|fasd: Use this instead (if installed).
+# ⚠️ NOTE: This setting can NOT be changed at runtime.
+zstyle ':autocomplete:*' widget-style menu-select
+# complete-word: (Shift-)Tab inserts the top (bottom) completion.
+# menu-complete: Press again to cycle to next (previous) completion.
+# menu-select:   Same as `menu-complete`, but updates selection in menu.
+# ⚠️ NOTE: This setting can NOT be changed at runtime.
+#
+
+# source /path/to/zsh-autocomplete.plugin.zsh
+
+
+##
+# Config in this section should come AFTER sourcing Autocomplete.
+#
+
+# Up arrow:
+bindkey '\e[A' up-line-or-search
+bindkey '\eOA' up-line-or-search
+bindkey '^k' up-line-or-search
+# up-line-or-search:  Open history menu.
+# up-line-or-history: Cycle to previous history line.
+
+# Down arrow:
+bindkey '\e[B' down-line-or-select
+bindkey '\eOB' down-line-or-select
+bindkey '^j' down-line-or-select
+# down-line-or-select:  Open completion menu.
+# down-line-or-history: Cycle to next history line.
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
