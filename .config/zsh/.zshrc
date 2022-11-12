@@ -14,14 +14,14 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-
-source ~/.config/zsh/custom/plugins/vi-mode.plugin.zsh
-source ~/.config/zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.config/zsh/custom/plugins/zsh-defer/zsh-defer.plugin.zsh
+zsh-defer source ~/.config/zsh/custom/plugins/vi-mode.plugin.zsh
+zsh-defer source ~/.config/zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.config/zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source ~/.config/zsh/custom/plugins/zsh-history-substring-search/zsh-history-substring-search.plugin.zsh
-source ~/.config/zsh/custom/plugins/zsh-z/zsh-z.plugin.zsh
+zsh-defer source ~/.config/zsh/custom/plugins/zsh-history-substring-search/zsh-history-substring-search.plugin.zsh
+zsh-defer source ~/.config/zsh/custom/plugins/zsh-z/zsh-z.plugin.zsh
 source ~/.config/zsh/custom/themes/powerlevel10k/powerlevel10k.zsh-theme
-source ~/.config/zsh/custom/plugins/fzf.plugin.zsh
+zsh-defer source ~/.config/zsh/custom/plugins/fzf.plugin.zsh
 # source ~/.config/zsh/custom/plugins/dirhistory.plugin.zsh
 
 # autoload -U colors && colors
