@@ -32,6 +32,7 @@ alias oer='mimeopen -d'
 alias owith='mimeopen --ask'
 alias tt="run zathura /media/elvin/dHDD/Sem\ 5/timetable.pdf"
 # alias tmux="tmux -u -2 new-session -A -s 1 -c 'zsh'"
+alias nvim="~/.config/nvim/nvim.appimage"
 alias vim='nvim'
 alias vi="nvim"
 alias sc='sudo systemctl'
@@ -102,7 +103,7 @@ alias psmem='ps auxf | sort -nr -k 4 | head -5'
 alias pscpu="/bin/ps -eo pcpu,pid,user,args | sort -k 1 -r | head -10"
 
 # Search files in the current folder
-alias f="find . | grep "
+alias findfile="find . | grep "
 
 # Count all files (recursively) in the current fold  er
 alias countfiles="for t in files links directories; do echo \`find . -type \${t:0:1} | wc -l\` \$t;   done 2> /dev/null"
@@ -179,20 +180,34 @@ alias mktargz='tar -czvvf'
 alias untar='tar -xvvf'
 
 ##### global aliases
-# zsh buch s.82 (z.B. find / ... NE)
-alias -g NE='2>|/dev/null'
-alias -g NO='&>|/dev/null'
-alias -g EO='>|/dev/null'
-# http://rayninfo.co.uk/tips/zshtips.html
-alias -g G='| grep '
-alias -g P='2>&1 | $PAGER'
-alias -g L='| less'
-alias -g LA='2>&1 | less'
-alias -g M='| most'
-alias -g C='| wc -l'
+if [[ -n $ZSH_VERSION ]]; then
+	# zsh buch s.82 (z.B. find / ... NE)
+	alias -g NE='2>|/dev/null'
+	alias -g NO='&>|/dev/null'
+	alias -g EO='>|/dev/null'
+	# http://rayninfo.co.uk/tips/zshtips.html
+	alias -g G='| grep '
+	alias -g P='2>&1 | $PAGER'
+	alias -g L='| less'
+	alias -g LA='2>&1 | less'
+	alias -g M='| most'
+	alias -g C='| wc -l'
+fi
 
 alias librewolf='io.gitlab.librewolf-community'
 alias whatsapp='io.github.mimbrero.WhatsAppDesktop'
 alias firefox="org.mozilla.firefox"
 alias thunderbird='org.mozilla.Thunderbird'
 alias torbrowser='com.github.micahflee.torbrowser-launcher'
+
+fmpc() {
+	local song_path
+	song_path=$(
+		mpc -f "%artist% - %title% ;%file%" listall |
+			fzf-tmux --query="$1" --reverse --select-1 --exit-0 |
+			awk -F ";" '{print $2}'
+		# sed -n 's/^\([0-9]\+\)).*/\1/p'
+	) || return 1
+	echo song "$song_path"
+	[ "$song_path" != "" ] && mpc add "$song_path"
+}
