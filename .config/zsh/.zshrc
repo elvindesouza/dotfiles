@@ -24,7 +24,7 @@ zsh-defer source ~/.config/zsh/custom/plugins/zsh-z/zsh-z.plugin.zsh
 source ~/.config/zsh/custom/themes/powerlevel10k/powerlevel10k.zsh-theme
 zsh-defer source ~/.config/zsh/custom/plugins/fzf.plugin.zsh
 # zsh-defer source ~/.config/zsh/custom/plugins/dirhistory.plugin.zsh
-zsh-defer source ~/.config/zsh/.functions.zsh
+# zsh-defer source ~/.config/zsh/.functions.zsh
 
 # autoload -U colors && colors
 

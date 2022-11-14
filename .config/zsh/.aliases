@@ -9,7 +9,6 @@ if [ -f "/usr/bin/pacman" ]; then
 	alias list='pacman -Qet | less'
 	alias listall='pacman -Q | less'
 	alias upgrade='aur -Syyu ; flatpak update'
-	alias neofetch='neofetch --source ~/.config/neofetch/logo.svg'
 elif [ -f "/usr/bin/apt" ]; then
 	alias search='apt search'
 	alias inst='sudo apt install -y'
@@ -22,11 +21,11 @@ elif [ -f "/usr/bin/apt" ]; then
 	alias listall='dpkg --list'
 fi
 
+alias neofetch='neofetch --source ~/.config/neofetch/logo.svg'
 alias dmesg='dmesg --color --reltime'
 alias t='tmuxa'
-alias zshrc='vim ~/.config/zsh/.zshrc'
-alias profile='vim ~/.config/zsh/.profile'
-alias ncmp='~/.config/ncmpcpp/ncmpcpp-ueberzug/ncmpcpp-ueberzug'
+alias ncmpcpp-ueberzug='~/.config/ncmpcpp/ncmpcpp-ueberzug/ncmpcpp-ueberzug'
+alias open='xdg-open'
 alias o='xdg-open'
 alias oer='mimeopen -d'
 alias owith='mimeopen --ask'
@@ -45,6 +44,8 @@ alias q='exit'
 alias c='clear'
 alias pip='pip3'
 
+alias zshrc='vim ~/.config/zsh/.zshrc'
+alias profile='vim ~/.config/zsh/.profile'
 alias eal='vim ~/.config/zsh/.aliases'
 alias sal='source ~/.config/zsh/.aliases'
 
@@ -93,6 +94,7 @@ alias mkdir="mkdir -pv"
 alias yt="yt-dlp --embed-metadata -i"
 alias yta="yt -x -f bestaudio/best"
 alias ffmpeg="ffmpeg -hide_banner"
+alias mktar='tar -cvvf'
 
 # Search command line history
 alias h="history | grep "
@@ -170,14 +172,7 @@ lfcd() {
 		fi
 	fi
 }
-# EXTRACTING Stuff
-alias tgz='tar -cvvzf'
-alias tbz2='tar -cvvjf'
-alias utgz='tar -xvvzf'
-alias utbz2='tar -xvvjf'
-alias mktar='tar -cvvf'
-alias mktargz='tar -czvvf'
-alias untar='tar -xvvf'
+
 
 ##### global aliases
 if [[ -n $ZSH_VERSION ]]; then

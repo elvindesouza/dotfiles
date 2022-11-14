@@ -1,0 +1,16 @@
+#!/bin/bash
+
+if [[ $# -lt 2 ]]; then
+	echo -e "\n$0() usage:"
+	echo -e "\t$0 archive_file_name file1 file2 ... fileN"
+	echo -e "\tcreates archive of files 1-N\n"
+else
+	DEST=$1
+	shift
+	case $DEST in
+	*.tar.bz2) tar -cvvjf "$DEST" "$@" ;;
+	*.tar.gz) tar -cvvzf "$DEST" "$@" ;;
+	*.zip) zip -r "$DEST" "$@" ;;
+	*) echo "Unknown file type - $DEST" ;;
+	esac
+fi

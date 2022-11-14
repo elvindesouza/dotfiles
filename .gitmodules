@@ -25,8 +25,8 @@
 [submodule ".config/zsh/custom/plugins/zsh-z"]
 	path = .config/zsh/custom/plugins/zsh-z
 	url = https://github.com/agkozak/zsh-z.git
-[submodule "/home/user/.config/zsh/custom/plugins/zsh-defer"]
-	path = /home/user/.config/zsh/custom/plugins/zsh-defer
+[submodule ".config/zsh/custom/plugins/zsh-defer"]
+	path = .config/zsh/custom/plugins/zsh-defer
 	url = https://github.com/romkatv/zsh-defer.git
 [submodule ".config/zsh/custom/plugins/zsh-autocomplete"]
 	path = .config/zsh/custom/plugins/zsh-autocomplete
