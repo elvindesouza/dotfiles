@@ -51,8 +51,9 @@ export GTK_USE_PORTAL=1
 # To have colors for ls and all grep commands such
 export CLICOLOR=1
 
-# export LESS="-R --use-color -Dd+r$Du+b"
+export LESS='-R --use-color -Dd+r$Du+b'
 export MANPAGER="less -R --use-color -Dd+r -Du+b"
+
 export TMUX_TMPDIR="$XDG_RUNTIME_DIR"
 export CARGO_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/cargo"
 export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
