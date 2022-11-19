@@ -617,7 +617,7 @@ browser_display_mode = columns
 progressbar_look = ->
 media_library_primary_tag = album_artist
 media_library_albums_split_by_date = no
-startup_screen = "playlist"
+# startup_screen = "playlist"
 display_volume_level = no
 ignore_leading_the = yes
 external_editor = nvim
@@ -637,3 +637,10 @@ song_columns_list_format = "(20)[6]{a} (40)[4]{t|f:Title}(1)[magenta]{l}"
 # Formatting: (%)[Color]{element shortname}
 # More info: https://github.com/ncmpcpp/ncmpcpp/blob/master/doc/config#L124
 
+user_interface = alternative
+
+# visualizer_look = "  "
+startup_screen = visualizer
+startup_slave_screen = playlist
+startup_slave_screen_focus = yes
+locked_screen_width_part = 30

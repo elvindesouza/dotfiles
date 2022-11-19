@@ -4,7 +4,7 @@
 #     tmuxa
 #     exit
 # fi
-#
+
 
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
@@ -15,7 +15,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 source ~/.config/zsh/custom/plugins/zsh-defer/zsh-defer.plugin.zsh
-zsh-defer source ~/.config/zsh/custom/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+zsh-defer source ~/.config/zsh/autocomplete.zsh
 source ~/.config/zsh/custom/plugins/vi-mode.plugin.zsh
 # zsh-defer source ~/.config/zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 zsh-defer source ~/.config/zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -24,7 +24,7 @@ zsh-defer source ~/.config/zsh/custom/plugins/zsh-z/zsh-z.plugin.zsh
 source ~/.config/zsh/custom/themes/powerlevel10k/powerlevel10k.zsh-theme
 zsh-defer source ~/.config/zsh/custom/plugins/fzf.plugin.zsh
 # zsh-defer source ~/.config/zsh/custom/plugins/dirhistory.plugin.zsh
-# zsh-defer source ~/.config/zsh/.functions.zsh
+zsh-defer source ~/.config/zsh/functions.zsh
 
 # autoload -U colors && colors
 
@@ -46,6 +46,7 @@ setopt correct_all # autocorrect commands
 # setopt auto_list # automatically list choices on ambiguous completion
 setopt auto_menu # automatically use menu completion
 setopt always_to_end # move cursor to end if word had one match
+setopt globdots
 
 # ZSH history file
 setopt EXTENDED_HISTORY
@@ -89,9 +90,9 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' # case insensitive, Sm
 # zstyle ':completion:*:*:*:*:processes' menu yes select
 # zstyle ':completion:*:*:*:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
 # zstyle ':completion:*:*:*:*:processes' command "ps -u $USER -o pid,user,args -w -w"
-zmodload zsh/complist
-# zstyle ':completion:*' format '>>> %d'
 # _comp_options+=(globdots) # hidden files are included
+# zmodload zsh/complist
+# zstyle ':completion:*' format '>>> %d'
 # compinit -d ~/.cache/zcompdump
 
 # Keybindings section
@@ -99,12 +100,6 @@ bindkey -v
 
 bindkey ' ' magic-space                           # do history expansion on space
 
-# # Use vim keys in tab complete menu:
-bindkey -M menuselect 'h' vi-backward-char
-bindkey -M menuselect 'k' vi-up-line-or-history
-bindkey -M menuselect 'l' vi-forward-char
-bindkey -M menuselect 'j' vi-down-line-or-history
-bindkey -M menuselect '' send-break
 
 bindkey '' forward-char  
 if [[ "${terminfo[khome]}" != "" ]]; then
@@ -161,53 +156,6 @@ fi
 # fi
 
 # eval "$(direnv hook zsh)"
-
-################ Autocomplete
-zstyle ':autocomplete:*' fzf-completion yes
-# no:  Tab uses Zsh's completion system only.
-# yes: Tab first tries Fzf's completion, then falls back to Zsh's.
-# ⚠️ NOTE: This setting can NOT be changed at runtime and requires that you
-# have installed Fzf's shell extensions.
-
-##
-# Config in this section should come BEFORE sourcing Autocomplete and cannot be
-# changed at runtime.
-#
-# Autocomplete automatically selects a backend for its recent dirs completions.
-# So, normally you won't need to change this.
-# However, you can set it if you find that the wrong backend is being used.
-zstyle ':autocomplete:recent-dirs' backend no
-# cdr:  Use Zsh's `cdr` function to show recent directories as completions.
-# no:   Don't show recent directories.
-# zsh-z|zoxide|z.lua|z.sh|autojump|fasd: Use this instead (if installed).
-# ⚠️ NOTE: This setting can NOT be changed at runtime.
-zstyle ':autocomplete:*' widget-style menu-select
-# complete-word: (Shift-)Tab inserts the top (bottom) completion.
-# menu-complete: Press again to cycle to next (previous) completion.
-# menu-select:   Same as `menu-complete`, but updates selection in menu.
-# ⚠️ NOTE: This setting can NOT be changed at runtime.
-#
-
-# source /path/to/zsh-autocomplete.plugin.zsh
-
-
-##
-# Config in this section should come AFTER sourcing Autocomplete.
-#
-
-# Up arrow:
-bindkey '\e[A' up-line-or-search
-bindkey '\eOA' up-line-or-search
-bindkey '^k' up-line-or-search
-# up-line-or-search:  Open history menu.
-# up-line-or-history: Cycle to previous history line.
-
-# Down arrow:
-bindkey '\e[B' down-line-or-select
-bindkey '\eOB' down-line-or-select
-bindkey '^j' down-line-or-select
-# down-line-or-select:  Open completion menu.
-# down-line-or-history: Cycle to next history line.
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
