@@ -144,35 +144,6 @@ alias ...='cd ../..'
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
 
-run() {
-	nohup "$@" >/dev/null 2>/dev/null &
-	disown
-	exit
-}
-
-#Automatically do an ls after each cd
-cd() {
-	if [ "$1" != "" ]; then
-		builtin cd "$@" && ls --color=auto -A
-	else
-		builtin cd ~ && ls --color=auto -A
-	fi
-}
-
-lfcd() {
-	tmp="$(mktemp)"
-	lf -last-dir-path="$tmp" "$@"
-	if [ -f "$tmp" ]; then
-		dir="$(cat "$tmp")"
-		rm -f "$tmp"
-		if [ -d "$dir" ]; then
-			if [ "$dir" != "$PWD" ]; then
-				cd "$dir"
-			fi
-		fi
-	fi
-}
-
 
 ##### global aliases
 if [[ -n $ZSH_VERSION ]]; then
@@ -195,14 +166,3 @@ alias firefox="org.mozilla.firefox"
 alias thunderbird='org.mozilla.Thunderbird'
 alias torbrowser='com.github.micahflee.torbrowser-launcher'
 
-fmpc() {
-	local song_path
-	song_path=$(
-		mpc -f "%artist% - %title% ;%file%" listall |
-			fzf-tmux --query="$1" --reverse --select-1 --exit-0 |
-			awk -F ";" '{print $2}'
-		# sed -n 's/^\([0-9]\+\)).*/\1/p'
-	) || return 1
-	echo song "$song_path"
-	[ "$song_path" != "" ] && mpc add "$song_path"
-}
