@@ -1,7 +1,7 @@
 ################ Autocomplete
-zstyle ':autocomplete:*' list-lines 50
-zstyle ':autocomplete:history-search:*' list-lines 50
-zstyle ':autocomplete:history-incremental-search-*:*' list-lines 50
+zstyle ':autocomplete:*' list-lines 5
+zstyle ':autocomplete:history-search:*' list-lines 5
+zstyle ':autocomplete:history-incremental-search-*:*' list-lines 5
 
 zstyle ':autocomplete:*' fzf-completion yes
 # no:  Tab uses Zsh's completion system only.
@@ -37,6 +37,7 @@ bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -M menuselect '' send-break
+bindkey -M menuselect '^@' list-expand
 
 
 ##
