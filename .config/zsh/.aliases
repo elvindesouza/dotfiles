@@ -24,6 +24,7 @@ fi
 alias neofetch='neofetch --source ~/.config/neofetch/logo.svg'
 alias dmesg='dmesg --color --reltime'
 alias t='tmuxa'
+alias tmuxn='tmux new-session -d'
 alias ncmpcpp-ueberzug='~/.config/ncmpcpp/ncmpcpp-ueberzug/ncmpcpp-ueberzug'
 alias open='xdg-open'
 alias o='xdg-open'

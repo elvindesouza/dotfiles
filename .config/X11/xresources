@@ -33,6 +33,9 @@ XTerm.vt100.scaleHeight: 1.01
 XTerm*pointerColor: white
 XTerm*pointerColorBackground: black
 
+! Allow sixel graphics. (Try: "convert -colors 16 foo.jpg sixel:-").
+xterm*decTerminalID	:	vt340
+
 XTerm.vt100.backarrowKey: false
 Xterm.ttyModes: erase ^?
 
