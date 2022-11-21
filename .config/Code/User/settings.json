@@ -203,7 +203,6 @@
   "workbench.colorTheme": "Absolute Black",
   "vscode-neovim.neovimExecutablePaths.linux": "/usr/bin/nvim",
   "workbench.sideBar.location": "right",
-  "git.enabled": false,
   "workbench.iconTheme": "material-icon-theme",
   "files.autoSave": "afterDelay",
   "editor.selectionClipboard": false,
@@ -266,4 +265,8 @@
     "fortran": "cd $dir && gfortran $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
     "sml": "cd $dir && sml $fileName"
   },
+  "window.zoomLevel": 3,
+  "git.enableCommitSigning": true,
+  "gitlens.telemetry.enabled": false,
+  "intelephense.telemetry.enabled": false,
 }
