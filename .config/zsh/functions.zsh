@@ -73,3 +73,7 @@ fmpc() {
 	echo song "$song_path"
 	[ "$song_path" != "" ] && mpc add "$song_path"
 }
+
+preview(){
+    convert "$@" sixel:-
+}

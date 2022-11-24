@@ -46,6 +46,7 @@ cmd open ${{
 
 map o open
 
+map a push %mkdir<space>
 # define a custom 'rename' command without prompt for overwrite
 # cmd rename %[ -e $1 ] && printf "file exists" || mv $f $1
 # map r push :rename<space>
@@ -66,61 +67,93 @@ map o open
 #     [ $ans = "y" ] && rm -rf $fx
 # }}
 cmd trash %trash-put $fx
+#
+# cmd trash ${{
+#     set -f
+#     if gio trash 2>/dev/null; then
+#         gio trash $fx
+#     else
+#         mkdir -p ~/.trash
+#         mv -- $fx ~/.trash
+#     fi
+# }}
+
 # use '<delete>' key for either 'trash' or 'delete' command
 map <delete> trash
 #map <delete> delete
 
 # extract the current file with the right command
 # (xkcd link: https://xkcd.com/1168/)
-#cmd extract ${{
-#    set -f
-#    case $f in
-#        *.tar.bz|*.tar.bz2|*.tbz|*.tbz2) tar xjvf $f;;
-#        *.tar.gz|*.tgz) tar xzvf $f;;
-#        *.tar.xz|*.txz) tar xJvf $f;;
-#        *.zip) unzip $f;;
-#        *.rar) unrar x $f;;
-#        *.7z) 7z x $f;;
-#    esac
-#}}
+cmd extract ${{
+   set -f
+   case $f in
+       *.tar.bz|*.tar.bz2|*.tbz|*.tbz2) tar xjvf $f;;
+       *.tar.gz|*.tgz) tar xzvf $f;;
+       *.tar.xz|*.txz) tar xJvf $f;;
+       *.zip) unzip $f;;
+       *.rar) unrar x $f;;
+       *.7z) 7z x $f;;
+   esac
+}}
 
 # compress current file or selected files with tar and gunzip
-#cmd tar ${{
-#    set -f
-#    mkdir $1
-#    cp -r $fx $1
-#    tar czf $1.tar.gz $1
-#    rm -rf $1
-#}}
+cmd tar ${{
+   set -f
+   mkdir $1
+   cp -r $fx $1
+   tar czf $1.tar.gz $1
+   rm -rf $1
+}}
 
 # compress current file or selected files with zip
-#cmd zip ${{
-#    set -f
-#    mkdir $1
-#    cp -r $fx $1
-#    zip -r $1.zip $1
-#    rm -rf $1
-#}}
+cmd zip ${{
+   set -f
+   mkdir $1
+   cp -r $fx $1
+   zip -r $1.zip $1
+   rm -rf $1
+}}
 
 
 # map V push :!nvim<space>
 map Y $printf "%s" "$fx" | xclip -selection clipboard
 
+cmd fzf_search ${{
+    res="$( \
+        RG_PREFIX="rg --column --line-number --no-heading --color=always \
+            --smart-case "
+        FZF_DEFAULT_COMMAND="$RG_PREFIX ''" \
+            fzf --bind "change:reload:$RG_PREFIX {q} || true" \
+            --ansi --layout=reverse --header 'Search in files' \
+            | cut -d':' -f1
+    )"
+    [ ! -z "$res" ] && lf -remote "send $id select \"$res\""
+}}
+map <c-t> :fzf_search
+
+cmd fzf_jump ${{
+    res="$(find . -maxdepth 1 | fzf --reverse --header='Jump to location' | sed 's/\\/\\\\/g;s/"/\\"/g')"
+    if [ -d "$res" ] ; then
+        cmd="cd"
+    elif [ -f "$res" ] ; then
+        cmd="select"
+    else
+        exit 0
+    fi
+    lf -remote "send $id $cmd \"$res\""
+}}
+map <c-f> :fzf_jump
 
 set hidden
-map i set reverse
+map i set reverse!
 map <c-s> set hidden!
 
 set icons
 set period 1
 set autoquit on
-
-# cmd z-jump ${{
-#   lf -remote "send ${id} cd '$(z -e $@)'"
-# }}
-# map Z push :z-jump<space>-I<space>
-# map zb push :z-jump<space>-b<space>
-# map zz push :z-jump<space>
+# set drawbox
+set sortby time
+set reverse!
 
 set previewer ctpv
 set cleaner ctpvclear
