@@ -374,8 +374,6 @@ bind C-a send-prefix
 
 bind u set-option status
 
-
-
 # y and p as in vim
 bind Escape copy-mode
 unbind p
@@ -394,6 +392,8 @@ bind \\ split-window -h
 bind - split-window -v 
 unbind '"'
 unbind %
+
+bind n new-session
 
 # moving between windows with vim movement keys
 bind -r C-h select-window -t :-
