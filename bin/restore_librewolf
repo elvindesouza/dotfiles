@@ -1,0 +1,12 @@
+#!/bin/bash
+BROWSER_DIR="$HOME/.var/app/io.gitlab.librewolf-community/.librewolf"
+gpg -o "$BROWSER_DIR"/lax.tar.gz -d ~/.config/librewolf/lax.tar.gz.gpg
+gpg -o "$BROWSER_DIR"/strict.tar.gz -d ~/.config/librewolf/strict.tar.gz.gpg
+
+cd "$BROWSER_DIR" || exit
+
+rm -rf  lax/
+rm -rf  strict/
+
+tar xvf strict.tar.gz
+tar xvf lax.tar.gz
