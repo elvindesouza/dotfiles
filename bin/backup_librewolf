@@ -1,0 +1,12 @@
+#!/bin/bash
+tar -czvf ~/Documents/lax.tar.gz /home/user/.var/app/io.gitlab.librewolf-community/.librewolf/lax
+tar -czvf ~/Documents/strict.tar.gz /home/user/.var/app/io.gitlab.librewolf-community/.librewolf/strict
+
+gpg -r elvindesouza@gmail.com -e ~/Documents/lax.tar.gz
+gpg -r elvindesouza@gmail.com -e ~/Documents/strict.tar.gz
+
+rm ~/Documents/lax.tar.gz
+rm ~/Documents/strict.tar.gz
+
+/usr/bin/git --git-dir="$HOME"/.dotfiles/ --work-tree="$HOME" add ~/Documents/lax.tar.gz.gpg
+/usr/bin/git --git-dir="$HOME"/.dotfiles/ --work-tree="$HOME" add ~/Documents/strict.tar.gz.gpg
