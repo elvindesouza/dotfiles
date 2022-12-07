@@ -1,6 +1,6 @@
 {
-  "timeStamp": 1666519331470,
-  "version": "1.44.4",
+  "timeStamp": 1670319367752,
+  "version": "1.45.2",
   "userSettings": {
     "advancedUserEnabled": true,
     "uiTheme": "dark",
@@ -50,8 +50,8 @@
     "vivaldi-scheme",
     "wyciwyg-scheme"
   ],
-  "dynamicFilteringString": "behind-the-scene * * noop\nbehind-the-scene * inline-script noop\nbehind-the-scene * 1p-script noop\nbehind-the-scene * 3p-script noop\nbehind-the-scene * 3p-frame noop\nbehind-the-scene * image noop\nbehind-the-scene * 3p noop\n* * 3p-script block\n* * 3p-frame block\n* * 3p block\nold.reddit.com redd.it * noop\nold.reddit.com reddit.map.fastly.net * noop\nold.reddit.com redditmedia.com * noop\nold.reddit.com redditstatic.com * noop\nstackoverflow.com sstatic.net * noop\naskubuntu.com sstatic.net * noop\nserverfault.com sstatic.net * noop\nstackexchange.com sstatic.net * noop\nsuperuser.com sstatic.net * noop\nboards.4channel.org 4cdn.org * noop\nboards.4channel.org 4chan.org * noop\ngithub.com githubassets.com * noop",
+  "dynamicFilteringString": "behind-the-scene * * noop\nbehind-the-scene * inline-script noop\nbehind-the-scene * 1p-script noop\nbehind-the-scene * 3p-script noop\nbehind-the-scene * 3p-frame noop\nbehind-the-scene * image noop\nbehind-the-scene * 3p noop\n* * 3p-script block\n* * 3p-frame block\n* * 3p block\nstackoverflow.com sstatic.net * noop\naskubuntu.com sstatic.net * noop\nserverfault.com sstatic.net * noop\nstackexchange.com sstatic.net * noop\nsuperuser.com sstatic.net * noop\nboards.4channel.org 4cdn.org * noop\nboards.4channel.org 4chan.org * noop\ngithub.com githubassets.com * noop",
   "urlFilteringString": "",
-  "hostnameSwitchesString": "no-large-media: behind-the-scene false\nno-cosmetic-filtering: * true\nno-remote-fonts: * true\nno-large-media: * true\nno-csp-reports: * true\nno-scripting: * true\nno-large-media: old.reddit.com false\nno-cosmetic-filtering: stackoverflow.com false\nno-cosmetic-filtering: askubuntu.com false\nno-cosmetic-filtering: serverfault.com false\nno-cosmetic-filtering: stackexchange.com false\nno-cosmetic-filtering: superuser.com false\nno-large-media: boards.4channel.org false\nno-scripting: boards.4channel.org false",
+  "hostnameSwitchesString": "no-large-media: behind-the-scene false\nno-cosmetic-filtering: * true\nno-remote-fonts: * true\nno-large-media: * true\nno-csp-reports: * true\nno-scripting: * true\nno-cosmetic-filtering: stackoverflow.com false\nno-cosmetic-filtering: askubuntu.com false\nno-cosmetic-filtering: serverfault.com false\nno-cosmetic-filtering: stackexchange.com false\nno-cosmetic-filtering: superuser.com false\nno-large-media: boards.4channel.org false\nno-scripting: boards.4channel.org false\nno-scripting: blank.about-scheme false",
   "userFilters": "##.js-consent-banner\n##.js-dismissable-hero\nstackexchange.com##.js-consent-banner\nsuperuser.com##.js-consent-banner\nstackoverflow.com##.js-consent-banner\nmathoverflow.net##.js-consent-banner\nserverfault.com##.js-consent-banner\naskubuntu.com##.js-consent-banner\nstackapps.com##.js-consent-banner\n\n\n! 2022-03-23 https://stackoverflow.com\nstackoverflow.com##.js-consent-banner.r16.l16.b16.bar-lg.fc-white.bg-black-750.sm\\:p16.p32.sm\\:w-auto.ws4.z-nav-fixed.ps-fixed.ff-sans\n\nboards.4chan.org\n"
 }
