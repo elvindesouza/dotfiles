@@ -21,7 +21,7 @@ elif [ -f "/usr/bin/apt" ]; then
 	alias listall='dpkg --list'
 fi
 
-alias neofetch='neofetch --source ~/.config/neofetch/logo.svg'
+#alias neofetch='neofetch --source ~/.config/neofetch/logo.svg'
 alias dmesg='dmesg --color --reltime'
 alias t='tmuxa'
 alias tmuxn='tmux new-session -d'
