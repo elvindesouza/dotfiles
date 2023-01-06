@@ -3,8 +3,8 @@ BROWSER_DIR="$HOME/.var/app/io.gitlab.librewolf-community/.librewolf"
 
 cd "$BROWSER_DIR" || exit
 
-tar -czvf ~/.config/librewolf/lax.tar.gz Lax
-tar -czvf ~/.config/librewolf/strict.tar.gz Strict
+tar -czvf ~/.config/librewolf/lax.tar.gz lax
+tar -czvf ~/.config/librewolf/strict.tar.gz strict
 
 gpg --yes -r elvindesouza@gmail.com -e ~/.config/librewolf/lax.tar.gz
 gpg --yes -r elvindesouza@gmail.com -e ~/.config/librewolf/strict.tar.gz
