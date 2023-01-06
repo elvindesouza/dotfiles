@@ -53,8 +53,8 @@ bindsym $mod+Return exec --no-startup-id $term
 # bindsym $mod+p exec --no-startup-id $term
 bindsym $mod+slash		split vertical ;; exec $term
 bindsym $mod+apostrophe		split horizontal ;; exec $term
-bindsym $mod+b exec --no-startup-id io.gitlab.librewolf-community -P Strict
-bindsym $mod+KP_Down exec --no-startup-id io.gitlab.librewolf-community -P Lax
+bindsym $mod+b exec --no-startup-id io.gitlab.librewolf-community -P strict
+bindsym $mod+KP_Down exec --no-startup-id io.gitlab.librewolf-community -P lax
 bindsym $mod+KP_End exec --no-startup-id org.mozilla.firefox
 bindsym $mod+semicolon exec --no-startup-id $term
 

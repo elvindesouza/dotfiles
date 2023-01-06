@@ -13,7 +13,7 @@ elif [ -f "/usr/bin/apt" ]; then
 	alias search='apt search'
 	alias inst='sudo apt install -y'
 	alias uninst='sudo apt --purge autoremove && sudo apt-get --purge remove'
-	alias upgrade='sudo apt update && sudo apt dist-upgrade'
+	alias upgrade='sudo apt update && sudo apt dist-upgrade ; flatpak update'
 	alias auto='sudo apt-mark auto'
 	alias manu='sudo apt-mark manual'
 	alias backup='bash "/media/elvin/eHDD/repos/RecoverUbuntu/backup/BACKUP_UBUNTU.sh"'

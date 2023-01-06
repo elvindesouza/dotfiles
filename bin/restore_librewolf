@@ -5,8 +5,8 @@ gpg -o "$BROWSER_DIR"/strict.tar.gz -d ~/.config/librewolf/strict.tar.gz.gpg
 
 cd "$BROWSER_DIR" || exit
 
-rm -rf Lax/
-rm -rf Strict/
+rm -rf lax/
+rm -rf strict/
 
 tar xvf strict.tar.gz
 tar xvf lax.tar.gz
