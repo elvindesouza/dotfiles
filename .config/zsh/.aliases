@@ -98,7 +98,7 @@ alias ffmpeg="ffmpeg -hide_banner"
 alias mktar='tar -cvvf'
 
 # Search command line history
-alias h="history | grep "
+alias h="history 1000 | grep "
 
 # Search running processes
 alias p="ps aux | grep "
