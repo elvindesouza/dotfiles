@@ -4,11 +4,12 @@
 # Should you change your keyboard layout some time, delete
 # this file and re-run i3-config-wizard(1).
 #
-set $term --no-startup-id $TERMINAL
+set $term $TERMINAL
 set $mod Mod4
 
 exec_always --no-startup-id autotiling
-# exec_always --no-startup-id xautolock -time 5 -locker "systemctl suspend-then-hibernate" -detectsleep
+exec_always --no-startup-id xsetroot -solid black;
+exec_always --no-startup-id xautolock -time 5 -locker "i3lock" &
 # exec --no-startup-id xbacklight -set 1
 # exec --no-startup-id redshift -O 1000
 

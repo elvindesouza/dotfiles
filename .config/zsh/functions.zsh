@@ -35,8 +35,6 @@ ec () {
 
 run() {
 	nohup "$@" >/dev/null 2>/dev/null &
-	disown
-	exit
 }
 
 #Automatically do an ls after each cd

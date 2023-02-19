@@ -8,12 +8,12 @@ if [ -f "/usr/bin/pacman" ]; then
 	alias search='aur -Ss'
 	alias list='pacman -Qet | less'
 	alias listall='pacman -Q | less'
-	alias upgrade='aur -Syyu ; flatpak update'
+	alias upgrade='aur -Syyu ; sudo flatpak update'
 elif [ -f "/usr/bin/apt" ]; then
 	alias search='apt search'
 	alias inst='sudo apt install -y'
 	alias uninst='sudo apt --purge autoremove && sudo apt-get --purge remove'
-	alias upgrade='sudo apt update && sudo apt dist-upgrade ; flatpak update'
+	alias upgrade='sudo apt update && sudo apt dist-upgrade ; sudo flatpak update'
 	alias auto='sudo apt-mark auto'
 	alias manu='sudo apt-mark manual'
 	alias backup='bash "/media/elvin/eHDD/repos/RecoverUbuntu/backup/BACKUP_UBUNTU.sh"'
@@ -34,7 +34,6 @@ alias tt="run zathura /media/elvin/dHDD/Sem\ 5/timetable.pdf"
 # alias tmux="tmux -u -2 new-session -A -s 1 -c 'zsh'"
 alias nvim="~/.config/nvim/nvim.appimage"
 alias vim='nvim'
-alias vi="nvim"
 alias sc='sudo systemctl'
 alias s='sudo'
 alias python='python3'
@@ -166,4 +165,3 @@ alias whatsapp='io.github.mimbrero.WhatsAppDesktop'
 alias firefox="org.mozilla.firefox"
 alias thunderbird='org.mozilla.Thunderbird'
 alias torbrowser='com.github.micahflee.torbrowser-launcher'
-
