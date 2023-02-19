@@ -58,6 +58,7 @@ export TMUX_TMPDIR="$XDG_RUNTIME_DIR"
 export CARGO_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/cargo"
 export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
 export WGETRC="$XDG_CONFIG_HOME/wgetrc"
+export NEXTCLOUD_PHP_CONFIG=/etc/webapps/nextcloud/php.ini
 
 # add Flatpak apps to PATH
 if [ -d "/var/lib/flatpak/exports/bin" ]; then
@@ -84,3 +85,5 @@ export VISUAL='nvim'
 export TERMINAL='st'
 export QT_QPA_PLATFORMTHEME=qt5ct
 export SHELL=/bin/zsh
+export DISPLAY=:11
+

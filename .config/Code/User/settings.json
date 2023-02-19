@@ -265,7 +265,7 @@
     "fortran": "cd $dir && gfortran $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
     "sml": "cd $dir && sml $fileName"
   },
-  "window.zoomLevel": 2,
+  "window.zoomLevel": 1,
   "git.enableCommitSigning": true,
   "gitlens.telemetry.enabled": false,
   "intelephense.telemetry.enabled": false,
