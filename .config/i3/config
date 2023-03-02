@@ -225,6 +225,8 @@ force_display_urgency_hint 500 ms
 # Floating dialogs
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [class="mpv"] sticky enable
 
 set $mode_system System (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown, (b) turn screen off
 mode "$mode_system" {

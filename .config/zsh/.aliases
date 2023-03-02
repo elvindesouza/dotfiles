@@ -3,17 +3,17 @@ if [ -f "/usr/bin/pacman" ]; then
 	#alias flatpakinstall='flatpak --installation=extra'
 	alias kexec='sudo kexec -l /boot/vmlinuz-linux --initrd=/boot/initramfs-linux.img --reuse-cmdline && sudo systemctl kexec'
 	alias aur='yay'
-	alias inst='sudo pacman -S'
+	alias inst='sudo pacman -S --verbose'
 	alias uninst='sudo pacman -Rns'
 	alias search='aur -Ss'
 	alias list='pacman -Qet | less'
 	alias listall='pacman -Q | less'
-	alias upgrade='aur -Syyu ; sudo flatpak update'
+	# alias upgrade='aur -Syyu ; flatpak update'
 elif [ -f "/usr/bin/apt" ]; then
 	alias search='apt search'
 	alias inst='sudo apt install -y'
 	alias uninst='sudo apt --purge autoremove && sudo apt-get --purge remove'
-	alias upgrade='sudo apt update && sudo apt dist-upgrade ; sudo flatpak update'
+	alias upgrade='sudo apt update && sudo apt dist-upgrade ; flatpak update'
 	alias auto='sudo apt-mark auto'
 	alias manu='sudo apt-mark manual'
 	alias backup='bash "/media/elvin/eHDD/repos/RecoverUbuntu/backup/BACKUP_UBUNTU.sh"'
@@ -162,6 +162,7 @@ fi
 
 alias librewolf='io.gitlab.librewolf-community'
 alias whatsapp='io.github.mimbrero.WhatsAppDesktop'
-alias firefox="org.mozilla.firefox"
+# alias firefox="org.mozilla.firefox"
 alias thunderbird='org.mozilla.Thunderbird'
 alias torbrowser='com.github.micahflee.torbrowser-launcher'
+alias ngrok-start='ssh -R 0:localhost:22 tunnel.in.ngrok.com tcp 22'
