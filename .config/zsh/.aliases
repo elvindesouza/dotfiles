@@ -160,7 +160,7 @@ if [[ -n $ZSH_VERSION ]]; then
 	alias -g C='| wc -l'
 fi
 
-alias librewolf='io.gitlab.librewolf-community'
+# alias librewolf='io.gitlab.librewolf-community'
 alias whatsapp='io.github.mimbrero.WhatsAppDesktop'
 # alias firefox="org.mozilla.firefox"
 alias thunderbird='org.mozilla.Thunderbird'
