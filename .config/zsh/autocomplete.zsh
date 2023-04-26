@@ -1,7 +1,7 @@
 ################ Autocomplete
-zstyle ':autocomplete:*' list-lines 5
-zstyle ':autocomplete:history-search:*' list-lines 5
-zstyle ':autocomplete:history-incremental-search-*:*' list-lines 5
+#zstyle ':autocomplete:*' list-lines 5
+#zstyle ':autocomplete:history-search:*' list-lines 5
+#zstyle ':autocomplete:history-incremental-search-*:*' list-lines 5
 
 zstyle ':autocomplete:*' fzf-completion yes
 # no:  Tab uses Zsh's completion system only.
@@ -16,7 +16,7 @@ zstyle ':autocomplete:*' fzf-completion yes
 # Autocomplete automatically selects a backend for its recent dirs completions.
 # So, normally you won't need to change this.
 # However, you can set it if you find that the wrong backend is being used.
-zstyle ':autocomplete:recent-dirs' backend no
+zstyle ':autocomplete:recent-dirs' backend zsh-z
 # cdr:  Use Zsh's `cdr` function to show recent directories as completions.
 # no:   Don't show recent directories.
 # zsh-z|zoxide|z.lua|z.sh|autojump|fasd: Use this instead (if installed).
@@ -38,7 +38,9 @@ bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -M menuselect '' send-break
 bindkey -M menuselect '^@' list-expand
-
+bindkey '\t' menu-select "$terminfo[kcbt]" menu-select
+bindkey -M menuselect '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
+bindkey -M menuselect '\r' .accept-line
 
 ##
 # Config in this section should come AFTER sourcing Autocomplete.
@@ -54,7 +56,7 @@ bindkey '^k' up-line-or-search
 # Down arrow:
 bindkey '\e[B' down-line-or-select
 bindkey '\eOB' down-line-or-select
-bindkey '^j' down-line-or-select
+bindkey '^j' down-line-or-history
 # down-line-or-select:  Open completion menu.
 # down-line-or-history: Cycle to next history line.
 

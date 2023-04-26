@@ -13,9 +13,6 @@
 [submodule ".config/zsh/custom/themes/powerlevel10k"]
 	path = .config/zsh/custom/themes/powerlevel10k
 	url = https://github.com/romkatv/powerlevel10k.git
-[submodule ".config/ncmpcpp/ncmpcpp-ueberzug"]
-	path = .config/ncmpcpp/ncmpcpp-ueberzug
-	url = https://github.com/elvindesouza/ncmpcpp.git
 [submodule ".config/st"]
 	path = .config/st
 	url = https://github.com/elvindesouza/st.git
