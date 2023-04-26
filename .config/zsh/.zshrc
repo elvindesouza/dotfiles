@@ -17,13 +17,13 @@ fi
 source ~/.config/zsh/custom/plugins/zsh-defer/zsh-defer.plugin.zsh
 zsh-defer source ~/.config/zsh/autocomplete.zsh
 source ~/.config/zsh/custom/plugins/vi-mode.plugin.zsh
-# zsh-defer source ~/.config/zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 zsh-defer source ~/.config/zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-# zsh-defer source ~/.config/zsh/custom/plugins/zsh-history-substring-search/zsh-history-substring-search.plugin.zsh
 zsh-defer source ~/.config/zsh/custom/plugins/zsh-z/zsh-z.plugin.zsh
 source ~/.config/zsh/custom/themes/powerlevel10k/powerlevel10k.zsh-theme
 zsh-defer source ~/.config/zsh/custom/plugins/fzf.plugin.zsh
 zsh-defer source ~/.config/zsh/functions.zsh
+# zsh-defer source ~/.config/zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+# zsh-defer source ~/.config/zsh/custom/plugins/zsh-history-substring-search/zsh-history-substring-search.plugin.zsh
 
 # autoload -U colors && colors
 
@@ -145,6 +145,8 @@ bindkey "^[[45;5u" end-of-line
 # bindkey "^[OB" history-substring-search-down
 # bindkey "$terminfo[kcuu1]" history-substring-search-up
 # bindkey "$terminfo[kcud1]" history-substring-search-down
+#
+skip_global_compinit=1
 
 if [ -f $HOME/.config/zsh/.aliases ]; then
     . $HOME/.config/zsh/.aliases
