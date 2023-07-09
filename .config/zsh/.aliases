@@ -19,6 +19,15 @@ elif [ -f "/usr/bin/apt" ]; then
 	alias backup='bash "/media/elvin/eHDD/repos/RecoverUbuntu/backup/BACKUP_UBUNTU.sh"'
 	alias list='apt-mark showmanual | less'
 	alias listall='dpkg --list'
+elif [ -f "/data/data/com.termux/files/usr/bin/pkg" ]; then
+	alias search='pkg search'
+	alias inst='sudo pkg install -y'
+	alias uninst='sudo pkg --purge autoremove && sudo pkg --purge remove'
+	alias upgrade='sudo pkg update && sudo pkg upgrade'
+	alias auto='sudo apt-mark auto'
+	alias manu='sudo apt-mark manual'
+	alias list='apt-mark showmanual | less'
+	alias listall='dpkg --list'
 fi
 
 #alias neofetch='neofetch --source ~/.config/neofetch/logo.svg'
