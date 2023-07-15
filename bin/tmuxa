@@ -3,8 +3,8 @@ N=$(tmux ls | grep -v attached | head -1 | cut -d: -f1)
 
 if [[ -n $N ]]; then
     ARGS="attach -t $N"
-    exec tmux $ARGS
+    exec tmux -u $ARGS
 else
-    exec tmux new-session
+    exec tmux -u new-session
 fi
 

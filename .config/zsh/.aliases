@@ -1,37 +1,6 @@
 #! /usr/bin/env bash
-if [ -f "/usr/bin/pacman" ]; then
-	#alias flatpakinstall='flatpak --installation=extra'
-	alias kexec='sudo kexec -l /boot/vmlinuz-linux --initrd=/boot/initramfs-linux.img --reuse-cmdline && sudo systemctl kexec'
-	alias aur='yay'
-	alias inst='sudo pacman -S --verbose'
-	alias uninst='sudo pacman -Rns'
-	alias search='aur -Ss'
-	alias list='pacman -Qet | less'
-	alias listall='pacman -Q | less'
-	# alias upgrade='aur -Syyu ; flatpak update'
-elif [ -f "/usr/bin/apt" ]; then
-	alias search='apt search'
-	alias inst='sudo apt install -y'
-	alias uninst='sudo apt --purge autoremove && sudo apt-get --purge remove'
-	alias upgrade='sudo apt update && sudo apt dist-upgrade ; flatpak update'
-	alias auto='sudo apt-mark auto'
-	alias manu='sudo apt-mark manual'
-	alias backup='bash "/media/elvin/eHDD/repos/RecoverUbuntu/backup/BACKUP_UBUNTU.sh"'
-	alias list='apt-mark showmanual | less'
-	alias listall='dpkg --list'
-elif [ -f "/data/data/com.termux/files/usr/bin/pkg" ]; then
-	alias search='pkg search'
-	alias inst='sudo pkg install -y'
-	alias uninst='sudo pkg --purge autoremove && sudo pkg --purge remove'
-	alias upgrade='sudo pkg update && sudo pkg upgrade'
-	alias auto='sudo apt-mark auto'
-	alias manu='sudo apt-mark manual'
-	alias list='apt-mark showmanual | less'
-	alias listall='dpkg --list'
-fi
 
-#alias neofetch='neofetch --source ~/.config/neofetch/logo.svg'
-alias dmesg='dmesg --color --reltime'
+alias dmesg='s dmesg --color --reltime'
 alias t='tmuxa'
 alias tmuxn='tmux new-session -d'
 alias open='xdg-open'
@@ -39,7 +8,6 @@ alias o='xdg-open'
 alias oer='mimeopen -d'
 alias owith='mimeopen --ask'
 alias tt="run zathura /media/elvin/dHDD/Sem\ 5/timetable.pdf"
-# alias tmux="tmux -u -2 new-session -A -s 1 -c 'zsh'"
 alias nvim="~/.config/nvim/nvim.appimage"
 alias vim='nvim'
 alias sc='sudo systemctl'
@@ -138,7 +106,7 @@ alias lc='ls -lcrh'      # sort by change time
 alias lu='ls -lurh'      # sort by access time
 alias lr='ls -lRh'       # recursive ls
 alias lt='ls -ltrh'      # sort by date
-alias lm='ls -alh |more' # pipe through 'more'
+alias lm='ls -alh |less' # pipe through 'more'
 alias lw='ls -xAh'       # wide listing format
 alias ll='ls -Fls'       # long listing format
 alias labc='ls -lap'     #alphabetical sort
@@ -167,9 +135,38 @@ if [[ -n $ZSH_VERSION ]]; then
 	alias -g C='| wc -l'
 fi
 
-# alias librewolf='io.gitlab.librewolf-community'
-alias whatsapp='io.github.mimbrero.WhatsAppDesktop'
-# alias firefox="org.mozilla.firefox"
-alias thunderbird='org.mozilla.Thunderbird'
-alias torbrowser='com.github.micahflee.torbrowser-launcher'
 alias ngrok-start='ssh -R 0:localhost:22 tunnel.in.ngrok.com tcp 22'
+
+if [ -f "/usr/bin/pacman" ]; then
+	#alias flatpakinstall='flatpak --installation=extra'
+	alias aur='yay'
+	alias inst='sudo pacman -S --verbose'
+	alias uninst='sudo pacman -Rns'
+	alias search='aur -Ss'
+	alias list='pacman -Qet | less'
+	alias listall='pacman -Q | less'
+    # alias librewolf='io.gitlab.librewolf-community'
+    alias whatsapp='io.github.mimbrero.WhatsAppDesktop'
+    alias torbrowser='com.github.micahflee.torbrowser-launcher'
+	# alias upgrade='aur -Syyu ; flatpak update'
+elif [ -f "/usr/bin/apt" ]; then
+	alias search='apt search'
+	alias inst='sudo apt install -y'
+	alias uninst='sudo apt --purge autoremove && sudo apt-get --purge remove'
+	alias upgrade='sudo apt update && sudo apt dist-upgrade ; flatpak update'
+	alias auto='sudo apt-mark auto'
+	alias manu='sudo apt-mark manual'
+	alias backup='bash "/media/elvin/eHDD/repos/RecoverUbuntu/backup/BACKUP_UBUNTU.sh"'
+	alias list='apt-mark showmanual | less'
+	alias listall='dpkg --list'
+elif [ -f "/data/data/com.termux/files/usr/bin/pkg" ]; then
+	alias search='pkg search'
+	alias inst='pkg install -y'
+	alias uninst='pkg uninstall'
+	alias upgrade='pkg update && pkg upgrade'
+	alias auto='apt-mark auto'
+	alias manu='apt-mark manual'
+	alias list='apt-mark showmanual | less'
+	alias listall='dpkg --list'
+    alias config='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+fi

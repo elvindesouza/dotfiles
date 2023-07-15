@@ -14,14 +14,15 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+source ~/.config/zsh/custom/themes/powerlevel10k/powerlevel10k.zsh-theme
+source ~/.config/zsh/custom/plugins/vi-mode.plugin.zsh # https://github.com/jeffreytse/zsh-vi-mode
 source ~/.config/zsh/custom/plugins/zsh-defer/zsh-defer.plugin.zsh
-zsh-defer source ~/.config/zsh/autocomplete.zsh
-source ~/.config/zsh/custom/plugins/vi-mode.plugin.zsh
+zsh-defer source ~/.config/zsh/autocomplete.zsh #https://github.com/marlonrichert/zsh-autocomplete
 zsh-defer source ~/.config/zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 zsh-defer source ~/.config/zsh/custom/plugins/zsh-z/zsh-z.plugin.zsh
-source ~/.config/zsh/custom/themes/powerlevel10k/powerlevel10k.zsh-theme
 zsh-defer source ~/.config/zsh/custom/plugins/fzf.plugin.zsh
 zsh-defer source ~/.config/zsh/functions.zsh
+zsh-defer source /etc/zsh_command_not_found
 # zsh-defer source ~/.config/zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 # zsh-defer source ~/.config/zsh/custom/plugins/zsh-history-substring-search/zsh-history-substring-search.plugin.zsh
 
@@ -42,7 +43,7 @@ setopt inc_append_history # save history entries as soon as they are entered
 setopt share_history # share history between different instances of the shell
 setopt auto_cd # cd by typing directory name if it's not a command
 setopt correct_all # autocorrect commands
-# setopt auto_list # automatically list choices on ambiguous completion
+setopt auto_list # automatically list choices on ambiguous completion
 setopt auto_menu # automatically use menu completion
 setopt always_to_end # move cursor to end if word had one match
 setopt globdots
@@ -55,10 +56,10 @@ HISTFILE="$XDG_STATE_HOME"/zsh/history
 # autoload -Uz compinit
 zstyle ':completion:*:*:man:*:*' menu select=long search
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-# zstyle ':completion:*' group-name '' # group results by category
-# zstyle ':completion:::::' completer _expand _complete _ignored _approximate #enable approximate matches for completion
+zstyle ':completion:*' group-name '' # group results by category
+zstyle ':completion:::::' completer _expand _complete _ignored _approximate #enable approximate matches for completion
 # zstyle ':completion::complete:*' gain-privileges 1
-# zstyle ':completion:*' auto-description 'specify: %d'
+zstyle ':completion:*' auto-description 'specify: %d'
 # zstyle ':completion:*' completer _expand _extensions _complete _approximate
 # zstyle ':completion:*' format 'Completing %d'
 # zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
@@ -78,17 +79,17 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' # case insensitive, Sm
 # zstyle ':completion:*:*:cd:*:directory-stack' force-list always
 # zstyle ':completion:*:*:cd:*:directory-stack' menu yes select
 ## Nicer format for completion messages
-# zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
-# zstyle ':completion:*:corrections' format '%U%F{green}%d (errors: %e)%f%u'
-# zstyle ':completion:*:warnings' format '%F{202}%BSorry, no matches for: %F{214}%d%b'
+zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
+zstyle ':completion:*:corrections' format '%U%F{green}%d (errors: %e)%f%u'
+zstyle ':completion:*:warnings' format '%F{202}%BSorry, no matches for: %F{214}%d%b'
 # Show message while waiting for completion
 # zstyle ':completion:*' show-completer true
 
 # Prettier completion for processes
-# zstyle ':completion:*:*:*:*:processes' force-list always
-# zstyle ':completion:*:*:*:*:processes' menu yes select
-# zstyle ':completion:*:*:*:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
-# zstyle ':completion:*:*:*:*:processes' command "ps -u $USER -o pid,user,args -w -w"
+zstyle ':completion:*:*:*:*:processes' force-list always
+zstyle ':completion:*:*:*:*:processes' menu yes select
+zstyle ':completion:*:*:*:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
+zstyle ':completion:*:*:*:*:processes' command "ps -u $USER -o pid,user,args -w -w"
 # _comp_options+=(globdots) # hidden files are included
 # zmodload zsh/complist
 # zstyle ':completion:*' format '>>> %d'
@@ -127,7 +128,7 @@ bindkey '' backward-kill-word                                 # delete previous
 bindkey -v '^?' backward-delete-char
 
 bindkey -s '^o' 'lfcd^M'
-# bindkey -s '^n' 'nvim $(fzf)^M'
+bindkey -s '^n' 'nvim $(fzf)^M'
 bindkey -s '^[[32;2u' ' '
 bindkey -s '^[[13;5u' '\n'
 bindkey -s '^[[127;2u' '^?'
@@ -146,6 +147,7 @@ bindkey "^[[45;5u" end-of-line
 # bindkey "$terminfo[kcuu1]" history-substring-search-up
 # bindkey "$terminfo[kcud1]" history-substring-search-down
 #
+
 skip_global_compinit=1
 
 if [ -f $HOME/.config/zsh/.aliases ]; then

@@ -1,7 +1,15 @@
 ################ Autocomplete
-#zstyle ':autocomplete:*' list-lines 5
+#zstyle ':autocomplete:*' list-lines 20
 #zstyle ':autocomplete:history-search:*' list-lines 5
 #zstyle ':autocomplete:history-incremental-search-*:*' list-lines 5
+# Autocompletion
+#zstyle -e ':autocomplete:list-choices:*' list-lines 'reply=( $(( LINES *2  )) )'
+
+# Override history search.
+#zstyle ':autocomplete:history-incremental-search-backward:*' list-lines 8
+
+# History menu.
+#zstyle ':autocomplete:history-search-backward:*' list-lines 256
 
 zstyle ':autocomplete:*' fzf-completion yes
 # no:  Tab uses Zsh's completion system only.
@@ -37,7 +45,7 @@ bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -M menuselect '' send-break
-bindkey -M menuselect '^@' list-expand
+bindkey -M menuselect '^[[32;5u' list-expand
 bindkey '\t' menu-select "$terminfo[kcbt]" menu-select
 bindkey -M menuselect '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
 bindkey -M menuselect '\r' .accept-line
@@ -62,7 +70,7 @@ bindkey '^j' down-line-or-history
 
 
 # Control-Space:
-bindkey '^@' list-expand
+bindkey '^[[32;5u' menu-select
 # list-expand:      Reveal hidden completions.
 # set-mark-command: Activate text selection.
 

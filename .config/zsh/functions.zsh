@@ -73,5 +73,5 @@ fmpc() {
 }
 
 preview(){
-    convert "$@" sixel:-
+    chafa -f sixel "$@"
 }
