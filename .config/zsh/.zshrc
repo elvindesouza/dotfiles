@@ -1,12 +1,12 @@
 #!/bin/env zsh
 
-# if [ -z "$TMUX" ]; then
-#     tmuxa
-#     exit
-# fi
-
+if [ -z "$TMUX" ]; then
+    tmuxa
+    exit
+fi
 
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -25,6 +25,8 @@ zsh-defer source ~/.config/zsh/functions.zsh
 zsh-defer source /etc/zsh_command_not_found
 # zsh-defer source ~/.config/zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 # zsh-defer source ~/.config/zsh/custom/plugins/zsh-history-substring-search/zsh-history-substring-search.plugin.zsh
+
+
 
 # autoload -U colors && colors
 

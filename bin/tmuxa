@@ -1,10 +1,13 @@
 #!/bin/bash
-N=$(tmux ls | grep -v attached | head -1 | cut -d: -f1)
+
+N=$(tmux ls 2>/dev/null | grep -v attached | head -1 | cut -d: -f1)
 
 if [[ -n $N ]]; then
+    tmux -u new-session -d &
     ARGS="attach -t $N"
     exec tmux -u $ARGS
 else
+    tmux -u new-session -d &
     exec tmux -u new-session
 fi
 

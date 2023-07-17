@@ -1,24 +1,29 @@
 #!/usr/bin/env bash
 
-# dotfiles - misc dotfiles
+
+# dotfiles - my dotfiles
 
 #### neovim
 
-#### i3
-
-#### zsh
+#### suckless-st+patches
 
 #### tmux
 
-#### lf
+#### i3-wm
 
-#### sxiv
+#### zsh
 
-#### zathura
+#### lf+ctpv
+
+#### firefox
+
+#### sxiv, zathura, mpv, etc.
 
 # Restore Instructions
 
-# `chmod` this README to x-ecutable and run, or `bash README.md`
+## `chmod` this README to x-ecutable and run, or `bash README.md`
+
+## this part might fail, if it does, just manually review and delete config files so they can be replaced with the ones from this repository
 
 git clone --bare https://github.com/elvindesouza/dotfiles.git "$HOME"/.dotfiles
 
@@ -39,14 +44,13 @@ else
 fi
 
 config checkout
-
 config config status.showUntrackedFiles no
-
 config submodule update --init --recursive
-
 config pull --recurse-submodules
 
-## Tmux setup
+## tmux setup
 cd ~ || exit
-git clone https://github.com/gpakosz/.tmux.git
-ln -s -f .tmux/.tmux.conf .
+mkdir -p "~/.config/tmux"
+git clone https://github.com/gpakosz/.tmux.git "~/.config/tmux/tmux"
+ln -s "~/.config/tmux/tmux/.tmux.conf" "~/.config/tmux/tmux.conf"
+cp "~/.config/tmux/tmux/.tmux.conf.local" "~/.config/tmux/tmux.conf.local"

@@ -7,17 +7,14 @@ alias open='xdg-open'
 alias o='xdg-open'
 alias oer='mimeopen -d'
 alias owith='mimeopen --ask'
-alias tt="run zathura /media/elvin/dHDD/Sem\ 5/timetable.pdf"
 alias nvim="~/.config/nvim/nvim.appimage"
 alias vim='nvim'
 alias sc='sudo systemctl'
 alias s='sudo'
-alias gpu='watch -n.1 "nvidia-smi"'
 alias lx='less +G'
 alias note='vim ~/Documents/temp.txt'
 alias q='exit'
 alias c='clear'
-alias pip='pip3'
 
 alias zshrc='vim ~/.config/zsh/.zshrc'
 alias profile='vim ~/.config/zsh/.profile'
@@ -32,7 +29,7 @@ alias sal='source ~/.config/zsh/.aliases'
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
 	test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-	# alias ls='ls --color=auto'
+	alias ls='ls --color=auto'
 	alias dir='dir --color=auto'
 	alias vdir='vdir --color=auto'
 	alias grep='grep --color=auto'
@@ -48,7 +45,6 @@ alias l="ls -ahls --color=auto"
 alias r="lfcd"
 alias shred="shred -zf"
 alias sl="ls --color=auto"
-# alias ls="ls --color=auto"
 alias dir="dir --color=auto"
 alias diff='diff --color=auto'
 alias vdir="vdir --color=auto"
@@ -150,6 +146,7 @@ if [ -f "/usr/bin/pacman" ]; then
     alias torbrowser='com.github.micahflee.torbrowser-launcher'
 	# alias upgrade='aur -Syyu ; flatpak update'
 elif [ -f "/usr/bin/apt" ]; then
+    alias gpu='watch -n.1 "nvidia-smi"'
 	alias search='apt search'
 	alias inst='sudo apt install -y'
 	alias uninst='sudo apt --purge autoremove && sudo apt-get --purge remove'
@@ -169,4 +166,6 @@ elif [ -f "/data/data/com.termux/files/usr/bin/pkg" ]; then
 	alias list='apt-mark showmanual | less'
 	alias listall='dpkg --list'
     alias config='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+    unalias vim
+    unalias nvim
 fi
