@@ -150,7 +150,7 @@ map <c-s> set hidden!
 
 set icons
 set period 1
-set autoquit on
+set autoquit true
 # set drawbox
 set sortby time
 set reverse!
