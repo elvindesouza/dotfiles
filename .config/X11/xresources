@@ -194,7 +194,7 @@ urxvt.scrollColor:#666666
 !urxvt.borderColor: colour
 
 !font
-urxvt.font: xft:Iosevka\ Nerd\ Font\ Mono:pixelsize=30:antialias=true:autohint=true
+urxvt.font: xft:Iosevka\ Nerd\ Font\ Mono:pixelsize=30:antialias=true:autohint=true:minspace=true
 ! URxvt.font: 9x15
 urxvt.fontSize: 38
 !urxvt.italicFont:xft:NotoSansMonoCJKSC:pixelsize=18

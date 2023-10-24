@@ -2,7 +2,6 @@
 
 alias dmesg='s dmesg --color --reltime'
 alias t='tmuxa'
-alias tmuxn='tmux new-session -d'
 alias open='xdg-open'
 alias o='xdg-open'
 alias oer='mimeopen -d'
@@ -11,10 +10,10 @@ alias nvim="~/.config/nvim/nvim.appimage"
 alias vim='nvim'
 alias sc='sudo systemctl'
 alias s='sudo'
-alias lx='less +G'
 alias note='vim ~/Documents/temp.txt'
 alias q='exit'
 alias c='clear'
+alias cat='batcat'
 
 alias zshrc='vim ~/.config/zsh/.zshrc'
 alias profile='vim ~/.config/zsh/.profile'
@@ -96,7 +95,7 @@ alias logs="sudo find /var/log -type f -exec file   {} \; | grep 'text' | cut -d
 alias la='ls -Ah'                 # show hidden files
 alias lla='ls -Alh'               # show hidden files
 alias ls='ls -aFh --color=always' # add colors and file type extensions
-# alias lx='ls -lXBh'               # sort by extension
+alias lx='ls -lXBh'               # sort by extension
 alias lk='ls -lSrh'      # sort by size
 alias lc='ls -lcrh'      # sort by change time
 alias lu='ls -lurh'      # sort by access time
@@ -131,7 +130,6 @@ if [[ -n $ZSH_VERSION ]]; then
 	alias -g C='| wc -l'
 fi
 
-alias ngrok-start='ssh -R 0:localhost:22 tunnel.in.ngrok.com tcp 22'
 
 if [ -f "/usr/bin/pacman" ]; then
 	#alias flatpakinstall='flatpak --installation=extra'
@@ -141,9 +139,9 @@ if [ -f "/usr/bin/pacman" ]; then
 	alias search='aur -Ss'
 	alias list='pacman -Qet | less'
 	alias listall='pacman -Q | less'
-    # alias librewolf='io.gitlab.librewolf-community'
     alias whatsapp='io.github.mimbrero.WhatsAppDesktop'
     alias torbrowser='com.github.micahflee.torbrowser-launcher'
+    alias ngrok-start='ssh -R 0:localhost:22 tunnel.in.ngrok.com tcp 22'
 	# alias upgrade='aur -Syyu ; flatpak update'
 elif [ -f "/usr/bin/apt" ]; then
     alias gpu='watch -n.1 "nvidia-smi"'
