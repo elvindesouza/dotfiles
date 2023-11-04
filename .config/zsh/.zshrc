@@ -1,8 +1,7 @@
 #!/bin/env zsh
 
 if [ -z "$TMUX" ]; then
-    tmuxa
-    exit
+    exec tmuxa
 fi
 
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
@@ -55,27 +54,34 @@ setopt EXTENDED_HISTORY
 HISTFILE="$XDG_STATE_HOME"/zsh/history
 
 # Fancy auto-complete
-# autoload -Uz compinit
-zstyle ':completion:*:*:man:*:*' menu select=long search
-zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+# (from /etc/zsh/newuser.zshrc.recommended)
+autoload -Uz compinit
+compinit -d ~/.cache/zcompdump
+zstyle ':completion:*' auto-description 'specify: %d'
+zstyle ':completion:*' completer _expand _extensions _complete _approximate
+zstyle ':completion:*' format 'Completing %d'
 zstyle ':completion:*' group-name '' # group results by category
+zstyle ':completion:*' menu select=2
+eval "$(dircolors -b)"
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*' list-colors ''
+zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' # case insensitive, Smart matching of dashed values, e.g. f-b matching foo-bar
+zstyle ':completion:*:*:man:*:*' menu select=long search
+zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
+zstyle ':completion:*' use-compctl false
+zstyle ':completion:*' verbose true # Verbose completion results
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
+zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
+
+
 zstyle ':completion:::::' completer _expand _complete _ignored _approximate #enable approximate matches for completion
 # zstyle ':completion::complete:*' gain-privileges 1
-zstyle ':completion:*' auto-description 'specify: %d'
-# zstyle ':completion:*' completer _expand _extensions _complete _approximate
-# zstyle ':completion:*' format 'Completing %d'
-# zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
-# zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
-# zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
-# zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' # case insensitive, Smart matching of dashed values, e.g. f-b matching foo-bar
 # zstyle ':completion::*:rm:*:*' file-patterns '*.o:object-files:object\ file *(~|.(old|bak|BAK)):backup-files:backup\ files *~*(~|.(o|old|bak|BAK)):all-files:all\ files' # rm: advanced completion (e.g. bak files first)
 
 # vi: advanced completion (e.g. tex and rc files first)
 # zstyle ':completion::*:vi:*:*' file-patterns 'Makefile|*(rc|log)|*.(php|tex|bib|sql|zsh|ini|sh|vim|rb|sh|js|tpl|csv|rdf|txt|phtml|tex|py|n3):vi-files:vim\ likes\ these\ files *~(Makefile|*(rc|log)|*.(log|rc|php|tex|bib|sql|zsh|ini|sh|vim|rb|sh|js|tpl|csv|rdf|txt|phtml|tex|py|n3)):all-files:other\ files'
 # zstyle ':completion:*' rehash true # Automatically update PATH entries
-# zstyle ':completion:*' use-compctl false
-# zstyle ':completion:*' verbose true # Verbose completion results
 # zstyle ':completion:*' insert-tab pending # pasting with tabs doesn't perform completion
 ## Always use menu selection for `cd -`
 # zstyle ':completion:*:*:cd:*:directory-stack' force-list always
@@ -95,7 +101,6 @@ zstyle ':completion:*:*:*:*:processes' command "ps -u $USER -o pid,user,args -w 
 # _comp_options+=(globdots) # hidden files are included
 # zmodload zsh/complist
 # zstyle ':completion:*' format '>>> %d'
-# compinit -d ~/.cache/zcompdump
 
 # Keybindings section
 bindkey -v
@@ -162,5 +167,5 @@ fi
 
 # eval "$(direnv hook zsh)"
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
+[[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
