@@ -61,7 +61,7 @@ alias du="du -h"
 alias ip='ip -color=auto'
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias mkdir="mkdir -pv"
-alias yt="yt-dlp --embed-metadata -i"
+alias yt="~/bin/yt-dlp --embed-metadata -i"
 alias yta="yt -x -f bestaudio/best"
 alias ffmpeg="ffmpeg -hide_banner"
 alias mktar='tar -cvvf'
