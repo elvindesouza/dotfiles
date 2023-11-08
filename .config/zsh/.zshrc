@@ -1,7 +1,7 @@
 #!/bin/env zsh
 
 if [ -z "$TMUX" ]; then
-    exec tmuxa
+    exec $HOME/bin/tmuxa
 fi
 
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
@@ -25,19 +25,15 @@ zsh-defer source /etc/zsh_command_not_found
 # zsh-defer source ~/.config/zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 # zsh-defer source ~/.config/zsh/custom/plugins/zsh-history-substring-search/zsh-history-substring-search.plugin.zsh
 
-
-
-# autoload -U colors && colors
-
 setopt autocd              # change directory just by typing its name
-setopt extendedglob
+setopt extendedglob        # Extends the globbing capabilities of Zsh, enabling more advanced pattern matching
 setopt nonomatch           # hide error message if there is no match for the pattern
 setopt correct            # auto correct mistakes
 setopt interactivecomments # allow comments in interactive mode
 setopt magicequalsubst     # enable filename expansion for arguments of the form ‘anything=expression’
 setopt notify              # report the status of background jobs immediately
 setopt numericglobsort     # sort filenames numerically when it makes sense
-setopt promptsubst         # enable command substitution in prompt
+setopt prompt_subst         # enable command substitution in prompt
 setopt hist_ignore_all_dups # remove older duplicate entries from history
 setopt hist_reduce_blanks # remove superfluous blanks from history items
 setopt inc_append_history # save history entries as soon as they are entered
@@ -48,15 +44,13 @@ setopt auto_list # automatically list choices on ambiguous completion
 setopt auto_menu # automatically use menu completion
 setopt always_to_end # move cursor to end if word had one match
 setopt globdots
-
-# ZSH history file
-setopt EXTENDED_HISTORY
-HISTFILE="$XDG_STATE_HOME"/zsh/history
+setopt pushd_ignore_dups # Prevents duplicate entries in the directory stack when using pushd to change directories.
+setopt rcquotes # Allows nested quotes inside command substitutions, making it easier to work with complex command substitutions.
 
 # Fancy auto-complete
 # (from /etc/zsh/newuser.zshrc.recommended)
-autoload -Uz compinit
-compinit -d ~/.cache/zcompdump
+# autoload -Uz compinit
+# compinit -d ~/.cache/zcompdump
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _extensions _complete _approximate
 zstyle ':completion:*' format 'Completing %d'
@@ -66,7 +60,11 @@ eval "$(dircolors -b)"
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' list-colors ''
 zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' # case insensitive, Smart matching of dashed values, e.g. f-b matching foo-bar
+# zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' # case insensitive, Smart matching of dashed values, e.g. f-b matching foo-bar
+#testing
+zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*' 'm:{a-zA-Z}={A-Za-z}'
+zstyle ':completion:*' menu select=long
+
 zstyle ':completion:*:*:man:*:*' menu select=long search
 zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
 zstyle ':completion:*' use-compctl false
@@ -153,7 +151,7 @@ bindkey "^[[45;5u" end-of-line
 # bindkey "^[OB" history-substring-search-down
 # bindkey "$terminfo[kcuu1]" history-substring-search-up
 # bindkey "$terminfo[kcud1]" history-substring-search-down
-#
+
 
 skip_global_compinit=1
 
@@ -161,9 +159,13 @@ if [ -f $HOME/.config/zsh/.aliases ]; then
     . $HOME/.config/zsh/.aliases
 fi
 
-# if [ -f $HOME/.config/zsh/.profile ]; then
-#     . $HOME/.config/zsh/.profile
-# fi
+if [ -f $HOME/.config/zsh/.profile ]; then
+    . $HOME/.config/zsh/.profile
+fi
+
+# ZSH history file
+setopt EXTENDED_HISTORY
+HISTFILE="$XDG_STATE_HOME"/zsh/history
 
 # eval "$(direnv hook zsh)"
 
