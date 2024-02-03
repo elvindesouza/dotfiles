@@ -1,0 +1,66 @@
+# i3status configuration file.
+# see "man i3status" for documentation.
+
+# It is important that this file is edited as UTF-8.
+# The following line should contain a sharp s:
+# ß
+# If the above line is not correctly displayed, fix your editor first!
+
+general {
+        colors = true
+        interval = 5
+}
+
+order += "wireless _first_"
+#order += "ethernet _first_"
+order += "battery all"
+order+="cpu_usage"
+order += "memory"
+order+="volume master"
+order += "tztime local"
+
+volume master {
+        format = "vol: %volume"
+        format_muted = "vol: muted (%volume)"
+        device = "pulse:0"
+}
+
+wireless _first_ {
+        format_up = "W: %essid (%quality %bitrate )"
+        format_down = "W: down"
+}
+
+# ethernet _first_ {
+#        format_up = "E: %ip (%speed)"
+#        format_down = "E: down"
+# }
+
+
+cpu_usage {
+    format="cpu: %usage"
+    max_threshold=75
+    format_above_threshold= "Warning above threshold: %usage"
+    degraded_threshold= "25"
+    format_above_degraded_threshold= "Warning above degraded threshold: %usage"
+}
+
+memory {
+        format = "mem: %used"
+        threshold_degraded = "10%"
+        format_degraded = "MEMORY: %free"
+}
+
+battery all {
+        format = " %status (%percentage) (Time remaining %remaining) (Time at empty %emptytime) (%consumption)"
+            status_chr= "⚡"
+            status_bat= "BATTERY"
+            status_unk= ""
+            low_threshold = 20
+            threshold_type ="percentage"
+#last_full_capacity=true#to adjust for battery health
+#apparently its the time in 24h at which its estimated the battery will be empty
+}
+
+tztime local {
+            format = "%a%d | %I:%M "
+}

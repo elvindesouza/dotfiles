@@ -1,0 +1,167 @@
+#! /usr/bin/env bash
+
+alias dmesg='s dmesg --color --reltime'
+# alias t='tmuxa'
+alias open='xdg-open'
+alias o='xdg-open'
+alias oer='mimeopen -d'
+alias owith='mimeopen --ask'
+alias vim='nvim'
+alias sc='sudo systemctl'
+alias s='sudo'
+alias note='vim ~/Documents/temp.txt'
+alias q='exit'
+alias c='clear'
+
+alias zshrc='vim ~/.config/zsh/.zshrc'
+alias profile='vim ~/.config/zsh/.profile'
+alias eal='vim ~/.config/zsh/.aliases'
+alias sal='source ~/.config/zsh/.aliases'
+
+
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+	test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+	alias ls='ls --color=auto'
+	alias dir='dir --color=auto'
+	alias vdir='vdir --color=auto'
+	alias grep='grep --color=auto' # can cause problems
+	alias fgrep='fgrep --color=auto'
+	alias egrep='egrep --color=auto'
+fi
+
+alias reload="source \$HOME/.config/zsh/.zshrc"
+alias c="clear"
+alias cd..="cd .."
+alias curl="curl --user-agent 'noleak'"
+alias r="lfcd"
+alias shred="shred -zf"
+alias dir="dir --color=auto"
+alias diff='diff --color=auto'
+alias vdir="vdir --color=auto"
+alias grep="grep --color=auto"
+alias fgrep="fgrep --color=auto"
+alias egrep="egrep --color=auto"
+alias wget="wget --hsts-file=\$XDG_CACHE_HOME/wget-hsts -c --user-agent 'noleak'"
+alias dd="dd status=progress"
+alias cp="cp -i" # confirm before overwriting something
+alias rm="rm -i"
+alias mv="mv -i"
+alias df="df -h" # human-readable sizes
+alias free="free -h"
+alias du="du -h"
+alias ip='ip -color=auto'
+alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias mkdir="mkdir -pv"
+alias yt="~/bin/yt-dlp --embed-metadata -i"
+alias yta="yt -x -f bestaudio/best"
+alias ffmpeg="ffmpeg -hide_banner"
+alias mktar='tar -cvvf'
+
+# Search command line history
+alias h="history 1000 | grep "
+
+# Search running processes
+alias p="ps aux | grep "
+alias psmem='ps auxf | sort -nr -k 4 | head -5'
+alias pscpu="/bin/ps -eo pcpu,pid,user,args | sort -k 1 -r | head -10"
+
+# Search files in the current folder
+alias findfile="find . | grep "
+
+# Count all files (recursively) in the current fold  er
+alias countfiles="for t in files links directories; do echo \`find . -type \${t:0:1} | wc -l\` \$t;   done 2> /dev/null"
+
+# Alias's to show disk space and space used in a folder
+alias diskspace="du -S | sort -n -r |more"
+alias folders='du -h --max-depth=1'
+alias folderssort='find . -maxdepth 1 -type d -pr  int0 | xargs -0 du -sk | sort -rn'
+alias tree='tree -CAhF --dirsfirst'
+alias treed='tree -CAFd'
+alias mountedinfo='df -hT'
+
+# Show all logs in /var/log
+alias logs="sudo find /var/log -type f -exec file   {} \; | grep 'text' | cut -d' ' -f1 | sed -e's/:$/  /g' | grep -v '[0-9]$' | xargs tail -f"
+
+# more ls aliases
+alias ls='ls -AFh --color=always' # add colors and file type extensions
+alias l="ls"                      # easy 'ls'
+alias sl="ls"                     # mis-type
+alias la='ls -Ah'                 # show hidden files
+alias lla='ls -Alh'               # show hidden files, long listing
+alias ls_extension='ls -lAXBh'               # sort by extension
+alias ls_size='ls -lASrh'      # sort by size
+alias ls_change_time='ls -lAcrh'      # sort by change time
+alias ls_access_time='ls -lAurh'      # sort by access time
+alias ls_recursive='ls -lARh'       # recursive ls
+alias lr='ls -lAtrh'      # sort by date
+alias ls_less='ls -aAlh |less' # pipe through 'more'
+alias ls_wide='ls -xAh'       # wide listing format
+alias ls_long='ls -FAlhs'       # long listing format
+alias ls_alphabetical_sort='ls -Alhap'     #alphabetical sort
+alias ls_files="ls -lh | egrep -v '^d'" # files only
+alias ls_dirs="ls -Ahl | egrep '^d'" # directories only
+
+# Filesystem aliases
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+
+
+##### global aliases
+if [[ -n $ZSH_VERSION ]]; then
+	# zsh buch s.82 (z.B. find / ... NE)
+	alias -g NE='2>|/dev/null'
+	alias -g NO='&>|/dev/null'
+	alias -g EO='>|/dev/null'
+	# http://rayninfo.co.uk/tips/zshtips.html
+	alias -g G='| grep '
+	alias -g P='2>&1 | $PAGER'
+	alias -g L='| less'
+	alias -g LA='2>&1 | less'
+	alias -g M='| most'
+	alias -g C='| wc -l'
+fi
+
+
+if [ -f "/usr/bin/pacman" ]; then
+	#alias flatpakinstall='flatpak --installation=extra'
+	alias aur='yay'
+	alias inst='sudo pacman -S --verbose'
+	alias uninst='sudo pacman -Rns'
+	alias search='aur -Ss'
+	alias list='pacman -Qet | less'
+	alias listall='pacman -Q | less'
+    alias whatsapp='io.github.mimbrero.WhatsAppDesktop'
+    alias torbrowser='com.github.micahflee.torbrowser-launcher'
+    alias ngrok-start='ssh -R 0:localhost:22 tunnel.in.ngrok.com tcp 22'
+    alias nvim="~/.config/nvim/nvim.appimage" # not using s ln -s /home/elvin/.config/nvim/nvim.appimage /usr/bin/nvim, test before removing alias 
+	alias upgrade='aur -Syyu ; flatpak update'
+    alias cat='bat'
+elif [ -f "/usr/bin/apt" ]; then
+    alias adb='HOME="$XDG_DATA_HOME"/android adb'
+    alias gpu='watch -n.1 "nvidia-smi"'
+	alias search='apt search'
+	alias inst='sudo apt install -y'
+	alias uninst='sudo apt --purge autoremove && sudo apt-get --purge remove'
+	alias upgrade='sudo apt update && sudo apt dist-upgrade ; flatpak update'
+	alias auto='sudo apt-mark auto'
+	alias manu='sudo apt-mark manual'
+	alias backup='bash "/media/elvin/eHDD/repos/RecoverUbuntu/backup/BACKUP_UBUNTU.sh"'
+	alias list='apt-mark showmanual | less'
+	alias listall='dpkg --list'
+    alias cat='batcat'
+elif [ -f "/data/data/com.termux/files/usr/bin/pkg" ]; then
+	alias search='pkg search'
+	alias inst='pkg install -y'
+	alias uninst='pkg uninstall'
+	alias upgrade='pkg update && pkg upgrade'
+	alias auto='apt-mark auto'
+	alias manu='apt-mark manual'
+	alias list='apt-mark showmanual | less'
+	alias listall='dpkg --list'
+    alias config='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+    unalias vim
+    unalias nvim
+fi
