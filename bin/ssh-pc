@@ -1,64 +1,95 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 
-# import requests
 import subprocess
 import json
 import os
-
-script_directory = os.path.dirname(os.path.abspath(__file__))
-file_path = os.path.join(script_directory, ".ngrok_secrets")
-try:
-    with open(file_path, "r") as file:
-        token = file.read().rstrip()
-except FileNotFoundError:
-    print(f"ngrok secrets not found in directory.")
-except Exception as e:
-    print(f"An error occurred: {str(e)}")
-
-completed_ps = subprocess.run(
-    f"""
-curl \
--X GET \
--H "Authorization: Bearer {token}" \
--H "Ngrok-Version: 2" \
-https://api.ngrok.com/endpoints \
-""",
-    shell=True,
-    encoding="utf-8",
-    capture_output=True,
-)
-
-response = json.loads(completed_ps.stdout)
-endpoints = response["endpoints"]
-url = str(endpoints[0]["public_url"]).split(":")
-url[1] = url[1].replace("/", "")
-
-host = url[1]
-port = url[2]
-
-print(url)
-subprocess.run(["ssh", "user@" + host, "-p", port, "-L", "5909:localhost:5909" , "-L", "8765:localhost:8765", "-L", "6600:localhost:6600"])
+import argparse
 
 
-# import ngrok
+def get_ngrok_info():
+    script_directory = os.path.dirname(os.path.abspath(__file__))
+    file_path = os.path.join(script_directory, ".ngrok_secrets")
+    try:
+        with open(file_path, "r") as file:
+            token = file.read().rstrip()
+    except FileNotFoundError:
+        print(f"ngrok secrets not found in directory.")
+    except Exception as e:
+        print(f"An error occurred: {str(e)}")
 
-# construct the api client
-# client = ngrok.Client("<bearertoken>")
+    completed_ps = subprocess.run(
+        f"""
+    curl \
+    -X GET \
+    -H "Authorization: Bearer {token}" \
+    -H "Ngrok-Version: 2" \
+    https://api.ngrok.com/endpoints \
+    """,
+        shell=True,
+        encoding="utf-8",
+        capture_output=True,
+    )
 
-# list all online tunnels
-# for t in client.tunnels.list():
-#    print(t)
-# url = "https://api.ngrok.com/endpoints"
-# hdrs = {
-# "Authorization": "Bearer 2QshpasVaFmoFL9y30sjHYzRdq8_3uoAkpWw9wb88ffDcGMat",
-# "Ngrok-Version": "2",
-# "Content-Type": "application/json",
-# }
+    response = json.loads(completed_ps.stdout)
+    endpoints = response["endpoints"]
+    url = str(endpoints[0]["public_url"]).split(":")
+    url[1] = url[1].replace("/", "")
 
-# response = requests.get(url, headers=hdrs)
-#
-# if response.status_code == 200:
-#    print(response.json())
-# else:
-#    print("PC is offline.", response.json())
-#
+    host = url[1]
+    port = url[2]
+
+    return host, port
+
+
+def sshfs_mount(host, port, dirs):
+    for dir in dirs:
+        sshfs_command = [
+            "sshfs",
+            f"user@{host}:/media/elvin/{dir}",
+            f"/home/elvin/Mount/{dir}",
+            "-p",
+            str(port),
+        ]
+        subprocess.run(sshfs_command)
+
+
+def sshfs_unmount(dirs):
+    for dir in dirs:
+        unmount_command = ["fusermount", "-u", f"/home/elvin/Mount/{dir}"]
+        subprocess.run(unmount_command)
+
+
+def main():
+    parser = argparse.ArgumentParser(description="ssh-pc")
+    parser.add_argument(
+        "-L", nargs="+", type=int, help="Specify port numbers for SSH tunneling."
+    )
+    parser.add_argument("--mount", nargs="+", help="Mount directories (sshfs)")
+    parser.add_argument("--unmount", nargs="+", help="Unmount directories (sshfs)")
+    args = parser.parse_args()
+
+    ngrok_info = get_ngrok_info()
+
+    if not ngrok_info:
+        return
+    host, port = ngrok_info
+    print(host, port)
+
+    if args.mount:
+        sshfs_mount(host, port, args.mount)
+        return
+
+    if args.unmount:
+        sshfs_unmount(args.unmount)
+        return
+
+    ports_to_tunnel = [5909, 8765, 6600]
+    if args.L:
+        ports_to_tunnel += args.L
+    tunnel_ports = [f"-L {p}:localhost:{p}" for p in ports_to_tunnel + ports_to_tunnel]
+    ssh_command = ["ssh", f"user@{host}", "-p", port] + tunnel_ports
+    subprocess.run(ssh_command)
+
+
+if __name__ == "__main__":
+    main()

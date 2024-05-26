@@ -75,3 +75,22 @@ fmpc() {
 preview(){
     chafa -f sixel "$@"
 }
+
+auto_mark_package_list(){
+    while read -r package; do
+        sudo apt-mark auto "$package"
+    done <<< "$1"
+}
+
+note () {
+    if [[ ! -f $HOME/.notes ]]; then
+        touch "$HOME/Documents/note" # if file doesn't exist, create it
+    fi
+    if ! (($#)); then
+        cat "$HOME/Documents/note" # no arguments, print file
+    elif [[ "$1" == "-c" ]]; then
+        printf "%s" > "$HOME/Documents/note" # clear file
+    else
+        printf "%s\n" "$*" >> "$HOME/Documents/note" # add all arguments to file
+    fi
+}

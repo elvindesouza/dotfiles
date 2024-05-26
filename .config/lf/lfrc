@@ -154,6 +154,7 @@ set autoquit true
 # set drawbox
 set sortby time
 set reverse!
+set sixel true
 
 set previewer ctpv
 set cleaner ctpvclear

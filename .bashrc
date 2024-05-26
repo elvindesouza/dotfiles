@@ -22,6 +22,11 @@ if [ -f "$HOME"/.config/zsh/.aliases ]; then
 	. "$HOME"/.config/zsh/.aliases
 fi
 
+# per-device configuration, not synced with dotfiles git
+if [ -f "$HOME"/.bash_profile ]; then
+	. "$HOME"/.bash_profile
+fi
+
 # Expand the history size
 export HISTFILESIZE=100000
 export HISTSIZE=100000
@@ -153,4 +158,3 @@ fi
 
 PS1='\[\033[01;34m\]\w\[\033[00m\]\$ '
 
-#setfont -d

@@ -10,9 +10,9 @@ Xft.antialias: true
 Xft.autohint: true
 Xft.hintstyle: hintfull
 Xft.lcdfilter: lcdfilter
-!Xft.dpi: 120
 
 ! FONTS
+! this causes a problem with (python) tkinter programs
 *font: Iosevka Nerd Font Mono:pixelsize=30:antialias=true:autohint=true
 *faceName: Iosevka Nerd Font Mono
 *faceSize: 30
@@ -201,7 +201,6 @@ urxvt.fontSize: 38
 !urxvt.boldItalicFont:xft:NotoSansMonoCJKSC:pixelsize=18
 urxvt.letterSpace:-1
 urxvt.lineSpace:-1
-
 
 ! Rofi
 rofi.kb-row-up:                      Up,k,Shift+Tab,Shift+ISO_Left_Tab

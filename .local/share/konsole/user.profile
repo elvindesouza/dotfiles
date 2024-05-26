@@ -1,11 +1,15 @@
 [Appearance]
 AntiAliasFonts=true
-BoldIntense=true
-ColorScheme=Breeze
+BoldIntense=false
+ColorScheme=Linux
 DimmValue=25
-Font=Iosevka Nerd Font Mono,28,-1,5,50,0,0,0,0,0
+EmojiFont=Noto Color Emoji,5,-1,5,50,0,0,0,0,0
+Font=Iosevka Term,28,-1,5,50,0,0,0,0,0
 LineSpacing=0
 UseFontLineChararacters=true
+WordMode=true
+WordModeAscii=true
+WordModeBrahmic=true
 
 [Cursor Options]
 CursorShape=1
