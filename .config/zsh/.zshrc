@@ -20,14 +20,18 @@ echo -ne '\e[5 q' # Use beam shape cursor on startup.
 
 # Plugins and Themes------------------------------------------------
 source ~/.config/zsh/custom/themes/powerlevel10k/powerlevel10k.zsh-theme
+
 source ~/.config/zsh/custom/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh # https://github.com/jeffreytse/zsh-vi-mode
+
 if [ ! -f "$HOME"/.config/zsh/custom/plugins/zsh-defer/zsh-defer.plugin.zsh ]; then
-    echo "zsh-defer plugin file not found. not loading other plugins"
     if [ -f $HOME/.config/zsh/.aliases ]; then
         . $HOME/.config/zsh/.aliases
     fi
     if [[ -f $HOME/.config/zsh/functions.zsh ]]; then
         . $HOME/.config/zsh/functions.zsh
+    fi
+    if [[ -f $HOME/.config/zsh/keybindings.zsh ]]; then
+        . $HOME/.config/zsh/keybindings.zsh
     fi
 else
     source ~/.config/zsh/custom/plugins/zsh-defer/zsh-defer.plugin.zsh
@@ -39,19 +43,18 @@ else
     zsh-defer source ~/.config/zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
     zsh-defer source ~/.config/zsh/custom/plugins/zsh-z/zsh-z.plugin.zsh
     zsh-defer source ~/.config/zsh/custom/plugins/fzf-zsh-plugin/fzf-zsh-plugin.plugin.zsh
+    if [[ -f /etc/zsh_command_not_found ]]; then
+        zsh-defer source /etc/zsh_command_not_found
+    fi
+    if [[ -f $HOME/.config/zsh/keybindings.zsh ]]; then
+        zsh-defer . $HOME/.config/zsh/keybindings.zsh
+    fi
 fi
-if [[ -f /etc/zsh_command_not_found ]]; then
-    zsh-defer source /etc/zsh_command_not_found
-fi
+
+# .profile should already be sourced
 # if [ -f $HOME/.config/zsh/.profile ]; then
 #     . $HOME/.config/zsh/.profile
 # fi
-# if [[ -z "$ZPROFILE_IS_LOADED" ]]; then
-#     source "$ZDOTDIR/.zprofile"
-# fi
-if [[ -f $HOME/.config/zsh/keybindings.zsh ]]; then
-    zsh-defer . $HOME/.config/zsh/keybindings.zsh
-fi
 
 # Zsh options ------------------------------------------------
 setopt autocd              # change directory just by typing its name
@@ -128,6 +131,19 @@ HISTFILE="$XDG_STATE_HOME"/zsh/history
 
 # Other configuration that must be at the end of .zshrc -------------------------
 # eval "$(direnv hook zsh)"
-#zsh-defer eval "$(thefuck --alias)"# https://github.com/nvbn/thefuck
+
+# mkdir if they do not exist
+dirs=(
+  "$XDG_DATA_HOME"
+  "$XDG_CONFIG_HOME"
+  "$XDG_STATE_HOME"
+  "$XDG_CACHE_HOME"
+  "$XDG_STATE_HOME"/zsh/
+  "$XDG_STATE_HOME"/bash/
+)
+for dir in "${dirs[@]}"; do
+  [ ! -d "$dir" ] && mkdir -p "$dir"
+done
+
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh

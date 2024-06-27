@@ -14,8 +14,8 @@ exec_always --no-startup-id xautolock -time 5 -locker "i3lock" &
 # exec --no-startup-id redshift -O 1000
 
 #brightness control
-bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 1 # increase screen brightness
-bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 1 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5 # increase screen brightness
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5 # decrease screen brightness
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -32,6 +32,7 @@ client.focused  #1100ff #285577 #ffffff #ffbf00   #cf3dff
 # font pango: Terminus (TTF) bold 10
 #font pango:SourceCodePro 7
 font pango: Iosevka Nerd Font Mono 13
+
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status

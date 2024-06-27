@@ -22,7 +22,6 @@ fi
 if [ -d "$HOME/.local/bin" ]; then
 	PATH="$HOME/.local/bin:$PATH"
 fi
-
 # add Flatpak apps to PATH
 if [ -d "/var/lib/flatpak/exports/bin" ]; then
 	PATH="/var/lib/flatpak/exports/bin:$PATH"
@@ -38,15 +37,6 @@ if [ -d "/media/elvin/dHDD/Flatpak/flatpak/exports/bin" ]; then
 fi
 #--------------------------------
 
-export KDEHOME="${XDG_CONFIG_HOME:-$HOME/.config}"/kde
-
-# Remove when not using xorg anymore
-#export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
-export XINITRC="${XDG_CONFIG_HOME:-$HOME/.config}/X11/xinitrc"
-
-
-export CUDA_CACHE_PATH="$XDG_CACHE_HOME"/nv
-export QT_QPA_PLATFORMTHEME=qt5ct
 
 # Preferred editor for local and remote sessions
 export EDITOR='nvim'
@@ -54,40 +44,23 @@ export VISUAL='nvim'
 export TERMINAL='st'
 # export SHELL=/bin/zsh
 
-# You may need to manually set your language environment
-export LANG=en_US.UTF-8
+export LANG=en_US.UTF-8 # You may need to manually set your language environment
 
 export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc-2.0"
-#export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
-
-# zsh does not use inputrc(readline), uses its own zle
-export INPUTRC="${XDG_CONFIG_HOME:-$HOME/.config}"/readline/inputrc
-
-
-export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
-# export LESS="-R --use-color -Dd+r$Du+b"
-
-# export QT_FONT_DPI=96
-# export GDK_SCALE=1
-# export GDK_DPI_SCALE=1
-
+export INPUTRC="${XDG_CONFIG_HOME:-$HOME/.config}"/readline/inputrc # zsh does not use inputrc(readline), uses its own zle
 export GTK_USE_PORTAL=1
-
-# To have colors for ls and all grep commands such
-export CLICOLOR=1
-
+export CLICOLOR=1 # To have colors for ls and all grep commands such
+export KDEHOME="${XDG_CONFIG_HOME:-$HOME/.config}"/kde
+export CUDA_CACHE_PATH="$XDG_CACHE_HOME"/nv
+export QT_QPA_PLATFORMTHEME=qt5ct
 export LESS='-R --use-color -Dd+r$Du+b'
 export MANPAGER="less -R --use-color -Dd+r -Du+b"
 export TMUX_TMPDIR="$XDG_RUNTIME_DIR"
 export CARGO_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/cargo"
 export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
-export WGETRC="$XDG_CONFIG_HOME/wgetrc"
 export GNUPGHOME="$XDG_DATA_HOME"/gnupg
 export LD_PRELOAD=""
-export KEYTIMEOUT=1
 export VI_MODE_SET_CURSOR=true
-
-# testing
 export ELINKS_CONFDIR="$XDG_CONFIG_HOME"/elinks
 export GRIPHOME="$XDG_CONFIG_HOME/grip"
 export LESSHISTFILE="$XDG_STATE_HOME"/less/history
@@ -98,7 +71,11 @@ export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
 export SONARLINT_USER_HOME="$XDG_DATA_HOME/sonarlint"
 export ANDROID_HOME="$XDG_DATA_HOME"/android
 export CUDA_CACHE_PATH="$XDG_CACHE_HOME"/nv
+export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
 
+export KEYTIMEOUT=1
 
 # Remove when not using xorg anymore
 [[ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/X11/xresources ]] && xrdb -merge "${XDG_CONFIG_HOME:-$HOME/.config}"/X11/xresources
+#export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
+export XINITRC="${XDG_CONFIG_HOME:-$HOME/.config}/X11/xinitrc"

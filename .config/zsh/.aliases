@@ -6,7 +6,8 @@ alias open='xdg-open'
 alias o='xdg-open'
 alias oer='mimeopen -d'
 alias owith='mimeopen --ask'
-if command -v nvim &> /dev/null; then
+if command -v nvim &> /dev/null && [ -f "$HOME/.config/nvim/nvim.appimage" ]; then
+    alias nvim="~/.config/nvim/nvim.appimage"
     alias vim='nvim'
 fi
 alias sc='sudo systemctl'
@@ -16,7 +17,6 @@ alias q='exit'
 alias c='clear'
 
 alias zshrc='vim ~/.config/zsh/.zshrc'
-alias profile='vim ~/.config/zsh/.profile'
 alias eal='vim ~/.config/zsh/.aliases'
 alias sal='source ~/.config/zsh/.aliases'
 
@@ -39,7 +39,7 @@ alias r="lfcd"
 alias shred="shred -zf"
 alias diff='diff --color=auto'
 alias grep="grep --color=auto"
-alias wget="wget --hsts-file=\$XDG_CACHE_HOME/wget-hsts -c --user-agent 'noleak'"
+# alias wget="wget --hsts-file=\$XDG_CACHE_HOME/wget-hsts -c --user-agent 'noleak'"
 alias dd="dd status=progress"
 alias cp="cp -i" # confirm before overwriting something
 alias rm="rm -i"
@@ -133,7 +133,8 @@ if [[ -n $ZSH_VERSION ]]; then
 	alias -g C='| wc -l'
 fi
 
-# System-specific overrides
+######### System-specific overrides #############
+# Archlinux(PC-IN) 
 if command -v pacman &> /dev/null; then
 	alias aur='yay'
 	alias inst='sudo pacman -S --verbose'
@@ -142,12 +143,11 @@ if command -v pacman &> /dev/null; then
 	alias list='pacman -Qet | less'
 	alias listall='pacman -Q | less'
     alias ngrok-start='ssh -R 0:localhost:22 tunnel.in.ngrok.com tcp 22'
-    alias nvim="~/.config/nvim/nvim.appimage" # not using s ln -s /home/elvin/.config/nvim/nvim.appimage /usr/bin/nvim, test before removing alias 
 	alias upgrade='aur -Syyu ; flatpak update'
     alias cat='bat --paging=never --style=plain'
+# Ubuntu(Legion5)/general Debian-like
 elif command -v apt &> /dev/null; then
     alias adb='HOME="$XDG_DATA_HOME"/android adb'
-    alias gpu='watch -n.1 "nvidia-smi"'
 	alias search='apt search'
 	alias inst='sudo apt install -y'
 	alias uninst='sudo apt --purge autoremove && sudo apt-get --purge remove'
@@ -156,13 +156,16 @@ elif command -v apt &> /dev/null; then
         alias inst='sudo nala install'
         alias uninst='sudo nala autoremove --purge && sudo nala remove --purge '
     fi
-	alias upgrade='sudo apt update && sudo apt dist-upgrade ; flatpak update'
+	alias upgrade='sudo apt update && sudo apt full-upgrade && flatpak update'
 	alias auto='sudo apt-mark auto'
 	alias manu='sudo apt-mark manual'
 	# alias backup='bash "/media/elvin/eHDD/repos/RecoverUbuntu/backup/BACKUP_UBUNTU.sh"' leave commented until stable
-	alias list='(apt-mark showmanual && flatpak list --app && snap list) | less'
+	alias list='apt-mark showmanual | less'
 	alias listall='dpkg --list'
-    alias cat='batcat --paging=never --style=plain'
+    if command -v batcat &> /dev/null; then
+        alias cat='batcat --paging=never --style=plain'
+    fi
+# Termux(Phone)
 elif [ -f "/data/data/com.termux/files/usr/bin/pkg" ]; then
 	alias search='pkg search'
 	alias inst='pkg install -y'

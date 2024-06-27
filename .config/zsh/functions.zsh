@@ -1,4 +1,5 @@
 #!/bin/env zsh
+
 # Use fd and fzf to get the args to a command.
 # Works only with zsh
 # Examples:
@@ -47,17 +48,24 @@ cd() {
 }
 
 lfcd() {
-	tmp="$(mktemp)"
-	lf -last-dir-path="$tmp" "$@"
-	if [ -f "$tmp" ]; then
-		dir="$(cat "$tmp")"
-		rm -f "$tmp"
-		if [ -d "$dir" ]; then
-			if [ "$dir" != "$PWD" ]; then
-				cd "$dir"
-			fi
-		fi
-	fi
+    tmp="$(mktemp)"
+    if command -v lf > /dev/null; then
+        lf -last-dir-path="$tmp" "$@"
+    elif command -v ranger > /dev/null;  then
+        ranger --choosedir="$tmp" "$@"
+    else
+        echo "Neither 'lf' nor 'ranger' is installed."
+        return 1
+    fi
+    if [ -f "$tmp" ]; then
+        dir="$(cat "$tmp")"
+        rm -f "$tmp"
+        if [ -d "$dir" ]; then
+            if [ "$dir" != "$PWD" ]; then
+                cd "$dir"
+            fi
+        fi
+    fi
 }
 
 fmpc() {

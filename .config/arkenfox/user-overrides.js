@@ -1,0 +1,1 @@
+/home/elvin/.mozilla/firefox/arkenfox/user-overrides.js

@@ -13,8 +13,8 @@ Xft.lcdfilter: lcdfilter
 
 ! FONTS
 ! this causes a problem with (python) tkinter programs
-*font: Iosevka Nerd Font Mono:pixelsize=30:antialias=true:autohint=true
-*faceName: Iosevka Nerd Font Mono
+!*font: Iosevka Nerd Font Mono:pixelsize=30:antialias=true:autohint=true
+!*faceName: Iosevka Nerd Font Mono
 *faceSize: 30
 XTerm*faceSize1: 12
 XTerm*faceSize2: 22
