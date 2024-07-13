@@ -84,32 +84,15 @@ mkdir -p "$XDG_STATE_HOME"/zsh/
 mkdir -p "$XDG_STATE_HOME"/bash/
 
 ## tmux setup
-cd ~ || exit && \
-mkdir -p "~/.config/tmux" && \
-git clone https://github.com/gpakosz/.tmux.git "~/.config/tmux/tmux" && \
-ln -s "~/.config/tmux/tmux/.tmux.conf" "~/.config/tmux/tmux.conf" && \
-cp "~/.config/tmux/tmux/.tmux.conf.local" "~/.config/tmux/tmux.conf.local"
+cd "$HOME" || exit && \
+mkdir -p "$HOME/.config/tmux" && \
+git clone https://github.com/gpakosz/.tmux.git "$HOME/.config/tmux/tmux" && \
+ln -s "$HOME/.config/tmux/tmux/.tmux.conf" "$HOME/.config/tmux/tmux.conf" && \
 
 
 # Run bin/update_binaries.sh
 echo "Run bin/update_binaries.sh"
-#curl https://raw.githubusercontent.com/srevinsaju/zap/main/install.sh | bash -s
-#zap install firefox
-#zap install plexamp
-#zap install --from https://appimages.libreitalia.org/LibreOffice-fresh.basic-x86_64.AppImage LibreOffice
-#zap install --from https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage neovim
-#zap install --from https://github.com/zilti/code-oss.AppImage/releases/download/continuous/Code_OSS-x86_64.AppImage CodeOSS
-#zap install --from https://github.com/nelsonenzo/tmux-appimage/releases/download/3.4/tmux.appimage tmux
-#flatpak install io.mpv.Mpv
-#flatpak install org.cubocore.CoreArchiver
-#flatpak install org.cubocore.CoreShot
-#flatpak install org.cubocore.CorePDF
-#flatpak install org.cubocore.CoreFM
-#flatpak install org.cubocore.CoreImage
-#flatpak install org.cubocore.CoreStats
-#flatpak install org.cubocore.CorePad
-#flatpak install org.cubocore.CoreInfo
-#flatpak install org.cubocore.CoreHunt
-#flatpak install org.keepassxc.KeePassXC
-#flatpak install org.mozilla.firefox
-#flatpak install org.flameshot.Flameshot
+echo "Download fonts with the script in .local/share/fonts"
+
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+

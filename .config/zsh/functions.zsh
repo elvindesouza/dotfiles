@@ -48,23 +48,23 @@ cd() {
 }
 
 lfcd() {
-    tmp="$(mktemp)"
     if command -v lf > /dev/null; then
-        lf -last-dir-path="$tmp" "$@"
+        cd "$(command lf -print-last-dir "$@")"
     elif command -v ranger > /dev/null;  then
+        tmp="$(mktemp)"
         ranger --choosedir="$tmp" "$@"
+        if [ -f "$tmp" ]; then
+            dir="$(cat "$tmp")"
+            rm -f "$tmp"
+            if [ -d "$dir" ]; then
+                if [ "$dir" != "$PWD" ]; then
+                    cd "$dir"
+                fi
+            fi
+        fi
     else
         echo "Neither 'lf' nor 'ranger' is installed."
         return 1
-    fi
-    if [ -f "$tmp" ]; then
-        dir="$(cat "$tmp")"
-        rm -f "$tmp"
-        if [ -d "$dir" ]; then
-            if [ "$dir" != "$PWD" ]; then
-                cd "$dir"
-            fi
-        fi
     fi
 }
 

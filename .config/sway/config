@@ -7,15 +7,15 @@
 set $term $TERMINAL
 set $mod Mod4
 
-exec_always --no-startup-id autotiling
-exec_always --no-startup-id xsetroot -solid black;
-exec_always --no-startup-id xautolock -time 5 -locker "i3lock" &
+# exec_always --no-startup-id autotiling
+# exec_always --no-startup-id xsetroot -solid black;
+# exec_always --no-startup-id xautolock -time 5 -locker "i3lock" &
 # exec --no-startup-id xbacklight -set 1
 # exec --no-startup-id redshift -O 1000
 
 #brightness control
-bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5 # increase screen brightness
-bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec brightnessctl set 5%+ # increase screen brightness
+bindsym XF86MonBrightnessDown exec brightnessctl set 5%- # decrease screen brightness
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
