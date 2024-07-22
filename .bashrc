@@ -14,9 +14,9 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
-if [ -f "$HOME"/.config/zsh/.profile ]; then
-	. "$HOME"/.config/zsh/.profile
-fi
+# if [ -f "$HOME"/.config/zsh/.profile ]; then
+# 	. "$HOME"/.config/zsh/.profile
+# fi
 
 if [ -f "$HOME"/.config/zsh/.aliases ]; then
 	. "$HOME"/.config/zsh/.aliases
@@ -96,40 +96,6 @@ unset color_prompt force_color_prompt
 
 
 # Enable bash programmable completion features in interactive shells
-
-# set variable identifying the chroot you work in (used in the prompt below)
-if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
-fi
-
-# set a fancy prompt (non-color, unless we know we "want" color)
-case "$TERM" in
-    xterm-color|*-256color) color_prompt=yes;;
-esac
-
-# uncomment for a colored prompt, if the terminal has the capability; turned
-# off by default to not distract the user: the focus in a terminal window
-# should be on the output of commands, not on the prompt
-#force_color_prompt=yes
-
-if [ -n "$force_color_prompt" ]; then
-    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-        # We have color support; assume it's compliant with Ecma-48
-        # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-        # a case would tend to support setf rather than setaf.)
-        color_prompt=yes
-    else
-        color_prompt=
-    fi
-fi
-
-if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-fi
-unset color_prompt force_color_prompt
-
 if [ -f /usr/share/bash-completion/bash_completion ]; then
 	. /usr/share/bash-completion/bash_completion
 elif [ -f /etc/bash_completion ]; then
@@ -145,7 +111,6 @@ fi
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     export LS_COLORS="$LS_COLORS:ow=30;44:" # fix ls color for folders with 777 permissions
-
     export LESS_TERMCAP_mb=$'\E[1;31m'     # begin blink
     export LESS_TERMCAP_md=$'\E[1;36m'     # begin bold
     export LESS_TERMCAP_me=$'\E[0m'        # reset bold/blink
@@ -154,7 +119,3 @@ if [ -x /usr/bin/dircolors ]; then
     export LESS_TERMCAP_us=$'\E[1;32m'     # begin underline
     export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
 fi
-
-
-PS1='\[\033[01;34m\]\w\[\033[00m\]\$ '
-
