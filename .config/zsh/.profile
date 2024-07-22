@@ -76,6 +76,6 @@ export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
 export KEYTIMEOUT=1
 
 # Remove when not using xorg anymore
-[[ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/X11/xresources ]] && [ -n "$DISPLAY" ] && command -v xrdb > /dev/null && xrdb -merge "${XDG_CONFIG_HOME:-$HOME/.config}"/X11/xresources
+# [[ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/X11/xresources ]] && [ -n "$DISPLAY" ] && command -v xrdb > /dev/null && xrdb -merge "${XDG_CONFIG_HOME:-$HOME/.config}"/X11/xresources
 #export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
 export XINITRC="${XDG_CONFIG_HOME:-$HOME/.config}/X11/xinitrc"
