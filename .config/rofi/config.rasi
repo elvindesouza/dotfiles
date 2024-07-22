@@ -83,7 +83,7 @@ configuration {
 
 	/*---------- Misc setting ----------*/
 	terminal: "kitty";
-	font: "Iosevka Nerd Font Mono 20";
+	font: "IosevkaTerm Nerd Font Mono 20";
 	sort: false;
 	threads: 0;
 	click-to-exit: true;
