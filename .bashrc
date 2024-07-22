@@ -8,24 +8,24 @@
 
 [[ "$(whoami)" = "root" ]] && return
 
-# [[ -z "$FUNCNEST" ]] && export FUNCNEST=100 # limits recursive functions, see 'man bash'
-#
-# if [ -f /etc/bashrc ]; then
-# 	. /etc/bashrc
-# fi
-#
-# if [ -f "$HOME"/.config/zsh/.profile ]; then
-# 	. "$HOME"/.config/zsh/.profile
-# fi
-#
-# if [ -f "$HOME"/.config/zsh/.aliases ]; then
-# 	. "$HOME"/.config/zsh/.aliases
-# fi
-#
-# # per-device configuration, not synced with dotfiles git
-# if [ -f "$HOME"/.bash_profile ]; then
-# 	. "$HOME"/.bash_profile
-# fi
+[[ -z "$FUNCNEST" ]] && export FUNCNEST=100 # limits recursive functions, see 'man bash'
+
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
+if [ -f "$HOME"/.config/zsh/.profile ]; then
+	. "$HOME"/.config/zsh/.profile
+fi
+
+if [ -f "$HOME"/.config/zsh/.aliases ]; then
+	. "$HOME"/.config/zsh/.aliases
+fi
+
+# per-device configuration, not synced with dotfiles git
+if [ -f "$HOME"/.bash_profile ]; then
+	. "$HOME"/.bash_profile
+fi
 
 # Expand the history size
 export HISTFILESIZE=100000
