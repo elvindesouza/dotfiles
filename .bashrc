@@ -18,18 +18,18 @@ if [ -f /etc/bashrc ]; then
 fi
 
 # Using bash as a basic shell, solves issues with login shell
-# if [ -f "$HOME"/.config/zsh/.profile ]; then
-# 	. "$HOME"/.config/zsh/.profile
-# fi
-#
-# if [ -f "$HOME"/.config/zsh/.aliases ]; then
-# 	. "$HOME"/.config/zsh/.aliases
-# fi
+if [ -f "$HOME"/.config/zsh/.profile ]; then
+	. "$HOME"/.config/zsh/.profile
+fi
+
+if [ -f "$HOME"/.config/zsh/.aliases ]; then
+	. "$HOME"/.config/zsh/.aliases
+fi
 
 # per-device configuration, not synced with dotfiles git
-if [ -f "$HOME"/.bash_profile ]; then
-	. "$HOME"/.bash_profile
-fi
+# if [ -f "$HOME"/.bash_profile ]; then
+# 	. "$HOME"/.bash_profile
+# fi
 
 # Expand the history size
 export HISTFILESIZE=100000
