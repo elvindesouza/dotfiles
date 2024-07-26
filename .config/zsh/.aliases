@@ -149,7 +149,7 @@ if command -v pacman &> /dev/null; then
 elif command -v apt &> /dev/null; then
     alias adb='HOME="$XDG_DATA_HOME"/android adb'
 	alias search='apt search'
-	alias inst='sudo apt install -y'
+	alias inst='sudo apt install'
 	alias uninst='sudo apt --purge autoremove && sudo apt-get --purge remove'
     if command -v nala &> /dev/null; then
         alias search='nala search'
@@ -168,7 +168,7 @@ elif command -v apt &> /dev/null; then
 # Termux(Phone)
 elif [ -f "/data/data/com.termux/files/usr/bin/pkg" ]; then
 	alias search='pkg search'
-	alias inst='pkg install -y'
+	alias inst='pkg install'
 	alias uninst='pkg uninstall'
 	alias upgrade='pkg update && pkg upgrade'
 	alias auto='apt-mark auto'
