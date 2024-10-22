@@ -28,6 +28,3 @@
 [submodule ".config/zsh/custom/plugins/fzf-zsh-plugin"]
 	path = .config/zsh/custom/plugins/fzf-zsh-plugin
 	url = https://github.com/unixorn/fzf-zsh-plugin
-[submodule "bin/diff-so-fancy-git"]
-	path = bin/diff-so-fancy-git
-	url = https://github.com/so-fancy/diff-so-fancy
