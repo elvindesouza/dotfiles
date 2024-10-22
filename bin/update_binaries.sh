@@ -24,7 +24,7 @@ chmod +x "$HOME"/bin/yt-dlp
 # chmod +x navi
 
 cd "$HOME"/bin || exit
-wget -c https://hpjansson.org/chafa/releases/static/chafa-1.14.1-1-x86_64-linux-gnu.tar.gz -O - | tar xz --strip-components=1 
+wget -c https://hpjansson.org/chafa/releases/static/chafa-1.14.2-1-x86_64-linux-gnu.tar.gz -O - | tar xz --strip-components=1 
 chmod +x chafa
 
 cd "$HOME"/bin || exit

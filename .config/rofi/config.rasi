@@ -51,9 +51,9 @@ configuration {
 	run-shell-command: "{terminal} -e {cmd}";
 
 	/*---------- Fallback Icon ----------*/
-	/* run,drun { */
-	/* 	fallback-icon: "application-x-addon"; */
-	/* } */
+	run,drun {
+		fallback-icon: "application-x-addon";
+	}
 
 	/*---------- Window switcher settings ----------*/
 	window-match-fields: "title,class,role,name,desktop";
@@ -82,8 +82,8 @@ configuration {
 	display-filebrowser: "Files";
 
 	/*---------- Misc setting ----------*/
-	terminal: "kitty";
-	font: "IosevkaTerm Nerd Font Mono 20";
+	terminal: "rofi-sensible-terminal";
+	font: "Mono 20";
 	sort: false;
 	threads: 0;
 	click-to-exit: true;
@@ -104,11 +104,12 @@ configuration {
     }
 
 	/*---------- Keybindings ----------*/
+/*
 	kb-primary-paste: "Control+V,Shift+Insert";
 	kb-secondary-paste: "Control+v,Insert";
-	/* kb-clear-line: "Control+w"; */
-	/* kb-move-front: "Control+a"; */
-	/* kb-move-end: "Control+e"; */
+	kb-clear-line: "Control+w";
+	kb-move-front: "Control+a";
+	kb-move-end: "Control+e";
 	kb-move-word-back: "Alt+b,Control+Left";
 	kb-move-word-forward: "Alt+f,Control+Right";
 	kb-move-char-back: "Left,Control+b";
@@ -116,17 +117,13 @@ configuration {
 	kb-remove-word-back: "Control+Alt+h,Control+BackSpace";
 	kb-remove-word-forward: "Control+Alt+d";
 	kb-remove-char-forward: "Delete,Control+d";
-	kb-remove-char-back: "BackSpace,Shift+BackSpace";
-	kb-remove-to-eol: "";
 	kb-remove-to-sol: "Control+u";
-	kb-accept-entry: "Return,KP_Enter";
 	kb-accept-custom: "Control+Return";
 	kb-accept-custom-alt: "Control+Shift+Return";
 	kb-accept-alt: "Shift+Return";
 	kb-delete-entry: "Shift+Delete";
-	/* kb-mode-next: "Shift+Right,Control+Tab"; */
-	/* kb-mode-previous: "Shift+Left,Control+ISO_Left_Tab"; */
-	kb-mode-complete: "";
+	kb-mode-next: "Shift+Right,Control+Tab";
+	kb-mode-previous: "Shift+Left,Control+ISO_Left_Tab";
 	kb-row-left: "Control+Page_Up";
 	kb-row-right: "Control+Page_Down";
 	kb-row-down: "Down,Control+n";
@@ -134,7 +131,7 @@ configuration {
 	kb-page-next: "Page_Down";
 	kb-row-first: "Home,KP_Home";
 	kb-row-last: "End,KP_End";
-	kb-row-select: "";
+	kb-row-select: "Control+space";
 	kb-screenshot: "Alt+S";
 	kb-ellipsize: "Alt+period";
 	kb-toggle-case-sensitivity: "grave,dead_grave";
@@ -176,11 +173,16 @@ configuration {
 	me-select-entry: "MousePrimary";
 	me-accept-entry: "MouseDPrimary";
 	me-accept-custom: "Control+MouseDPrimary";
+*/
+
+    /*Resetting default bindings*/
+	kb-mode-complete: "";
+	kb-remove-to-eol: "";
+	kb-accept-entry: "Control+m,Return,KP_Enter";
+	kb-remove-char-back: "BackSpace,Shift+BackSpace";
+    /**/
     kb-row-up: "Up,Control+k";
     kb-row-down: "Down,Control+j";
     kb-mode-next: "Control+l";
     kb-mode-previous: "Control+h";
 }
-//@theme "/usr/share/rofi/themes/DarkBlue.rasi"
-//@theme "/usr/share/rofi/themes/docu.rasi"
-@theme "/usr/share/rofi/themes/gruvbox-dark-hard.rasi"

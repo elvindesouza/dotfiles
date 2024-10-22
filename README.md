@@ -10,8 +10,8 @@
 - i3-wm - window manager for X
 - zsh - preferred shell
 - lf+ctpv - terminal file manager with image previews
-- sxiv/feh/viu - simple image viewer
-- zathura - simple document viewer
+- sxiv/feh/viu, gwenview(flatpak) - simple image viewer
+- zathura, okular(flatpak) - simple document viewer
 - mpv - simple+powerful media player
 - xarchiver - lightweight archive manager
 - thunar/pcmanfm - lightweight file manager
@@ -19,9 +19,10 @@
 - firefox - web browser
 
 ## TODO
+- switch over to kitty and replace st
+
 ### High Priority
 - neovim
-    remove unnecessary plugins
     fix lsp running many diagnostic servers causing duplicated diagnostics
 - fix: Nuke dotfiles branch again and remove large files from being tracked in the first place
 - fix: (zsh-autocompletion):
@@ -95,4 +96,3 @@ echo "Run bin/update_binaries.sh"
 echo "Download fonts with the script in .local/share/fonts"
 
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-
