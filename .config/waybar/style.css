@@ -218,8 +218,8 @@ tooltip label{
 }
 
 #battery {
-    background-color: #ffffff;
-    color: #ffed65;
+    background-color: #ffed65;
+    color: #292929;
 }
 #battery.plugged {
   color: #b0b0b0;

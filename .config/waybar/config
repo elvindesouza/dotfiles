@@ -201,7 +201,8 @@
         // Connected to AC
         "format": "{icon} {capacity}%", // Icon: bolt
         // Not connected to AC
-        "format-discharging": "{icon} {capacity}%",
+        "format-discharging": "{icon} {capacity}% ({power:.3}W/{time})",
+        "format-time": "{H}:{M}",
         "format-icons": [
             "", // Icon: battery-full
             "", // Icon: battery-three-quarters
@@ -212,7 +213,25 @@
         "tooltip": true
     },
     "battery#bat2": {
-        "bat": "BAT2"
+        "bat": "BAT2",
+        "interval": 10,
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        // Connected to AC
+        "format": "{icon} {capacity}%", // Icon: bolt
+        // Not connected to AC
+        "format-discharging": "{icon} {capacity}% ({power:.3}W/{time})",
+        "format-time": "{H}:{M}",
+        "format-icons": [
+            "", // Icon: battery-full
+            "", // Icon: battery-three-quarters
+            "", // Icon: battery-half
+            "", // Icon: battery-quarter
+            ""  // Icon: battery-empty
+        ],
+        "tooltip": true
     },
     "power-profiles-daemon": {
       "format": "{icon}",

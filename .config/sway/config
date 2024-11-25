@@ -1,7 +1,6 @@
 set $term $TERMINAL
 set $mod Mod4
 
-# exec_always --no-startup-id autotiling
 exec wl-paste -t text --watch clipman store --no-persist
 exec swayidle -w \
 	timeout 1000 'swaylock -f' \
@@ -128,7 +127,7 @@ exec dbus-update-activation-environment WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESK
 	#bindsym $mod+q kill
 	bindsym $mod+Shift+q		[con_id="__focused__" instance="^(?!dropdown_).*$"] exec --no-startup-id kill -9 `xdotool getwindowfocus getwindowpid`
 
-	# start dmenu (a program launcher)
+	# start rofi (a program launcher)
 	#bindsym $mod+d exec --no-startup-id dmenu_run
 	# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 	# bindsym $mod+d exec --no-startup-id ~/.config/rofi/launchers/type-3/launcher.sh
@@ -237,19 +236,13 @@ exec dbus-update-activation-environment WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESK
 # Status Bar:
 #
 # Read `man 5 sway-bar` for more information about this section.
+
 	bar {
         hidden_state hide
         mode hide
         swaybar_command waybar
         modifier Mod4
     }
-#position bottom
-#status_command i3status
-#font pango: IosevkaTerm Nerd Font Mono 13
-#colors {
-#statusline #ffffff
-#background #323232
-#inactive_workspace #32323200 #32323200 #5c5c5c
 
 	# Toggle bar
 	bindsym $mod+m bar mode toggle
