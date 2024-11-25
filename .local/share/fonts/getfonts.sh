@@ -1,10 +1,10 @@
 cd ~/.local/share/fonts || exit
 
-
 urls=(
     # "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.tar.xz"
     "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/IosevkaTerm.tar.xz"
     "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Noto.tar.xz"
+    "https://use.fontawesome.com/releases/v6.7.1/fontawesome-free-6.7.1-desktop.zip"
     # "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Inconsolata.tar.xz"
 )
 
@@ -20,6 +20,13 @@ mkdir -p tmp
 for archive in *.tar.xz; do
     tar -xf "$archive" -C tmp
     mv tmp/*-Regular.ttf .
+    rm -rf tmp/*
+    rm -f "$archive"
+done
+
+for archive in *.zip; do
+    unzip "$archive" -d tmp
+    mv tmp/otfs/*.otf .
     rm -rf tmp/*
     rm -f "$archive"
 done

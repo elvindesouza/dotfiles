@@ -53,6 +53,9 @@ alias mkdir="mkdir -pv"
 alias yt="yt-dlp --embed-metadata -i"
 alias yta="yt -x -f bestaudio/best"
 alias ffmpeg="ffmpeg -hide_banner"
+if command -v fastfetch &> /dev/null; then
+    alias neofetch="fastfetch -c all.jsonc"
+fi
 
 # Search command line history
 alias h="history 1000 | grep "

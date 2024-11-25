@@ -61,7 +61,7 @@ exec dbus-update-activation-environment WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESK
 # Resizing containers:
 #
 	# resize window (you can also use the mouse for that)
-	mode "resize" {
+	mode "Resize" {
 		# These bindings trigger as soon as you enter the resize mode
 
 		# Pressing left will shrink the window’s width.
@@ -85,7 +85,7 @@ exec dbus-update-activation-environment WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESK
 		bindsym $mod+r mode "default"
 	}
 
-	bindsym $mod+r mode "resize"
+	bindsym $mod+r mode "Resize"
 
 	bindsym $mod+ctrl+h resize shrink width 2 px or 2 ppt
 	bindsym $mod+ctrl+j resize grow height 2 px or 2 ppt
@@ -261,14 +261,16 @@ exec dbus-update-activation-environment WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESK
 #
 	for_window [window_role="pop-up"] floating enable
 	for_window [window_role="task_dialog"] floating enable
+
 	for_window [class="mpv"] sticky enable
+	for_window [class="Brave-browser"] floating disable
 	# use swaymsg -t get_tree to get app_id
 	#	for_window [app_id=""] border none
 
 #
 # System Prompt
 #
-	set $mode_system System (e) logout, (l) lock, (s) suspend, (Shift+r) reboot, (Shift+s) shutdown, (b) turn screen off
+	set $mode_system System (e) logout, (l) lock, (Shift+r) reboot, (Shift+s) shutdown, (b) turn screen off
 	mode "$mode_system" {
 	    bindsym e exec --no-startup-id swaymsg exit, mode "default"
 	    bindsym l exec --no-startup-id swaylock -f, mode "default"
@@ -280,7 +282,8 @@ exec dbus-update-activation-environment WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESK
 	    bindsym Return mode "default"
 	    bindsym Escape mode "default"
 	}
-	bindsym $mod+Shift+e mode "$mode_system"
+
+bindsym $mod+Shift+e mode "$mode_system"
 
 
 
