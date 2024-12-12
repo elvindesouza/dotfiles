@@ -29,7 +29,7 @@ bindkey '' backward-kill-word                                 # delete previous
 bindkey -v '^?' backward-delete-char
 bindkey -s '^o' 'lfcd^M'
 bindkey -s '^n' 'nvim $(fzf)^M'
-bindkey -s '' 'tuilaunch^M'
+bindkey -s '' 'launcher^M'
 bindkey -s '^[[32;2u' ' '
 bindkey -s '^[[13;5u' '\n'
 bindkey -s '^[[127;2u' '^?'

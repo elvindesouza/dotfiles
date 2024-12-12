@@ -72,10 +72,4 @@ export SONARLINT_USER_HOME="$XDG_DATA_HOME/sonarlint"
 export ANDROID_HOME="$XDG_DATA_HOME"/android
 export CUDA_CACHE_PATH="$XDG_CACHE_HOME"/nv
 export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
-
 export KEYTIMEOUT=1
-
-# Remove when not using xorg anymore
-# [[ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/X11/xresources ]] && [ -n "$DISPLAY" ] && command -v xrdb > /dev/null && xrdb -merge "${XDG_CONFIG_HOME:-$HOME/.config}"/X11/xresources
-#export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
-export XINITRC="${XDG_CONFIG_HOME:-$HOME/.config}/X11/xinitrc"

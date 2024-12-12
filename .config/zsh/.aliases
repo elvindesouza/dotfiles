@@ -53,6 +53,7 @@ alias mkdir="mkdir -pv"
 alias yt="yt-dlp --embed-metadata -i"
 alias yta="yt -x -f bestaudio/best"
 alias ffmpeg="ffmpeg -hide_banner"
+alias cb='flatpak run app.getclipboard.Clipboard'
 if command -v fastfetch &> /dev/null; then
     alias neofetch="fastfetch -c all.jsonc"
 fi
@@ -154,13 +155,13 @@ elif command -v apt &> /dev/null; then
     alias adb='HOME="$XDG_DATA_HOME"/android adb'
 	alias search='apt search'
 	alias inst='sudo apt install'
-	alias uninst='sudo apt --purge autoremove && sudo apt-get --purge remove'
+	alias uninst='sudo apt --purge remove'
     if command -v nala &> /dev/null; then
         alias search='nala search'
         alias inst='sudo nala install'
-        alias uninst='sudo nala autoremove --purge && sudo nala remove --purge '
+        alias uninst='sudo nala remove --purge '
     fi
-	alias upgrade='sudo apt update && sudo apt full-upgrade && flatpak update'
+	alias upgrade='sudo apt --purge autoremove && sudo apt update && sudo apt full-upgrade && flatpak update'
 	alias auto='sudo apt-mark auto'
 	alias manu='sudo apt-mark manual'
 	# alias backup='bash "/media/elvin/eHDD/repos/RecoverUbuntu/backup/BACKUP_UBUNTU.sh"' leave commented until stable

@@ -68,7 +68,7 @@ tooltip label{
 }
 #workspaces button {
   padding: 0 5px;
-  color: @content_inactive;
+  color: #797979;
 	transition: all 0.15s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 #workspaces button.active {
@@ -99,7 +99,7 @@ tooltip label{
   border-bottom: 3px solid #ffffff;
 }
 
-#clock, #battery, #cpu, #memory, #mpris, #temperature, #backlight, #network, #bluetooth, #pulseaudio, #custom-media, #tray, #disk, #mode, #idle_inhibitor {
+#clock, #battery, #cpu, #memory, #mpris, #temperature, #backlight, #network, #bluetooth, #pulseaudio, #custom-media, #tray, #disk, #mode, #idle_inhibitor, #custom-nvidia, #power-profiles-daemon, #battery-bat2, #custom-clipboard, #custom-notification {
   padding: 0 5px;
 }
 
@@ -129,13 +129,12 @@ tooltip label{
 }
 
 #temperature {
-  background: #baaea0;
+  background: #af997f;
   color: black;
 
 	transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 #temperature.critical {
-	padding-right: 3px;
   background: #eb4d4b;
   	font-size: initial;
 	border-bottom: 3px dashed @warning_color;
@@ -143,7 +142,7 @@ tooltip label{
 }
 
 #window {
-  border-radius: 10px;
+  /* border-radius: 10px; */
   margin-left: 20px;
   margin-right: 20px;
 }
@@ -173,14 +172,12 @@ tooltip label{
 }
 
 #pulseaudio {
-  background: #f1c40f;
-  color: #000000;
-	padding-left: 3px;
-  padding-right: 3px;
+  background-color: #bd871c;
+  color: #ffffff;
 	transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 #pulseaudio:hover {
- 	background: @bg_hover;
+	background: @bg_hover;
 }
 #pulseaudio.muted {
   background: #2f2f2f;
@@ -188,25 +185,13 @@ tooltip label{
 }
 
 #network {
-	padding-left: 3px;
-  padding-right: 3px;
-  background: #2980b9;
+    background: #2980b9;
 }
 #network.disconnected {
   background: #f53c3c;
 }
 #network:hover {
  	background: @bg_hover;
-}
-
-#language {
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#language {
-  padding-left: 5px;
-  padding-right: 5px;
 }
 
 #clock {
@@ -222,8 +207,8 @@ tooltip label{
     color: #292929;
 }
 #battery.plugged {
-  color: #b0b0b0;
-  background-color: #292929;
+  color: #929292;
+  background-color: #242424;
 }
 #battery.charging {
   color: #ffffff;
@@ -246,22 +231,6 @@ tooltip label{
   animation-direction: alternate;
 }
 
-#mpd {
-    background-color: #66cc99;
-    color: #2a5c45;
-}
-
-#mpd.disconnected {
-    background-color: #f53c3c;
-}
-
-#mpd.stopped {
-    background-color: #90b1b1;
-}
-
-#mpd.paused {
-    background-color: #51a37a;
-}
 #idle_inhibitor {
   background-color: #2d3436;
 }
@@ -272,15 +241,15 @@ tooltip label{
 }
 
 #bluetooth {
-  background: #8689c4;
-  color: #ffffff;
+    background: #2980b9;
+    color: #ffffff;
 }
 #bluetooth:hover {
  	background: @bg_hover;
 }
 
 #cpu {
-  background: #9dc6ae;
+  background: #c59dc6;
   color: #000000;
 }
 #cpu:hover {
@@ -295,15 +264,6 @@ tooltip label{
 #backlight {
   background: #ffffff;
   color: #000000;
-}
-
-#custom-media {
-  background: #66cc99;
-  color: #2a5c45;
-}
-
-.custom-spotify {
-  background: #66cc99;
 }
 
 #mpris {
@@ -332,6 +292,8 @@ tooltip label{
 #custom-nvidia{
   background-color: #3c4c3a;
   color: #d8d8d8;
-  padding-left: 3px;
-  padding-right: 3px;
+}
+
+#custom-notification {
+  font-family: "NotoSansMono Nerd Font";
 }

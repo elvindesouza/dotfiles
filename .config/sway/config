@@ -1,7 +1,8 @@
 set $term $TERMINAL
 set $mod Mod4
 
-exec wl-paste -t text --watch clipman store --no-persist
+output * bg #000000 solid_color
+
 exec swayidle -w \
 	timeout 1000 'swaylock -f' \
 	timeout 1005 'swaymsg "output * power off"' \
@@ -9,32 +10,47 @@ exec swayidle -w \
 
 exec systemctl --user import-environment WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESKTOP SWAYSOCK I3SOCK XCURSOR_SIZE XCURSOR_THEME
 exec dbus-update-activation-environment WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESKTOP SWAYSOCK I3SOCK XCURSOR_SIZE XCURSOR_THEME
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
-
-
+#####################################################################
+# Utilities: 
 #
-# Utilities:
-#
-	#brightness control
-	# Special keys to adjust brightness via brightnessctl
-	bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
-	bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
-	# Special key to take a screenshot with grim
-	bindsym Print exec flameshot gui
+# Brightness control
+# Special keys to adjust brightness via brightnessctl
+bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
+bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
+# Special key to take a screenshot with grim, swappy, slurp
+# (screenshot window selected) grim -g "$(swaymsg -t get_tree | jq -r '.. | select(.pid? and .visible?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"' | slurp)" - | swappy -f -
+bindsym Print exec grim -g "$(slurp)" - | swappy -f -
 
-	# Use pactl to adjust volume in PulseAudio.
-	bindsym --locked XF86AudioMute exec pactl set-sink-mute \@DEFAULT_SINK@ toggle
-	bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume \@DEFAULT_SINK@ -5%
-	bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume \@DEFAULT_SINK@ +5%
-	bindsym --locked XF86AudioMicMute exec pactl set-source-mute \@DEFAULT_SOURCE@ toggle
+# Use pactl to adjust volume in PulseAudio.
+bindsym --locked XF86AudioMute exec pactl set-sink-mute \@DEFAULT_SINK@ toggle
+bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume \@DEFAULT_SINK@ -5%
+bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume \@DEFAULT_SINK@ +5%
+bindsym --locked XF86AudioMicMute exec pactl set-source-mute \@DEFAULT_SOURCE@ toggle
 
-	# Media player controls
-	bindsym --locked XF86AudioPlay exec playerctl play
-	bindsym  --locked XF86AudioPause exec playerctl pause
-	bindsym  --locked XF86AudioNext exec playerctl next
-	bindsym  --locked XF86AudioPrev exec playerctl previous
+# Media player controls
+bindsym --locked XF86AudioPlay exec playerctl play
+bindsym  --locked XF86AudioPause exec playerctl pause
+bindsym  --locked XF86AudioNext exec playerctl next
+bindsym  --locked XF86AudioPrev exec playerctl previous
 
-#
+# Clipboard Manager 
+# exec wl-paste -t text --watch clipman store --no-persist
+# exec cb (cb is broken on Wayland as of 12/2024)
+exec wl-paste --type text --watch cliphist store
+exec wl-paste --type image --watch cliphist store
+
+# Notification Daemon
+exec swaync
+#bindsym $mod+Shift+n exec swaync-client -t -sw# Toggle control center
+
+# Network
+#exec_always nm-applet --indicator
+
+######################################################################################
+
+##########################################################################
 # Appearance- Font, Decoration and Color
 #
 	# Font for window titles. Will also be used by the bar unless a different font
@@ -57,6 +73,10 @@ exec dbus-update-activation-environment WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESK
 	force_display_urgency_hint 500 ms
 
 #
+#########################################################################################
+
+
+######################################################################################
 # Resizing containers:
 #
 	# resize window (you can also use the mouse for that)
@@ -91,8 +111,10 @@ exec dbus-update-activation-environment WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESK
 	bindsym $mod+ctrl+k resize shrink height 2 px or 2 ppt
 	bindsym $mod+ctrl+l resize grow width 2 px or 2 ppt
 
+##
+#####################################################################################
 
-#
+######################################################################################
 # Scratchpad:
 #
     # Sway has a "scratchpad", which is a bag of holding for windows.
@@ -105,180 +127,189 @@ exec dbus-update-activation-environment WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESK
 	# Show the next scratchpad window or hide the focused scratchpad window.
 	# If there are multiple scratchpad windows, this command cycles through them.
 	bindsym $mod+minus scratchpad show
+#
+#####################################################################################
 
-
+#####################################################################################
 ### Key bindings
 #
 # Basics:
 #
-	# start a terminal
-	#bindsym $mod+Return exec i3-sensible-terminal
-	# bindsym $mod+Return exec --no-startup-id xterm -e zsh
-	# bindsym $mod+Return exec --no-startup-id kitty --single-instance
-	bindsym $mod+Return exec --no-startup-id st -e zsh
-	# bindsym $mod+p exec --no-startup-id $term
-	#bindsym $mod+slash		split v;; exec $term
-	#bindsym $mod+apostrophe		split h;; exec $term
-	#bindsym $mod+semicolon exec --no-startup-id $term
+# start a terminal
+#bindsym $mod+Return exec i3-sensible-terminal
+# bindsym $mod+Return exec --no-startup-id xterm -e zsh
+bindsym $mod+Return exec --no-startup-id kitty --single-instance tmuxa
+#bindsym $mod+Return exec --no-startup-id st zsh
+# bindsym $mod+p exec --no-startup-id $term
+#bindsym $mod+slash		split v;; exec $term
+#bindsym $mod+apostrophe		split h;; exec $term
+#bindsym $mod+semicolon exec --no-startup-id $term
 
-	# kill focused window
-	#bindsym $mod+Shift+q kill
-	bindsym ctrl+q kill
-	#bindsym $mod+q kill
-	bindsym $mod+Shift+q		[con_id="__focused__" instance="^(?!dropdown_).*$"] exec --no-startup-id kill -9 `xdotool getwindowfocus getwindowpid`
+# kill focused window
+#bindsym $mod+Shift+q kill
+bindsym ctrl+q kill
+#bindsym $mod+q kill
+bindsym $mod+Shift+q		[con_id="__focused__" instance="^(?!dropdown_).*$"] exec --no-startup-id kill -9 `xdotool getwindowfocus getwindowpid`
 
-	# start rofi (a program launcher)
-	#bindsym $mod+d exec --no-startup-id dmenu_run
-	# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
-	# bindsym $mod+d exec --no-startup-id ~/.config/rofi/launchers/type-3/launcher.sh
-	bindsym $mod+d exec --no-startup-id ~/.config/rofi/launchers/type-7/launcher.sh
+# start rofi (a program launcher)
+#bindsym $mod+d exec --no-startup-id dmenu_run
+# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+bindsym $mod+d exec --no-startup-id ~/.config/rofi/launchers/type-2/launcher.sh
 
-    # Drag floating windows by holding down $mod and left mouse button.
-    # Resize them with right mouse button + $mod.
-    # Despite the name, also works for non-floating windows.
-    # Change normal to inverse to use left mouse button for resizing and right
-    # mouse button for dragging.
-	floating_modifier $mod
+# Drag floating windows by holding down $mod and left mouse button.
+# Resize them with right mouse button + $mod.
+# Despite the name, also works for non-floating windows.
+# Change normal to inverse to use left mouse button for resizing and right
+# mouse button for dragging.
+floating_modifier $mod
 
-	# focus the parent container
-	bindsym $mod+a focus parent
+# focus the parent container
+bindsym $mod+a focus parent
 
-	# reload the configuration file
-	bindsym $mod+Shift+c reload
+# reload the configuration file
+bindsym $mod+Shift+c reload
 
-	# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-	bindsym $mod+Shift+r restart
+# restart sway inplace (preserves your layout/session, can be used to upgrade sway)
+bindsym $mod+Shift+r restart
 
 #
 # Moving around:
 #
-	# change focus
-	bindsym $mod+h focus left
-	bindsym $mod+j focus down
-	bindsym $mod+k focus up
-	bindsym $mod+l focus right
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
-	# move focused window
-	bindsym $mod+Shift+h move left
-	bindsym $mod+Shift+j move down
-	bindsym $mod+Shift+k move up
-	bindsym $mod+Shift+l move right
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
 #
 # Layout stuff:
 #
-	# split in horizontal orientation
-	bindsym $mod+b splith
-	# split in vertical orientation
-	bindsym $mod+v splitv
+# split in horizontal orientation
+bindsym $mod+b splith
+# split in vertical orientation
+bindsym $mod+v splitv
 
-	# enter fullscreen mode for the focused container
-	bindsym $mod+f fullscreen toggle
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
 
-	# change container layout (stacked, tabbed, toggle split)
-	bindsym $mod+s layout stacking
-	bindsym $mod+w layout tabbed
-	bindsym $mod+e layout toggle split
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
 
-	# toggle tiling / floating
-	bindsym $mod+Shift+space floating toggle
-	# Swap focus between the tiling area and the floating area
-	bindsym $mod+space		focus mode_toggle 
-
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+# Swap focus between the tiling area and the floating area
+bindsym $mod+space		focus mode_toggle 
 
 #
 # Workspaces:
 #
-	# switch to workspace
-	bindsym $mod+1 workspace number 1
-	bindsym $mod+2 workspace number 2
-	bindsym $mod+3 workspace number 3
-	bindsym $mod+4 workspace number 4
-	bindsym $mod+5 workspace number 5
-	bindsym $mod+6 workspace number 6
-	bindsym $mod+7 workspace number 7
-	bindsym $mod+8 workspace number 8
-	bindsym $mod+9 workspace number 9
-	bindsym $mod+0 workspace number 10
+# switch to workspace
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+bindsym $mod+8 workspace number 8
+bindsym $mod+9 workspace number 9
+bindsym $mod+0 workspace number 10
 
-	# move focused container to workspace
-	bindsym $mod+Shift+1 move container to workspace number 1
-	bindsym $mod+Shift+2 move container to workspace number 2
-	bindsym $mod+Shift+3 move container to workspace number 3
-	bindsym $mod+Shift+4 move container to workspace number 4
-	bindsym $mod+Shift+5 move container to workspace number 5
-	bindsym $mod+Shift+6 move container to workspace number 6
-	bindsym $mod+Shift+7 move container to workspace number 7
-	bindsym $mod+Shift+8 move container to workspace number 8
-	bindsym $mod+Shift+9 move container to workspace number 9
-	bindsym $mod+Shift+0 move container to workspace number 10
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6
+bindsym $mod+Shift+7 move container to workspace number 7
+bindsym $mod+Shift+8 move container to workspace number 8
+bindsym $mod+Shift+9 move container to workspace number 9
+bindsym $mod+Shift+0 move container to workspace number 10
 
-	# switch between the current and the previously focused one
-	bindsym $mod+backslash workspace back_and_forth
-	bindsym $mod+Shift+backslash move container to workspace back_and_forth
+# switch between the current and the previously focused one
+bindsym $mod+backslash workspace back_and_forth
+bindsym $mod+Shift+backslash move container to workspace back_and_forth
 
-	# cycle through workspaces
-	bindsym $mod+Right workspace next
-	bindsym $mod+Left workspace prev
-	bindsym $mod+bracketleft workspace prev
-	bindsym $mod+bracketright workspace next
+# cycle through workspaces
+bindsym $mod+Right workspace next
+bindsym $mod+Left workspace prev
+bindsym $mod+bracketleft workspace prev
+bindsym $mod+bracketright workspace next
 
-	# move to next/prev workspace
-	bindsym $mod+Shift+Right move to workspace next
-	bindsym $mod+Shift+Left move to workspace prev
-	bindsym $mod+Shift+bracketleft move to workspace prev
-	bindsym $mod+Shift+bracketright move to workspace next
+# move to next/prev workspace
+bindsym $mod+Shift+Right move to workspace next
+bindsym $mod+Shift+Left move to workspace prev
+bindsym $mod+Shift+bracketleft move to workspace prev
+bindsym $mod+Shift+bracketright move to workspace next
 
-	# Back and forth when pressing the same workspace keybind
-	# workspace_auto_back_and_forth yes
-
+# Back and forth when pressing the same workspace keybind
+# workspace_auto_back_and_forth yes
 #
+#####################################################################################
+
+######################################################################################
 # Status Bar:
 #
 # Read `man 5 sway-bar` for more information about this section.
 
 	bar {
-        hidden_state hide
-        mode hide
+#hidden_state hide
+#mode hide
         swaybar_command waybar
         modifier Mod4
     }
 
 	# Toggle bar
 	bindsym $mod+m bar mode toggle
-
-
-
 #
+#####################################################################################
+
+
+#####################################################################################
 # Floating dialogs
-#
+#     use swaymsg -t get_tree to get app_id
+#	  
 	for_window [window_role="pop-up"] floating enable
 	for_window [window_role="task_dialog"] floating enable
 
 	for_window [class="mpv"] sticky enable
 	for_window [class="Brave-browser"] floating disable
-	# use swaymsg -t get_tree to get app_id
-	#	for_window [app_id=""] border none
+	for_window [app_id="blueman-manager"] floating enable
+	for_window [app_id="org.pulseaudio.pavucontrol"] floating enable
 
+    # for_window [app_id=""] border none
 #
+####################################################################################
+
+#####################################################################################
 # System Prompt
 #
-	set $mode_system System (e) logout, (l) lock, (Shift+r) reboot, (Shift+s) shutdown, (b) turn screen off
-	mode "$mode_system" {
-	    bindsym e exec --no-startup-id swaymsg exit, mode "default"
-	    bindsym l exec --no-startup-id swaylock -f, mode "default"
+set $mode_system System (e) logout, (l) lock, (Shift+r) reboot, (Shift+s) shutdown, (b) turn screen off
+mode "$mode_system" {
+    bindsym e exec --no-startup-id swaymsg exit, mode "default"
+    bindsym l exec --no-startup-id swaylock -f, mode "default"
 #	    bindsym s exec --no-startup-id systemctl suspend, mode "default"
 #	    bindsym h exec --no-startup-id systemctl hibernate, mode "default"
-	    bindsym Shift+r exec --no-startup-id reboot, mode "default"
-	    bindsym b exec swayidle -w 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' , mode "default"
-	    bindsym Shift+s exec --no-startup-id systemctl poweroff, mode "default"
-	    bindsym Return mode "default"
-	    bindsym Escape mode "default"
-	}
+    bindsym Shift+r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id systemctl -i poweroff, mode "default"
+    bindsym b exec swayidle -w 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' , mode "default"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
 
 bindsym $mod+Shift+e mode "$mode_system"
 
-
+####################################################################################
+# Inputs, Outputs
 
 input type:touchpad {
     tap enabled
@@ -294,5 +325,8 @@ input 2:10:TPPS/2_IBM_TrackPoint {
 
 input type:keyboard xkb_numlock enabled
 input type:keyboard xkb_layout us-german-umlaut
+
+#
+####################################################################################
 
 include /etc/sway/config.d/*

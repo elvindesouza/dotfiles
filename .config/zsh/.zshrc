@@ -5,9 +5,11 @@ if [[ ! -o interactive ]]; then
 fi
 
 # Check for tmux and launch zsh-tmux environment
-if [ -z "$TMUX" ] && command -v tmux > /dev/null && [ "$TERM" = "st-256color" ] && [ -f "$HOME/bin/tmuxa" ]; then
-    exec $HOME/bin/tmuxa
-fi
+# st-256color
+#[ "$TERM" = "xterm-kitty" ] && 
+# if [ -z "$TMUX" ] && command -v tmux > /dev/null && [ -f "$HOME/bin/tmuxa" ]; then
+#     exec $HOME/bin/tmuxa
+# fi
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -35,19 +37,19 @@ if [ ! -f "$HOME"/.config/zsh/custom/plugins/zsh-defer/zsh-defer.plugin.zsh ]; t
     fi
 else
     source ~/.config/zsh/custom/plugins/zsh-defer/zsh-defer.plugin.zsh
-    zsh-defer . $HOME/.config/zsh/.aliases
+    zsh-defer source $HOME/.config/zsh/.aliases
+    zsh-defer source ~/.config/zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
     zsh-defer source ~/.config/zsh/functions.zsh
+    zsh-defer source ~/.config/zsh/custom/plugins/zsh-z/zsh-z.plugin.zsh
+    if [[ -f $HOME/.config/zsh/keybindings.zsh ]]; then
+        zsh-defer source $HOME/.config/zsh/keybindings.zsh
+    fi
+    zsh-defer source ~/.config/zsh/custom/plugins/fzf-zsh-plugin/fzf-zsh-plugin.plugin.zsh
     if [[ -f ~/.config/zsh/custom/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh ]]; then
         zsh-defer source ~/.config/zsh/autocomplete.zsh # https://github.com/marlonrichert/zsh-autocomplete
     fi
-    zsh-defer source ~/.config/zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-    zsh-defer source ~/.config/zsh/custom/plugins/zsh-z/zsh-z.plugin.zsh
-    zsh-defer source ~/.config/zsh/custom/plugins/fzf-zsh-plugin/fzf-zsh-plugin.plugin.zsh
     if [[ -f /etc/zsh_command_not_found ]]; then
         zsh-defer source /etc/zsh_command_not_found
-    fi
-    if [[ -f $HOME/.config/zsh/keybindings.zsh ]]; then
-        zsh-defer . $HOME/.config/zsh/keybindings.zsh
     fi
 fi
 
@@ -133,17 +135,17 @@ HISTFILE="$XDG_STATE_HOME"/zsh/history
 # eval "$(direnv hook zsh)"
 
 # mkdir if they do not exist
-dirs=(
-  "$XDG_DATA_HOME"
-  "$XDG_CONFIG_HOME"
-  "$XDG_STATE_HOME"
-  "$XDG_CACHE_HOME"
-  "$XDG_STATE_HOME"/zsh/
-  "$XDG_STATE_HOME"/bash/
-)
-for dir in "${dirs[@]}"; do
-  [ ! -d "$dir" ] && mkdir -p "$dir"
-done
+# dirs=(
+#   "$XDG_DATA_HOME"
+#   "$XDG_CONFIG_HOME"
+#   "$XDG_STATE_HOME"
+#   "$XDG_CACHE_HOME"
+#   "$XDG_STATE_HOME"/zsh/
+#   "$XDG_STATE_HOME"/bash/
+# )
+# for dir in "${dirs[@]}"; do
+#   [ ! -d "$dir" ] && mkdir -p "$dir"
+# done
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh

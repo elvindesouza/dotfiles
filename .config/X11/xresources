@@ -13,8 +13,8 @@ Xft.lcdfilter: lcdfilter
 
 ! FONTS
 ! this causes a problem with (python) tkinter programs
-!*font: Iosevka Nerd Font Mono:pixelsize=30:antialias=true:autohint=true
-!*faceName: Iosevka Nerd Font Mono
+!*font: IosevkaTerm Nerd Font Mono:pixelsize=30:antialias=true:autohint=true
+!*faceName: IosevkaTerm Nerd Font Mono
 *faceSize: 30
 XTerm*faceSize1: 12
 XTerm*faceSize2: 22
@@ -153,7 +153,7 @@ UXTerm*dynamicColors:     true
 
 UXTerm*eightBitInput: true
 UXTerm*loginShell:        true
-!UXTerm*faceName: Iosevka Nerd Font Mono
+!UXTerm*faceName: IosevkaTerm Nerd Font Mono
 ! UXTerm*faceNameDoublesize: -misc-fixed-medium-r-semicondensed--13-120-75-75-c-60-iso8859-?
 UXTerm*faceSize: 32
 ! UXTerm*font:     -misc-fixed-medium-r-normal--18-120-100-100-c-90-iso10646-1
@@ -194,7 +194,7 @@ urxvt.scrollColor:#666666
 !urxvt.borderColor: colour
 
 !font
-urxvt.font: xft:Iosevka\ Nerd\ Font\ Mono:pixelsize=30:antialias=true:autohint=true:minspace=true
+urxvt.font: xft:IosevkaTerm\ Nerd\ Font\ Mono:pixelsize=30:antialias=true:autohint=true:minspace=true
 ! URxvt.font: 9x15
 urxvt.fontSize: 38
 !urxvt.italicFont:xft:NotoSansMonoCJKSC:pixelsize=18
