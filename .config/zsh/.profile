@@ -41,7 +41,7 @@ fi
 # Preferred editor for local and remote sessions
 export EDITOR='nvim'
 export VISUAL='nvim'
-export TERMINAL='st'
+export TERMINAL='kitty'
 # export SHELL=/bin/zsh
 
 export LANG=en_US.UTF-8 # You may need to manually set your language environment

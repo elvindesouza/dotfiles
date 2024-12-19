@@ -11,21 +11,21 @@
     "modules-left": [
         "sway/workspaces",
         "sway/mode",
-        "sway/scratchpad",
-        "sway/window"
+        "sway/scratchpad"
     ],
     "modules-center": [
-        "idle_inhibitor",
-        "custom/playerctl-previous",
-        "mpris",
-        "custom/playerctl-next"
+        "sway/window",
+        "idle_inhibitor"
     ],
     "modules-right": [
+        "custom/playerctl-previous",
+        "mpris",
+        "custom/playerctl-next",
         "bluetooth",
         "custom/clipboard",
         "custom/notification",
         "power-profiles-daemon",
-        "custom/nvidia",
+        //"custom/nvidia",
         "cpu",
         "temperature",
         "memory",
@@ -65,9 +65,9 @@
         "tooltip": false
     },
     "sway/window": {
-        "format": "{title:100}",
+        "format": "{title:90} ",
         "on-scroll-up": "swaymsg workspace prev",
-        "on-scroll-down": "swaymsg workspace next"
+        "on-scroll-down": "swaymsg workspace next",
     },
     "sway/scratchpad": {
         "format": "{icon} {count}",
@@ -129,7 +129,7 @@
                     }
     },
     "cpu": {
-        "interval": 3,
+        "interval": 2,
         "format": " {usage:2}% ({load})", // Icon: microchip
         "states": {
           "warning": 70,
@@ -222,7 +222,7 @@
     },
     "network": {
         "interval": 2,
-        "format-wifi": " {bandwidthDownBytes:3} {bandwidthUpBytes:3}",
+        "format-wifi": " {bandwidthDownBytes:2} {bandwidthUpBytes:2}",
         "format-ethernet": " {ifname}: {ipaddr}/{cidr}", // Icon: ethernet
         "format-disconnected": " Disconnected",
         "tooltip-format": "{ifname}: {ipaddr}/{cidr}, {essid}:{signalStrength}% {frequency}GHz",
@@ -250,7 +250,7 @@
     },
     "mpris": {
         "format": " {status_icon} {dynamic}",
-        "interval": 2,
+        "interval": 1,
         "dynamic-len": 40,
         "status-icons": {
             "playing": "▶",
@@ -272,7 +272,7 @@
     },
     "custom/nvidia": {
         "exec": "nvidia-smi --query-gpu=utilization.gpu,temperature.gpu --format=csv,nounits,noheader | sed 's/\\([0-9]\\+\\), \\([0-9]\\+\\)/\\1%  \\2°C/g'",
-        "exec-if": "which nvidia-smi",
+        //"exec-if": "which nvidia-settings",
         "format": " {}",
         "tooltip-format": "Nvidia GPU Usage",
         "interval": 5
@@ -291,9 +291,8 @@
           "dnd-inhibited-none": ""
         },
         "return-type": "json",
-        "exec-if": "which swaync-client",
+        "exec-if": "which swaync",
         "exec": "swaync-client -swb",
-        "interval": 5,
         "on-click": "swaync-client -t -sw",
         "on-click-right": "swaync-client -d -sw",
         "escape": true

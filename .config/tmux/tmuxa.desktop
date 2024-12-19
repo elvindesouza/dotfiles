@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=tmuxa
+GenericName=tmuxa running in st
+StartupNotify=true
+Exec=st tmuxa
+Icon=kitty
+Categories=System;TerminalEmulator;
