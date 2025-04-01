@@ -18,31 +18,31 @@ chmod +x eza
 # wget https://github.com/srevinsaju/zap/releases/download/continuous/zap-amd64 -O "$HOME"/bin/zap
 # chmod +x "$HOME"/bin/zap
 
-echo -e "\e[1;32mNeovim\e[0m"
+echo -e ${BBlue}"\n[*] Neovim" ${Color_Off}
 cd "$HOME"/.config/nvim || exit
 rm -f nvim.appimage
 wget https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
 chmod +x nvim.appimage
 
-echo -e "\e[1;32myt-dlp\e[0m"
+echo -e ${BBlue}"\n[*] yt-dlp" ${Color_Off}
 wget https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -O "$HOME"/bin/yt-dlp
 chmod +x "$HOME"/bin/yt-dlp
 
+echo -e ${BBlue}"\n[*] navi - cheatsheet tool" ${Color_Off}
 # keep URL up to date https://github.com/denisidoro/navi/releases/latest
-# cd "$HOME"/bin || exit
-# wget -c  https://github.com/denisidoro/navi/releases/download/v2.23.0/navi-v2.23.0-x86_64-unknown-linux-musl.tar.gz -O - | tar xz --strip-components=1 
-# chmod +x navi
+cd "$HOME"/bin || exit
+wget -c  https://github.com/denisidoro/navi/releases/download/v2.23.0/navi-v2.23.0-aarch64-unknown-linux-gnu.tar.gz  -O - | tar xz --strip-components=1
+chmod +x navi
 
 # Chafa
 # keep URL up to date from https://hpjansson.org/chafa/download/
-echo -e "\e[1;32mChafa\e[0m"
+echo -e ${BBlue}"\n[*] chafa - terminal graphics" ${Color_Off}
 cd "$HOME"/bin || exit
-wget -c https://hpjansson.org/chafa/releases/static/chafa-1.14.4-1-x86_64-linux-gnu.tar.gz -O - | tar xz --strip-components=1 
+wget -c https://hpjansson.org/chafa/releases/static/chafa-1.14.5-1-x86_64-linux-gnu.tar.gz -O - | tar xz --strip-components=1 
 chmod +x chafa
 
 # lf 
-echo -e "\e[1;32mlf\e[0m"
-# keep url up to date  https://github.com/gokcehan/lf/releases/latest
+echo -e ${BBlue}"\n[*] lf - terminal file manager" ${Color_Off}
 cd "$HOME"/bin || exit
 wget -c https://github.com/gokcehan/lf/releases/latest/download/lf-linux-amd64.tar.gz -O - | tar xz
 chmod +x lf
@@ -55,8 +55,7 @@ chmod +x lf
 # chmod +x "$HOME"/bin/lazygit
 
 # diff-so-fancy
-echo -e "\e[1;32mdiff-so-fancy\e[0m"
-# keep url up to date https://github.com/so-fancy/diff-so-fancy/releases/latest
+echo -e ${BBlue}"\n[*] diff-so-fancy - fancy diffs" ${Color_Off}
 cd "$HOME"/bin || exit
 wget -O diff-so-fancy https://github.com/so-fancy/diff-so-fancy/releases/latest/download/diff-so-fancy && chmod +x diff-so-fancy
 

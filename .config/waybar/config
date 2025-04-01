@@ -1,4 +1,5 @@
 // -*- mode: jsonc -*-
+// https://fontawesome.com/icons - for icons
 {
     "bar_id": "bar-0",
     "ipc": true,
@@ -11,7 +12,9 @@
     "modules-left": [
         "sway/workspaces",
         "sway/mode",
-        "sway/scratchpad"
+        "sway/scratchpad",
+        "custom/icon1",
+        "custom/icon2",
     ],
     "modules-center": [
         "sway/window",
@@ -25,7 +28,7 @@
         "custom/clipboard",
         "custom/notification",
         "power-profiles-daemon",
-        //"custom/nvidia",
+        "custom/nvidia",
         "cpu",
         "temperature",
         "memory",
@@ -65,7 +68,7 @@
         "tooltip": false
     },
     "sway/window": {
-        "format": "{title:90} ",
+        "format": "{title:90}",
         "on-scroll-up": "swaymsg workspace prev",
         "on-scroll-down": "swaymsg workspace next",
     },
@@ -75,6 +78,18 @@
         "format-icons": ["", ""],
         "tooltip": true,
         "tooltip-format": "{app}: {title}"
+    },
+    "custom/icon1": {
+        "format": "{}  ",
+        "tooltip": false,
+        "on-click": "firefox",
+        "on-click-right": "mullvad-browser"
+    },
+    "custom/icon2": {
+        "format": "{}  ",
+        "tooltip": false,
+        "on-click": "dolphin",
+        "on-click-right": "thunar"
     },
     "idle_inhibitor": {
         "format": "{icon}",
@@ -91,8 +106,8 @@
      "bluetooth": {
         // "controller": "controller1", // specify the alias of the controller if there are more than 1 on the system
         "format": "?",
-        "format-disabled": "", // an empty format will hide the module
-        "format-connected": "",
+        "format-disabled": "", // an empty format will hide the module
+        "format-connected": "󰂱",
         "tooltip-format": "{controller_alias}\t{controller_address}",
         "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
         "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
