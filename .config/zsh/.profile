@@ -73,3 +73,6 @@ export ANDROID_HOME="$XDG_DATA_HOME"/android
 export CUDA_CACHE_PATH="$XDG_CACHE_HOME"/nv
 export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
 export KEYTIMEOUT=1
+
+
+export XDG_MENU_PREFIX=plasma- # fix for dolphin in sway

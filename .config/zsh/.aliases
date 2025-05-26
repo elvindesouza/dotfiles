@@ -51,7 +51,7 @@ alias du="du -h"
 alias ip='ip -color=auto'
 alias mkdir="mkdir -pv"
 alias yt="yt-dlp --embed-metadata -i"
-alias yta="yt -x -f bestaudio/best"
+alias yta="yt -x -f bestaudio/best --audio-format mp3"
 alias ffmpeg="ffmpeg -hide_banner"
 alias cb='flatpak run app.getclipboard.Clipboard'
 if command -v fastfetch &> /dev/null; then
