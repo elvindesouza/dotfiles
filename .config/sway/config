@@ -290,7 +290,7 @@ bindsym $mod+Shift+bracketright move to workspace next
 	for_window [app_id="org.pulseaudio.pavucontrol"] floating enable
 	for_window [app_id="org.pulseaudio.pavucontrol"] floating enable
 	for_window [app_id="org.gnome.Solanum"] floating enable, sticky enable
-	for_window [app_id="projectMSDL"] floating enable, sticky enable
+	for_window [class="projectMSDL"] floating enable, sticky enable
 
 
     # for_window [app_id=""] border none

@@ -21,8 +21,7 @@ chmod +x eza
 echo -e ${BBlue}"\n[*] Neovim" ${Color_Off}
 cd "$HOME"/.config/nvim || exit
 rm -f nvim.appimage
-wget https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
-chmod +x nvim.appimage
+wget https://github.com/neovim/neovim/releases/download/stable/nvim-linux-arm64.appimage chmod u+x nvim-linux-arm64.appimage
 
 echo -e ${BBlue}"\n[*] yt-dlp" ${Color_Off}
 wget https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -O "$HOME"/bin/yt-dlp
@@ -33,13 +32,6 @@ echo -e ${BBlue}"\n[*] navi - cheatsheet tool" ${Color_Off}
 cd "$HOME"/bin || exit
 wget -c  https://github.com/denisidoro/navi/releases/download/v2.23.0/navi-v2.23.0-aarch64-unknown-linux-gnu.tar.gz  -O - | tar xz --strip-components=1
 chmod +x navi
-
-# Chafa
-# keep URL up to date from https://hpjansson.org/chafa/download/
-echo -e ${BBlue}"\n[*] chafa - terminal graphics" ${Color_Off}
-cd "$HOME"/bin || exit
-wget -c https://hpjansson.org/chafa/releases/static/chafa-1.14.5-1-x86_64-linux-gnu.tar.gz -O - | tar xz --strip-components=1 
-chmod +x chafa
 
 # lf 
 echo -e ${BBlue}"\n[*] lf - terminal file manager" ${Color_Off}
@@ -58,6 +50,13 @@ chmod +x lf
 echo -e ${BBlue}"\n[*] diff-so-fancy - fancy diffs" ${Color_Off}
 cd "$HOME"/bin || exit
 wget -O diff-so-fancy https://github.com/so-fancy/diff-so-fancy/releases/latest/download/diff-so-fancy && chmod +x diff-so-fancy
+
+
+# pistol (for file previews in lf)
+echo -e ${BBlue}"\n[*] pistol - file previews" ${Color_Off}
+cd "$HOME"/bin || exit
+wget -O pistol https://github.com/doronbehar/pistol/releases/latest/download/pistol-static-linux-x86_64 && chmod +x pistol
+
 
 # Clipboard (https://github.com/Slackadays/Clipboard/issues/171 currently broken on wayland)
 # echo -e "\e[1;32mClipboard\e[0m"
