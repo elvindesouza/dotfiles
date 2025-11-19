@@ -102,3 +102,19 @@ note () {
         printf "%s\n" "$*" >> "$HOME/Documents/note" # add all arguments to file
     fi
 }
+
+bindkey -r '^T'
+fzf_gio_open_widget() {
+  # Use fzf to select a file.
+  # < /dev/tty is crucial to make fzf work correctly inside a zsh widget.
+  local selected_file
+  selected_file=$(fzf --height 40% --reverse < /dev/tty)
+  # If a file was selected (i.e., you didn't press Esc),
+  # open it silently in the background.
+  if [[ -n "$selected_file" ]]; then
+    gio open "$selected_file" &> /dev/null
+  fi
+  zle reset-prompt
+}
+zle -N fzf_gio_open_widget
+bindkey '^T' fzf_gio_open_widget

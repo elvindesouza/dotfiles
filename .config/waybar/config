@@ -178,7 +178,7 @@
         // "device": "acpi_video1",
         "format": "{icon} {percent}%",
         "format-icons": ["", "", "", "", "", "", "", "", ""],
-        "on-click": "$HOME/.config/rofi/applets/bin/brightness.sh",
+        "on-click": "$HOME/.config/wofi/night_light.sh",
         "tooltip": false
     },
     "battery": {

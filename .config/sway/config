@@ -7,6 +7,7 @@ exec swayidle -w \
 	timeout 1000 'swaylock -f' \
 	timeout 1005 'swaymsg "output * power off"' \
 	resume 'swaymsg "output * power on"'
+exec swayidle -w timeout 10800 'systemctl suspend'  # suspend in 3 hours
 
 exec systemctl --user import-environment WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESKTOP SWAYSOCK I3SOCK XCURSOR_SIZE XCURSOR_THEME
 exec dbus-update-activation-environment WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESKTOP SWAYSOCK I3SOCK XCURSOR_SIZE XCURSOR_THEME
@@ -144,7 +145,8 @@ bindsym $mod+Return exec --no-startup-id kitty # --single-instance
 # bindsym $mod+p exec --no-startup-id $term
 #bindsym $mod+slash		split v;; exec $term
 #bindsym $mod+apostrophe		split h;; exec $term
-#bindsym $mod+semicolon exec --no-startup-id $term
+bindsym $mod+apostrophe	exec --no-startup-id com.brave.Browser
+bindsym $mod+semicolon exec --no-startup-id firefox
 
 # kill focused window
 #bindsym $mod+Shift+q kill
@@ -152,10 +154,10 @@ bindsym ctrl+q kill
 #bindsym $mod+q kill
 bindsym $mod+Shift+q		[con_id="__focused__" instance="^(?!dropdown_).*$"] exec --no-startup-id kill -9 `xdotool getwindowfocus getwindowpid`
 
-# start rofi (a program launcher)
+# start wofi (a program launcher)
 #bindsym $mod+d exec --no-startup-id dmenu_run
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
-bindsym $mod+d exec --no-startup-id ~/.config/rofi/launchers/type-2/launcher.sh
+bindsym $mod+d exec --no-startup-id wofi --show drun -G -I --matching=fuzzy -i
 
 # Drag floating windows by holding down $mod and left mouse button.
 # Resize them with right mouse button + $mod.

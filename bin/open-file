@@ -1,0 +1,18 @@
+#!/bin/bash
+#
+# fzf-open: A script to select a file with fzf and open it with the default
+# application without blocking the terminal or printing output.
+
+# Use fzf to select a file. The output of fzf (the selected path)
+# is stored in the 'selected_file' variable.
+selected_file=$(fzf)
+
+# Check if a file was actually selected. If the user presses Esc in fzf,
+# the variable will be empty, and we don't want to run the open command.
+if [[ -n "$selected_file" ]]; then
+    # If a file was selected, open it using 'gio open'.
+    # The quotes around "$selected_file" handle filenames with spaces.
+    # '&> /dev/null' redirects both standard output and error to nothing.
+    # The final '&' runs the command in the background.
+    gio open "$selected_file" &> /dev/null &
+fi

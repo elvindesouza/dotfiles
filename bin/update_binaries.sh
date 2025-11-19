@@ -8,7 +8,7 @@ BBlue='\033[1;34m'  BPurple='\033[1;35m' BCyan='\033[1;36m'  BWhite='\033[1;37m'
 # eza-alternative to ls
 echo -e ${BBlue}"\n[*] Eza - alternative to ls" ${Color_Off}
 cd "$HOME"/bin || exit
-wget -c https://github.com/eza-community/eza/releases/latest/download/eza_x86_64-unknown-linux-gnu.tar.gz -O - | tar xz
+wget -q --show-progress -c https://github.com/eza-community/eza/releases/latest/download/eza_x86_64-unknown-linux-gnu.tar.gz -O - | tar xz
 chmod +x eza
 
 # mkdir -p "$HOME"/Downloads/ && \
@@ -20,23 +20,22 @@ chmod +x eza
 
 echo -e ${BBlue}"\n[*] Neovim" ${Color_Off}
 cd "$HOME"/.config/nvim || exit
-rm -f nvim.appimage
-wget https://github.com/neovim/neovim/releases/download/stable/nvim-linux-arm64.appimage chmod u+x nvim-linux-arm64.appimage
+./update.sh
 
 echo -e ${BBlue}"\n[*] yt-dlp" ${Color_Off}
-wget https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -O "$HOME"/bin/yt-dlp
+wget -q --show-progress https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -O "$HOME"/bin/yt-dlp
 chmod +x "$HOME"/bin/yt-dlp
 
 echo -e ${BBlue}"\n[*] navi - cheatsheet tool" ${Color_Off}
 # keep URL up to date https://github.com/denisidoro/navi/releases/latest
 cd "$HOME"/bin || exit
-wget -c  https://github.com/denisidoro/navi/releases/download/v2.23.0/navi-v2.23.0-aarch64-unknown-linux-gnu.tar.gz  -O - | tar xz --strip-components=1
+wget -q --show-progress -c  https://github.com/denisidoro/navi/releases/download/v2.23.0/navi-v2.23.0-aarch64-unknown-linux-gnu.tar.gz  -O - | tar xz --strip-components=1
 chmod +x navi
 
 # lf 
 echo -e ${BBlue}"\n[*] lf - terminal file manager" ${Color_Off}
 cd "$HOME"/bin || exit
-wget -c https://github.com/gokcehan/lf/releases/latest/download/lf-linux-amd64.tar.gz -O - | tar xz
+wget -q --show-progress -c https://github.com/gokcehan/lf/releases/latest/download/lf-linux-amd64.tar.gz -O - | tar xz
 chmod +x lf
 
 # mkdir -p /tmp/lazygit_download
@@ -49,13 +48,13 @@ chmod +x lf
 # diff-so-fancy
 echo -e ${BBlue}"\n[*] diff-so-fancy - fancy diffs" ${Color_Off}
 cd "$HOME"/bin || exit
-wget -O diff-so-fancy https://github.com/so-fancy/diff-so-fancy/releases/latest/download/diff-so-fancy && chmod +x diff-so-fancy
+wget -q --show-progress -O diff-so-fancy https://github.com/so-fancy/diff-so-fancy/releases/latest/download/diff-so-fancy && chmod +x diff-so-fancy
 
 
 # pistol (for file previews in lf)
 echo -e ${BBlue}"\n[*] pistol - file previews" ${Color_Off}
 cd "$HOME"/bin || exit
-wget -O pistol https://github.com/doronbehar/pistol/releases/latest/download/pistol-static-linux-x86_64 && chmod +x pistol
+wget -q --show-progress -O pistol https://github.com/doronbehar/pistol/releases/latest/download/pistol-static-linux-x86_64 && chmod +x pistol
 
 
 # Clipboard (https://github.com/Slackadays/Clipboard/issues/171 currently broken on wayland)

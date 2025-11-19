@@ -35,3 +35,7 @@ bindkey -s '^[[13;5u' '\n'
 bindkey -s '^[[127;2u' '^?'
 bindkey "^[[48;5u" beginning-of-line
 bindkey "^[[45;5u" end-of-line
+
+
+bindkey -r '^T'
+bindkey '^T' fzf_gio_open_widget

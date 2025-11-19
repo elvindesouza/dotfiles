@@ -39,17 +39,17 @@ else
     source ~/.config/zsh/custom/plugins/zsh-defer/zsh-defer.plugin.zsh
     zsh-defer source $HOME/.config/zsh/.aliases
     zsh-defer source ~/.config/zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-    zsh-defer source ~/.config/zsh/functions.zsh
     zsh-defer source ~/.config/zsh/custom/plugins/zsh-z/zsh-z.plugin.zsh
-    if [[ -f $HOME/.config/zsh/keybindings.zsh ]]; then
-        zsh-defer source $HOME/.config/zsh/keybindings.zsh
-    fi
     zsh-defer source ~/.config/zsh/custom/plugins/fzf-zsh-plugin/fzf-zsh-plugin.plugin.zsh
     if [[ -f ~/.config/zsh/custom/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh ]]; then
         zsh-defer source ~/.config/zsh/autocomplete.zsh # https://github.com/marlonrichert/zsh-autocomplete
     fi
     if [[ -f /etc/zsh_command_not_found ]]; then
         zsh-defer source /etc/zsh_command_not_found
+    fi
+    zsh-defer source ~/.config/zsh/functions.zsh
+    if [[ -f $HOME/.config/zsh/keybindings.zsh ]]; then
+        zsh-defer source $HOME/.config/zsh/keybindings.zsh
     fi
 fi
 
