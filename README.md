@@ -5,10 +5,10 @@
 ## Software Used
 - neovim - code/text editor
 - kitty - terminal emulator
-- suckless-st+patches - minimal terminal emulator
+- kitty - terminal emulator
 - tmux - terminal multiplexer
 - sway - (Wayland) compositor
-- rofi - application launcher (using scripts from https://github.com/adi1090x/rofi)
+- wofi - application launcher
 - zsh - preferred shell
 - lf - terminal file manager with file previews
 - dolphin - file manager
@@ -17,20 +17,16 @@
 - zathura, okular - document viewer
 - ark - archive manager
 - swappy - screenshot utility
-- firefox with arkenfox user.js - web browser
+- firefox with custom user.js and userchrome customizations - web browser
 
 ## TODO
 
 ### High Priority
-- neovim
-    fix configuration
 - zsh (fix): (zsh-autocompletion):
         1. freezing because of autocompletion loading
 
 ### Medium Priority
-- lf: change previwer, ctpv is unmaintained
 - backup: ssh,gpg keys
-- fix: vim double Esc to go from insert to normal mode
 - backup script- 
     1. add BACKUP_* variables to all other installs .bashrc
     2. remove bash/zsh history from dotfiles tracking
@@ -96,4 +92,4 @@ echo "Download fonts with the script in .local/share/fonts"
 
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
-echo "Recommended flatpaks - com.brave.Browser com.github.ransome1.sleek com.github.tchx84.Flatseal com.rtosta.zapzap com.spotify.Client im.riot.Riot net.cozic.joplin_desktop net.mullvad.MullvadBrowser org.mozilla.Thunderbird"
+echo "Recommended flatpaks - com.brave.Browser com.github.ransome1.sleek com.github.tchx84.Flatseal com.rtosta.zapzap com.spotify.Client net.cozic.joplin_desktop org.mozilla.Thunderbird"
