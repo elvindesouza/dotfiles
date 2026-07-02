@@ -10,6 +10,21 @@ h="$3"
 x="$4"
 y="$5"
 
+
+CACHE="/tmp/cache/lf/previews"
+mkdir -p "$CACHE"
+
+# hash-based cache key so we don't regenerate every time you re-hover a file
+key=$(echo "$file $(stat -c %Y "$file" 2>/dev/null)" | md5sum | cut -d' ' -f1)
+
+pdf_to_png() {
+  # $1 = pdf path, outputs $CACHE/$key.png
+  pdftoppm -png -f 1 -l 1 -scale-to-x 1200 -scale-to-y -1 "$1" "$CACHE/$key" >/dev/null 2>&1
+  # pdftoppm appends -1 (or similar) to the filename
+  out=$(ls "$CACHE/$key"*.png 2>/dev/null | head -n1)
+  [ -n "$out" ] && echo "$out"
+}
+
 case "$(file -Lb --mime-type "$file")" in 
   image/*)
     draw "$file"
@@ -18,6 +33,41 @@ case "$(file -Lb --mime-type "$file")" in
     # vidthumb is from here:
     # https://raw.githubusercontent.com/duganchen/kitty-pistol-previewer/main/vidthumb
     draw "$(vidthumb "$file")"
+    ;;
+  application/pdf)
+    cached="$CACHE/${key}-1.png"
+    if [ -f "$cached" ]; then
+      draw "$cached"
+    else
+      out=$(pdf_to_png "$file")
+      [ -n "$out" ] && draw "$out"
+    fi
+    ;;
+  application/msword|\
+  application/vnd.openxmlformats-officedocument.wordprocessingml.document|\
+  application/vnd.oasis.opendocument.text|\
+  application/vnd.ms-excel|\
+  application/vnd.openxmlformats-officedocument.spreadsheetml.sheet|\
+  application/vnd.oasis.opendocument.spreadsheet|\
+  application/vnd.ms-powerpoint|\
+  application/vnd.openxmlformats-officedocument.presentationml.presentation|\
+  application/vnd.oasis.opendocument.presentation)
+    cached="$CACHE/${key}-1.png"
+    if [ -f "$cached" ]; then
+      draw "$cached"
+    else
+      tmp_pdf="$CACHE/${key}.pdf"
+      if [ ! -f "$tmp_pdf" ]; then
+        libreoffice --headless --convert-to pdf --outdir "$CACHE" "$file" >/dev/null 2>&1
+        # libreoffice names it after the original file, not our key
+        conv=$(basename "${file%.*}").pdf
+        [ -f "$CACHE/$conv" ] && mv "$CACHE/$conv" "$tmp_pdf"
+      fi
+      if [ -f "$tmp_pdf" ]; then
+        out=$(pdf_to_png "$tmp_pdf")
+        [ -n "$out" ] && draw "$out"
+      fi
+    fi
     ;;
 esac
 

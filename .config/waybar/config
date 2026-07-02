@@ -21,17 +21,17 @@
         "idle_inhibitor"
     ],
     "modules-right": [
+        "custom/notification",
+        "custom/clipboard",
         "custom/playerctl-previous",
         "mpris",
         "custom/playerctl-next",
         "bluetooth",
-        "custom/clipboard",
-        "custom/notification",
         "power-profiles-daemon",
         "custom/nvidia",
-        "cpu",
         "temperature",
         "memory",
+        "cpu",
         "network",
         "pulseaudio",
         "backlight",
@@ -144,7 +144,7 @@
                     }
     },
     "cpu": {
-        "interval": 2,
+        "interval": 4,
         "format": " {usage:2}% ({load})", // Icon: microchip
         "states": {
           "warning": 70,
@@ -163,7 +163,7 @@
     },
    "temperature": {
       "critical-threshold": 80,
-      "interval": 10,
+      "interval": 20,
       "format": "{icon} {temperatureC}°C",
       "format-icons": [
           "", // Icon: temperature-empty
@@ -178,11 +178,11 @@
         // "device": "acpi_video1",
         "format": "{icon} {percent}%",
         "format-icons": ["", "", "", "", "", "", "", "", ""],
-        "on-click": "$HOME/.config/wofi/night_light.sh",
+        "on-click": "$HOME/.config/fuzzel/night_light.sh",
         "tooltip": false
     },
     "battery": {
-        "interval": 10,
+        "interval": 30,
         "states": {
             "warning": 30,
             "critical": 15
@@ -204,7 +204,7 @@
     },
     "battery#bat2": {
         "bat": "BAT2",
-        "interval": 10,
+        "interval": 30,
         "states": {
             "warning": 30,
             "critical": 15
@@ -236,13 +236,14 @@
       }
     },
     "network": {
-        "interval": 2,
+        "interval": 1,
         "format-wifi": " {bandwidthDownBytes:2} {bandwidthUpBytes:2}",
         "format-ethernet": " {ifname}: {ipaddr}/{cidr}", // Icon: ethernet
         "format-disconnected": " Disconnected",
         "tooltip-format": "{ifname}: {ipaddr}/{cidr}, {essid}:{signalStrength}% {frequency}GHz",
         "on-click": "nm-applet",
-        "on-click-right": "nm-connection-editor"
+        "on-click-right": "nm-connection-editor",
+        "min-length": 20
     },
     "pulseaudio": {
         "scroll-step": 3, // %, can be a float
@@ -266,7 +267,7 @@
     "mpris": {
         "format": " {status_icon} {dynamic}",
         "interval": 1,
-        "dynamic-len": 40,
+        "dynamic-len": 60,
         "status-icons": {
             "playing": "▶",
             "paused": "⏸",
@@ -290,7 +291,7 @@
         //"exec-if": "which nvidia-settings",
         "format": " {}",
         "tooltip-format": "Nvidia GPU Usage",
-        "interval": 5
+        "interval": 10
     },
     "custom/notification": {
         "tooltip": false,

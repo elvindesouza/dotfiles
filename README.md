@@ -5,10 +5,9 @@
 ## Software Used
 - neovim - code/text editor
 - kitty - terminal emulator
-- kitty - terminal emulator
 - tmux - terminal multiplexer
 - sway - (Wayland) compositor
-- wofi - application launcher
+- fuzzel - application launcher
 - zsh - preferred shell
 - lf - terminal file manager with file previews
 - dolphin - file manager
@@ -19,11 +18,14 @@
 - swappy - screenshot utility
 - firefox with custom user.js and userchrome customizations - web browser
 
+Also using nwg-clipman (clipboard utilities), grim+slurp+swappy(screenshots)
+
 ## TODO
 
 ### High Priority
 - zsh (fix): (zsh-autocompletion):
         1. freezing because of autocompletion loading
+- neovim (fix): fix neovim config to work as a swiss army knife for a wide range of filetypes. reduce features to the minimum actually required to reduce config breaking with updates
 
 ### Medium Priority
 - backup: ssh,gpg keys
@@ -31,6 +33,7 @@
     1. add BACKUP_* variables to all other installs .bashrc
     2. remove bash/zsh history from dotfiles tracking
     3. make stable backup script for *arch-laptop*, *ubuntu-laptop*, *arch-pc*, *termux*- should store **important** configurations that are not (in) dotfiles
+- neovim (refactor): update neovim config to use a more standard style
     
 ### Low Priority
 - use recommended way to set keybindings https://wiki.archlinux.org/title/Zsh#Key_bindings
@@ -39,7 +42,6 @@
 - implement .bash_profile for device-specific configurations, make uniform across all devices
 - make ranger configuration(identical to lf)
 - zsh keybind to open tmuxa(decide whether or not to exec tmuxa or not)
-- st alt+o/a/s/u 
 - implement the functions from fzf wiki
 - firefox (YouTube) hardware acceleration- no support currently for proprietary nvidia drivers
 

@@ -157,7 +157,8 @@ bindsym $mod+Shift+q		[con_id="__focused__" instance="^(?!dropdown_).*$"] exec -
 # start wofi (a program launcher)
 #bindsym $mod+d exec --no-startup-id dmenu_run
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
-bindsym $mod+d exec --no-startup-id wofi --show drun -G -I --matching=fuzzy -i
+# bindsym $mod+d exec --no-startup-id wofi --show drun -G -I --matching=fuzzy -i
+bindsym $mod+d exec --no-startup-id fuzzel
 
 # Drag floating windows by holding down $mod and left mouse button.
 # Resize them with right mouse button + $mod.

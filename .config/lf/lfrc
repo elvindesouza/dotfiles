@@ -154,7 +154,6 @@ set autoquit true
 # set drawbox
 set sortby time
 set reverse!
-set sixel true
 
 set previewer ~/.config/lf/previewer
 set cleaner ~/.config/lf/cleaner
